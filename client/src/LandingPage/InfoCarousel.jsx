@@ -8,7 +8,7 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import "swiper/components/effect-fade/effect-fade.scss"
-import './InfoCarousel.css'
+import './InfoCarousel.scss'
 
 import karina from '../images/AespaKarina.jpg'
 import bts from '../images/bts.jpg'

@@ -1,4 +1,4 @@
-import './Dashboard.css'
+import './Dashboard.scss'
 import Chart from './Chart/Chart'
 
 const Dashboard = () => {

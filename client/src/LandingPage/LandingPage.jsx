@@ -1,4 +1,4 @@
-import './LandingPage.css'
+import './LandingPage.scss'
 import Nav from './Nav'
 import InfoCarousel from './InfoCarousel'
 import Dashboard from './Dashboard'
