@@ -1,12 +1,12 @@
 import './Dashboard.scss'
-import Chart from './Chart/Chart'
+import TopDonations from './TopDonations/TopDonations'
 
 const Dashboard = () => {
     return (
         <>
         <h1 id="dashboard-title">Community Hub</h1>
         <div id="dashboard-container">
-            <Chart />
+            <TopDonations />
             <div className="Gifts">
                 <div className="top-user">
                     <div>

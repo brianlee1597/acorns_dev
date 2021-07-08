@@ -1,4 +1,4 @@
-#chart {
+#top-donations {
     display: grid;
     place-items: center;
     margin: 0;
@@ -59,7 +59,7 @@
     }
 }
 @media screen and (max-width: 910px) {
-    #chart {
+    #top-donations {
         width: 100%;
         min-height: 400px;
 
@@ -84,7 +84,7 @@
 }
 
 @media screen and (max-width: 410px) {
-    #chart {
+    #top-donations {
         min-height: 375px;
 
         .chart-title-container {
