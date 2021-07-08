@@ -22,7 +22,7 @@ const InfoCarousel = () => {
     return (
         <div id="infocarousel-container">
             <div id="ic-description-container">
-                <h1>This Week's Updates</h1>
+                <h1>This week's Snapshot</h1>
             </div>
             <Swiper
                 spaceBetween={100}
@@ -43,6 +43,12 @@ const InfoCarousel = () => {
                 <SwiperSlide><img src={karina} alt="karina"/></SwiperSlide>
                 <SwiperSlide><img src={bts} alt="karina"/></SwiperSlide>
             </Swiper>
+            <div className="description">
+                <h1>Columbia Lions</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente laborum, quibusdam cumque laudantium ex eligendi distinctio sequi a. Culpa excepturi dolorem nesciunt, aspernatur itaque velit esse eaque quasi laboriosam suscipit.
+                </p>
+            </div>
         </div>
     )
 }

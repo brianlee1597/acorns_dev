@@ -9,14 +9,14 @@ const Nav = () => {
             </div>
             <div id="rightside-container">
                 <div className="profile-container">
-                    <h4>Welcome Back Team!</h4>
+                    <h4>Welcome, Engineer!</h4>
                     <div className="profile-bar"/>
                 </div>
                 <div className="navlink-container">
-                    <a href="/">Donations</a>
-                    <a href="/">Gifts</a>
-                    <a href="/">Campaigns</a>
-                    <a href="/">Community</a>
+                    <a href="/">팬덤기부</a>
+                    <a href="/">선물하기</a>
+                    <a href="/">캄페인</a>
+                    <a href="/">커뮤니티</a>
                 </div>
             </div>
         </section>
