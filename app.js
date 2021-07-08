@@ -19,7 +19,7 @@ app.get('/*', (req, res) => {
    res.sendFile(path.join(__dirname, '/index.html'));
 })
 
-let PORT = process.env.PORT || 8081
+let PORT = process.env.PORT || 8080
 app.listen(PORT, function() {
  console.log("Server started successfully on: " + PORT);
 })
