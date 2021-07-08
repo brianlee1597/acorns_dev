@@ -133,9 +133,38 @@
 }
 
 @media screen and (max-width: 910px) {
-    #nav-container,
-    #logo-left,
-    .navlink-container {
+    #nav-container {
+        display: grid;
+
+        #logo-left {
+            margin: 0;
+            padding: 0;
+            height: 75px;
+            width: 100vw;
+            display: grid;
+            place-items: center;
+            background-color: black;
+
+            a {
+        
+                img {
+                    margin: 0;
+                    padding: 0;
+                    width: 25px;
+                    height: auto;
+                    padding: 10px;
+                    border: 2px solid white;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        #rightside-container {
+            display: none;
+        }
+    }
+
+    #nav-container {
         height: 100px;
     }
 }

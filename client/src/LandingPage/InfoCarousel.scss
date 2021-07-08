@@ -33,13 +33,24 @@
     }
 }
 @media screen and (max-width: 910px) {
-    .info-carousel {
-        width: 90vw;
-        height: 90vw;
+    #infocarousel-container {
 
-        img {
-            width: auto;
-            height: 100vh;
+        #ic-description-container {
+            width: 90vw;
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .info-carousel {
+            width: 90vw;
+            height: 150vw;
+    
+            img {
+                width: auto;
+                height: 100%;
+            }
         }
     }
 }

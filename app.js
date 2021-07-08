@@ -16,6 +16,10 @@ app.use(function(req, res, next) {
 })
 /* ---------- App Use ---------- */
 
+app.get('/user', (req, res) => {
+    res.send("Hello World")
+})
+
 app.get('/api/chartdata', (req, res) => {
     res.send(chartData)
 })
