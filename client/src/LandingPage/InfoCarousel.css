@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+.info-carousel {
+    margin-bottom: 50px;
+    width: 80vw;
+    height: 40vw;
+    border-radius: 30px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+@media screen and (max-width: 910px) {
+    .info-carousel {
+        width: 90vw;
+        height: 90vw;
+    }
+}
+#infocarousel-container {
+    margin-top: 50px;
+}
+#ic-description-container h1 {
+    margin: 0;
+    padding: 0;
+    margin-left: 1vw;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    font-family: 'Orbitron', 'sans-serif';
+}
+#ic-description-container {
+    width: 80vw;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+img {
+    height: 100vh;
+    width: auto;
+}
+@media screen and (max-width: 910px) {
+    .info-carousel {
+        width: 90vw;
+        height: 65vh;
+    }
+    img {
+        width: auto;
+        height: 100vh;
+    }
+}
+.swiper-button-prev {
+    color: white; 
+    left: 0;
+    padding-left: 25px;
+}
+
+.swiper-button-next {
+    color: white;
+    right: 0;
+    padding-right: 25px;
+}

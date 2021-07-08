@@ -1,14 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
+/* src/App.js */
+import React, { useEffect, useState } from 'react'
 import './App.css';
-import API from "./API";
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <API />
-      </header>
-    </div>
-  );
-}
-export default App;
+import LandingPage from './LandingPage/LandingPage'
+
+const App = () => <LandingPage/>
+
+export default App
