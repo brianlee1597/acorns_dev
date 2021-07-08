@@ -22,7 +22,7 @@ const InfoCarousel = () => {
     return (
         <div id="infocarousel-container">
             <div id="ic-description-container">
-                <h1>This Week's Hits</h1>
+                <h1>This Week's Updates</h1>
             </div>
             <Swiper
                 spaceBetween={100}

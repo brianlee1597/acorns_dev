@@ -21,5 +21,5 @@ app.get('/*', (req, res) => {
 
 let PORT = process.env.PORT || 8080
 app.listen(PORT, function() {
- console.log("Server started successfully on: " + PORT);
+ console.log("Server started successfully on: http://localhost:" + PORT);
 })

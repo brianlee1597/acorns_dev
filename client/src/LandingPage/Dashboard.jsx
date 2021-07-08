@@ -4,7 +4,7 @@ import Chart from './Chart/Chart'
 const Dashboard = () => {
     return (
         <div id="dashboard-container">
-            <h1>Community Dashboard</h1>
+            <h1>Community Statistics</h1>
             <Chart />
             {/* <div>
                 Hello World

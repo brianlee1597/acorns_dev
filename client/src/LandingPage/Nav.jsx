@@ -9,7 +9,7 @@ const Nav = () => {
             </div>
             <div id="rightside-container">
                 <div className="profile-container">
-                    <h4>Welcome Back Brian!</h4>
+                    <h4>Welcome Back Team!</h4>
                     <div className="profile-bar"/>
                 </div>
                 <div className="navlink-container">
