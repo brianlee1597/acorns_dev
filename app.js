@@ -15,10 +15,9 @@ app.use(function(req, res, next) {
 });
 /* ---------- App Use ---------- */
 
-
 app.get('/', (req, res) => {
-  res.send("Hello")
-})
+  res.send('just gonna send it');
+});
 
 let PORT = process.env.PORT || 9000
 app.listen(PORT, function() {
