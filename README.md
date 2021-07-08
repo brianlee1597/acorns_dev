@@ -12,3 +12,7 @@ The build folder in /client is what is served in EB instance.
 
 For backend work, there is currently app.js on root folder. If you want to see what the production build looks like, run
 `npm start` on root directory and see app.js serve the index.html inside the build folder. 
+
+the production environment will be at http://localhost:8080
+
+Do not change .ebextensions or Procfile
