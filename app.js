@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 /* ---------- App Use ---------- */
 
 app.get('/*', (req, res) => {
-   res.sendFile(path.join(__dirname, 'client/build/index.html'));
+   res.sendFile(path.join(__dirname, '/index.html'));
 })
 
 let PORT = process.env.PORT || 8081
