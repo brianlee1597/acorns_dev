@@ -1,9 +1,9 @@
 import './LandingPage.scss'
-import Nav from './Nav'
+import Nav from './Navigation/Nav'
 import InfoCarousel from './InfoCarousel'
 import Dashboard from './Dashboard'
 import Particles from 'react-particles-js'
-import WindowDimensions from './Hooks/WindowDimension'
+import WindowDimensions from '../Hooks/WindowDimension'
 
 const LandingPage = () => {
 

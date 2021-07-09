@@ -4,24 +4,6 @@ import './TopDonations.scss'
 import Chart from './Chart'
 
 const TopDonations = () => {
-
-    // handleMouseEnter = (o) => {
-    //     const { dataKey } = o;
-    //     const { opacity } = this.state;
-    
-    //     this.setState({
-    //       opacity: { ...opacity, [dataKey]: 0.5 },
-    //     });
-    // };
-    
-    // handleMouseLeave = (o) => {
-    //     const { dataKey } = o;
-    //     const { opacity } = this.state;
-    
-    //     this.setState({
-    //       opacity: { ...opacity, [dataKey]: 1 },
-    //     });
-    // };
     return (
       <div id="top-donations">
           <div className="chart-title-container">

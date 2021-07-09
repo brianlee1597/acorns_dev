@@ -2,6 +2,7 @@ import './Dashboard.scss'
 import TopDonations from './TopDonations/TopDonations'
 
 const Dashboard = () => {
+
     return (
         <>
         <h1 id="dashboard-title">Community Hub</h1>
