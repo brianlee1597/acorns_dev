@@ -20,8 +20,16 @@ const LandingPage = () => {
 	                    },
 	                    "size": {
 	                        "value": 3
-	                    }
+	                    },
+						"color": {
+							"value": "black"
+						}
 	                },
+					"line-linked": {
+						"color": {
+							"value": "black"
+						}
+					},
 	                "interactivity": {
 	                    "events": {
 	                        "onhover": {
