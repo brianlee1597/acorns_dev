@@ -1,7 +1,10 @@
 import { useState } from 'react'
-import './Nav.scss'
+import { Link } from "react-router-dom";
+
 import DonationDropdown from './AllDropdowns/DonationDropdown'
 import GiftDropdown from './AllDropdowns/GiftDropdown'
+
+import './Nav.scss'
 
 const Nav = () => {
     const [donationVisible, setDonationVisible] = useState({display: 'none'})
@@ -10,7 +13,7 @@ const Nav = () => {
     return (
         <section id="nav-container">
             <div id="logo-left">
-                <a href="/"><img src="https://img.icons8.com/material-outlined/100/000000/nut.png" alt="logo"/></a>
+                <Link to="/"><img src="https://img.icons8.com/material-outlined/100/000000/nut.png" alt="logo"/></Link>
             </div>
             <div id="rightside-container">
                 <div className="profile-container">
@@ -18,16 +21,18 @@ const Nav = () => {
                     <div className="profile-bar"/>
                 </div>
                 <div className="navlink-container">
-                    <a 
+                    <Link to="/donations"
                     onMouseEnter = {e => setDonationVisible({display: 'block'})}
-                    onMouseLeave = {e => setDonationVisible({display: 'none'})}
-                    href="/">팬덤기부</a>
-                    <a 
+                    onMouseLeave = {e => setDonationVisible({display: 'none'})}>
+                        Donations
+                    </Link>
+                    <Link to="/gifts"
                     onMouseEnter = {e => setGiftVisible({display: 'block'})}
-                    onMouseLeave = {e => setGiftVisible({display: 'none'})}
-                    href="/">선물하기</a>
-                    <a href="/">캄페인</a>
-                    <a href="/">커뮤니티</a>
+                    onMouseLeave = {e => setGiftVisible({display: 'none'})}>
+                        Gifts
+                    </Link>
+                    <Link to="/campaigns">Campaigns</Link>
+                    <Link to="/community">Community</Link>
                 </div>
                 <div className="hover-container">
                     <DonationDropdown style={donationVisible}/>

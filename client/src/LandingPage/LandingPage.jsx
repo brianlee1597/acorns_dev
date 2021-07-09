@@ -1,5 +1,4 @@
 import './LandingPage.scss'
-import Nav from './Navigation/Nav'
 import InfoCarousel from './InfoCarousel'
 import Dashboard from './Dashboard'
 import Particles from 'react-particles-js'
@@ -12,7 +11,6 @@ const LandingPage = () => {
 
     return (
         <div id="landing-page">
-            <Nav />
             <Particles 
                 className="particle-background"
                 params={{

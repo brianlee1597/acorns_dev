@@ -1,0 +1,48 @@
+.filterbar-container {
+    margin: 0;
+    padding: 0;
+    width: 85vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 15px;
+
+    ul {
+        margin: 0 0 0 2.5vw;
+        padding: 0;
+        width: 35vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style: none;
+
+        li {
+            padding: 5px 20px;
+            border-radius: 15px;
+            border: 1px solid black;
+            font-size: 1.25rem;
+        }
+    }
+
+    input {
+        margin: 0;
+        padding: 0;
+        margin: 15px 1.5vw 15px 0;
+        padding-left: 15px;
+        width: 30vw;
+        height: 2rem;
+        border: none;
+        border-radius: 10px;
+        background-color: rgb(27, 27, 27);
+        color: white;
+        font-family: "Varela Round", "sans-serif";
+        font-size: 1.25rem;
+    }
+    textarea:focus, input:focus{
+        outline: none;
+    }
+}
