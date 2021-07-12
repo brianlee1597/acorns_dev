@@ -19,9 +19,10 @@ $page-white: rgb(248, 248, 248);
 
         input {
             margin-top: 50px;
+            padding-left: 10px;
             border: none;
             border-bottom: 1px solid grey;
-            background-color: $page-white;
+            background-color: transparent;
             font-size: 1.25rem;
         }
 

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { React, ReactDOM, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Footer from 'rc-footer';
 import 'rc-footer/assets/index.css';
 
-import Nav from './Navigation/Nav'
+import Navigation from './Navigation/Navigation'
 import Login from './Auth/Login'
 import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage';
@@ -25,7 +25,7 @@ const App = () => {
     return (
         <Router>
             <div className="App">
-                <Nav />
+                <Navigation />
                 <div className="Content">
                     <Switch>
                         <Route exact path="/">
@@ -45,11 +45,20 @@ const App = () => {
                       icon: (
                         <img src="https://img.icons8.com/material-outlined/100/000000/nut.png" alt="footericon"/>
                       ),
-                      title: 'Acorns',
-                      url: 'https://yuque.com',
-                      description: '知识创作与分享工具',
-                      openExternal: true,
+                      title: 'Acorns'
                     },
+                    {
+                        title: 'Donations'
+                    },
+                    {
+                        title: 'Gifts'
+                    },
+                    {
+                        title: 'Campaigns'
+                    },
+                    {
+                        title: 'Community'
+                    }
                   ]}
                   bottom="Copyright 2021 Acorns"
                   backgroundColor="#333333"
