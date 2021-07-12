@@ -25,11 +25,6 @@ const LandingPage = () => {
 							"value": "black"
 						}
 	                },
-					"line-linked": {
-						"color": {
-							"value": "black"
-						}
-					},
 	                "interactivity": {
 	                    "events": {
 	                        "onhover": {

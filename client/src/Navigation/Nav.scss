@@ -1,3 +1,6 @@
+$page-black: rgb(51, 51, 51);
+$page-white: rgb(248, 248, 248);
+
 #nav-container {
     display: flex;
     flex-direction: row;
@@ -40,6 +43,10 @@
         .profile-container {
             display: flex;
             flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-right: 75px;
+            margin-bottom: 25px;
 
             h4 {
                 margin: 0;
@@ -50,16 +57,21 @@
                 color: black;
             }
 
-            .profile-bar{
+            .login-button {
                 margin: 0;
                 padding: 0;
-                width: 350px;
-                height: 25px;
-                margin-bottom: 25px;
-                margin-right: 75px;
-                border-radius: 15px;
-                background: rgb(111,173,227);
-                background: linear-gradient(90deg, rgba(111,173,227,0.5006185711967228) 0%, rgba(111,173,227,1) 70%, rgba(255,255,255,1) 70%);    
+                padding: 5px 30px;
+                border: 1px solid black;
+                border-radius: 10px;
+                background: black;  
+                color: $page-white;
+                font-size: 1.15rem;
+                cursor: pointer;
+                transition-duration: 0.25s;
+            }
+            .login-button:hover {
+                background: white;
+                color: black;
             }
         }
 

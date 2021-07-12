@@ -1,12 +1,15 @@
+$page-black: rgb(51, 51, 51);
+$page-white: rgb(248, 248, 248);
+
 .App {
-  height: 3000px;
+  height: auto;
   /* background: #12c2e9; 
   background: -webkit-linear-gradient(to top, #f64f59, #c471ed, #12c2e9);
   background: linear-gradient(to top, #f64f59, #c471ed, #12c2e9); */
   // background: #d9a7c7;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to top, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to top, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background-color: rgb(248, 248, 248);
+  background-color: $page-white;
   overflow: hidden;
 
   .Content {

@@ -17,8 +17,8 @@ const Nav = () => {
             </div>
             <div id="rightside-container">
                 <div className="profile-container">
-                    <h4>Welcome, Engineer!</h4>
-                    <div className="profile-bar"/>
+                    <h4>Welcome, Newcomer!</h4>
+                    <Link to="/login" className="login-button">Log In</Link>
                 </div>
                 <div className="navlink-container">
                     <Link to="/donations"

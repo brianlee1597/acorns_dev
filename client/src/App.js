@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Nav from './LandingPage/Navigation/Nav'
+import Nav from './Navigation/Nav'
+import Login from './Auth/Login'
 import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage';
 
@@ -27,6 +28,9 @@ const App = () => {
                     <Switch>
                         <Route exact path="/">
                             <LandingPage/>
+                        </Route>
+                        <Route exact path="/login">
+                            <Login/>
                         </Route>
                         <Route path="/donations">
                             <DonationPage/>
