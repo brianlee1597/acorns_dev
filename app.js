@@ -15,6 +15,9 @@ app.use(function(req, res, next) {
     next()
 })
 
+// /* ----- GET, POST ----- */
+// app.post('/login', passport.authen)
+
 /* ----- API's ----- */
 app.get('/api/chartdata', (req, res) => {
     res.send(chartData)

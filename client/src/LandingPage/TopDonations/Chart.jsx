@@ -39,7 +39,7 @@ export default class Example extends PureComponent {
                   }}
                   className="linechart"
                 >
-                  <XAxis dataKey="name"/>
+                  <XAxis dataKey="month"/>
                   {/* <YAxis /> */}
                   <Tooltip />
                   {/* <Legend onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}/> */}
