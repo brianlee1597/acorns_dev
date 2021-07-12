@@ -34,10 +34,10 @@ const Nav = () => {
                     <Link to="/campaigns">Campaigns</Link>
                     <Link to="/community">Community</Link>
                 </div>
-                <div className="hover-container">
+                {/* <div className="hover-container">
                     <DonationDropdown style={donationVisible}/>
                     <GiftDropdown style={giftVisible}/>
-                </div>
+                </div> */}
             </div>
         </section>
     )
