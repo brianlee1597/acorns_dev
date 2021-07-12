@@ -5,7 +5,7 @@ const Dashboard = () => {
 
     return (
         <>
-        <h1 id="dashboard-title">Community Hub</h1>
+        <h1 id="dashboard-title">커뮤니티 허브</h1>
         <div id="dashboard-container">
             <TopDonations />
             <div className="Gifts">
