@@ -37,10 +37,6 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use(function (req, res, next) {
-    console.log(req.session.secret)
-})
-
 app.use(cookieParser("secretcode"))
 app.use(passport.initialize())
 app.use(passport.session())
