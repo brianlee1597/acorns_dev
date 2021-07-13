@@ -101,7 +101,7 @@ app.get('/*', (req, res) => {
 })
 
 /* ----- DEV ----- */
-let port = process.env.PORT || 8080
+let port = process.env.PORT || 80
 app.listen(port, () => {
     console.log("Server started successfully on: http://localhost:" + port)
 })
