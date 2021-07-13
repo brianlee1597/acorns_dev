@@ -26,7 +26,7 @@ app.use(morgan('tiny'))
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'client/build')))
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.urlencoded({ extended: true }))
 
 // app.use(cors({
 //     origin: "http://localhost:3000",
