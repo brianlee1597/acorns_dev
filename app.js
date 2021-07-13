@@ -17,7 +17,7 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
-    console.log("Mongoose is connected.")
+    console.log("MongoDB is connected.")
 })
 /* ---------- App Use ---------- */
 app.use(morgan('tiny'))
