@@ -1,0 +1,51 @@
+$page-black: rgb(51, 51, 51);
+$page-white: rgb(248, 248, 248);
+
+.login-container {
+    width: 100vw;
+    height: auto;
+    margin-top: 100px;
+    display: grid;
+    place-items: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        label {
+            font-size: 2.5rem;
+        }
+
+        input {
+            margin-top: 50px;
+            padding-left: 10px;
+            border: none;
+            border-bottom: 1px solid grey;
+            background-color: transparent;
+            font-size: 1.25rem;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        button {
+            margin-top: 50px;
+            padding: 10px 30px;
+            border: 1px solid $page-black;
+            border-radius: 10px;
+            color: $page-white;
+            background-color: $page-black;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition-duration: 0.25s;
+        }
+
+        button:hover {
+            color: $page-black;
+            background-color: $page-white;
+        }
+    }
+}
