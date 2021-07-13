@@ -24,20 +24,20 @@ app.use(morgan('tiny'))
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'client/build')))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 
-// app.use(cors({
-//     origin: "http://localhost:3000",
-//     credentials: true
-// }))
-
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}))
+// 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 app.use(session({
-    secret: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    secret: 'secret',
     resave: true,
     saveUninitialized: true
 }))
 
-app.use(cookieParser("https://www.youtube.com/watch?v=dQw4w9WgXcQ"))
+app.use(cookieParser("secret"))
 app.use(passport.initialize())
 app.use(passport.session())
 import localPassportConfig from './local-passport-config.js'
