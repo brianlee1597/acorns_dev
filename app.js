@@ -57,10 +57,10 @@ app.post('/register-local', (req, res) => {
             if (err) throw err
             if (doc) res.json("userexists")
             if (!doc) {
-                const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+                // const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
                     username: req.body.username,
-                    password: encryptedPassword,
+                    password: req.body.password,
                     email: req.body.email
                 })
                 await newUser.save()
