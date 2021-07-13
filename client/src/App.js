@@ -5,6 +5,7 @@ import 'rc-footer/assets/index.css';
 
 import Navigation from './Navigation/Navigation'
 import Login from './Auth/Login'
+import Register from './Auth/Register'
 import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage';
 
@@ -33,6 +34,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/login">
                             <Login/>
+                        </Route>
+                        <Route exact path="/register">
+                            <Register/>
                         </Route>
                         <Route path="/donations">
                             <DonationPage/>
