@@ -40,7 +40,7 @@ const Login = () => {
         axios.post('/login-local', formData)
         .then(response => {
             if (response.data === 'nouser') {
-                alert("Please check your email and password again")
+                console.log("Please check your email and password again")
                 return 
             }
             else 

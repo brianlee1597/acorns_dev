@@ -37,7 +37,7 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use(cookieParser("secretcode"))
+app.use(cookieParser("https://www.youtube.com/watch?v=dQw4w9WgXcQ"))
 app.use(passport.initialize())
 app.use(passport.session())
 import localPassportConfig from './local-passport-config.js'
@@ -57,10 +57,10 @@ app.post('/register-local', (req, res) => {
             if (err) throw err
             if (doc) res.json("userexists")
             if (!doc) {
-                // const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+                const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
                     username: req.body.username,
-                    password: req.body.password,
+                    password: encryptedPassword,
                     email: req.body.email
                 })
                 await newUser.save()
