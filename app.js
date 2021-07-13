@@ -41,7 +41,6 @@ app.use(cookieParser("secretcode"))
 app.use(passport.initialize())
 app.use(passport.session())
 import localPassportConfig from './local-passport-config.js'
-import { Socket } from "dgram"
 localPassportConfig(passport)
 
 app.use(function(req, res, next) {
@@ -52,7 +51,7 @@ app.use(function(req, res, next) {
 
 // /* ----- GET, POST ----- */
 app.post('/register-local', (req, res) => {
-    req.socket.setTimeout(60000, () => { res.status(500).end() })
+    req.socket.setTimeout(10000, () => { res.status(500).end() })
     try {
         User.findOne({username: req.body.username}, async (err, doc) => {
             if (err) throw err
@@ -74,7 +73,7 @@ app.post('/register-local', (req, res) => {
 })
 
 app.post('/login-local', (req, res, next) => {
-    req.socket.setTimeout(60000, () => { res.status(500).end() })
+    req.socket.setTimeout(10000, () => { res.status(500).end() })
     try {
         passport.authenticate('local', (error, user, info) => {
             if (error) throw error
