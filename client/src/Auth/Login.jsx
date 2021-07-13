@@ -26,28 +26,28 @@ const Login = () => {
             password: password
         }
 
-        axios.post('http://localhost:8080/login-local', formData)
-        .then(response => {
-            if (response.data === 'nouser') {
-                alert("Please check your email and password again")
-                return 
-            }
-            else 
-                window.location.href = '/'
-        })
-        .catch(error => console.log(error))
-
-        // axios.post('/login-local', formData)
+        // axios.post('http://localhost:8080/login-local', formData)
         // .then(response => {
-        //     // if (response.data === 'nouser') {
-        //     //     console.log("Please check your email and password again")
-        //     //     return 
-        //     // }
-        //     // else 
-        //     //     window.location.href = '/'
-        //     console.log(response)
+        //     if (response.data === 'nouser') {
+        //         alert("Please check your email and password again")
+        //         return 
+        //     }
+        //     else 
+        //         window.location.href = '/'
         // })
-        // .catch(() => console.log("fail"))
+        // .catch(error => console.log(error))
+
+        axios.post('/login-local', formData)
+        .then(response => {
+            // if (response.data === 'nouser') {
+            //     console.log("Please check your email and password again")
+            //     return 
+            // }
+            // else 
+            //     window.location.href = '/'
+            console.log(response)
+        })
+        .catch(() => console.log("fail"))
     }
 
     return (

@@ -1,4 +1,4 @@
-import Mongoose from "mongoose"
+import mongoose from "mongoose"
 
 const User = new Mongoose.Schema({
     username: String,
@@ -6,4 +6,4 @@ const User = new Mongoose.Schema({
     email: String
 })
 
-export default Mongoose.model("User", User)
+export default mongoose.model("User", User)

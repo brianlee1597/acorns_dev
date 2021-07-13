@@ -8,12 +8,12 @@ import session from 'express-session'
 import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
 import User from './user.js'
-import Mongoose from "mongoose"
+import mongoose from "mongoose"
 
 const app = express();
 const __dirname = path.resolve()
 
-Mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
