@@ -39,7 +39,7 @@ const Register = () => {
         // })
         // .then(error => console.log(error))
 
-        axios.post('/register-local', formData)
+        axios.post('/register', formData)
         .then(response => {
             // if(response.data === 'userexists') {
             //     console.log("User Already Exists")
