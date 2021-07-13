@@ -39,12 +39,13 @@ const Login = () => {
 
         axios.post('/login-local', formData)
         .then(response => {
-            if (response.data === 'nouser') {
-                console.log("Please check your email and password again")
-                return 
-            }
-            else 
-                window.location.href = '/'
+            // if (response.data === 'nouser') {
+            //     console.log("Please check your email and password again")
+            //     return 
+            // }
+            // else 
+            //     window.location.href = '/'
+            console.log(response)
         })
         .then(error => console.log(error))
     }

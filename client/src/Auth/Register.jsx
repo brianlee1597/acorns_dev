@@ -41,12 +41,13 @@ const Register = () => {
 
         axios.post('/register-local', formData)
         .then(response => {
-            if(response.data === 'userexists') {
-                console.log("User Already Exists")
-                return
-            } 
-            else 
-                window.location.href = '/login'
+            // if(response.data === 'userexists') {
+            //     console.log("User Already Exists")
+            //     return
+            // } 
+            // else 
+            //     window.location.href = '/login'
+            console.log(response)
         })
         .then(error => console.log(error))
     }
