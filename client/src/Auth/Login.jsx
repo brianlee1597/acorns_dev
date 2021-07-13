@@ -37,7 +37,7 @@ const Login = () => {
         // })
         // .catch(error => console.log(error))
 
-        axios.post('/login-local', formData)
+        axios.post('/login', formData)
         .then(response => {
             // if (response.data === 'nouser') {
             //     console.log("Please check your email and password again")

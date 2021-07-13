@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
 })
 
 // /* ----- GET, POST ----- */
-app.post('/register-local', (req, res) => {
+app.post('/register', (req, res) => {
     req.socket.setTimeout(10000, () => { res.status(500).end() })
     try {
         User.findOne({username: req.body.username}, async (err, doc) => {
@@ -72,7 +72,7 @@ app.post('/register-local', (req, res) => {
     }
 })
 
-app.post('/login-local', (req, res, next) => {
+app.post('/login', (req, res, next) => {
     req.socket.setTimeout(10000, () => { res.status(500).end() })
     try {
         passport.authenticate('local', (error, user, info) => {
