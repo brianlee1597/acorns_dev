@@ -1,7 +1,7 @@
 import express from "express"
 import path from "path"
 import morgan from "morgan"
-import cors from 'cors'
+// import cors from 'cors'
 // import bcrypt from 'bcrypt'
 // import passport from 'passport'
 // import session from 'express-session'
@@ -28,10 +28,10 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(express.urlencoded({ extended: true }))
 
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-}))
+// app.use(cors({
+//     origin: "http://localhost:3000",
+//     credentials: true
+// }))
 
 // app.use(session({
 //     secret: 'secretcode',
