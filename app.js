@@ -30,14 +30,13 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
 }))
-// 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 app.use(session({
-    secret: 'secret',
+    secret: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     resave: true,
     saveUninitialized: true
 }))
 
-app.use(cookieParser("secret"))
+app.use(cookieParser('https://www.youtube.com/watch?v=dQw4w9WgXcQ'))
 app.use(passport.initialize())
 app.use(passport.session())
 import localPassportConfig from './local-passport-config.js'
