@@ -49,7 +49,7 @@ const Register = () => {
             //     window.location.href = '/login'
             console.log(response)
         })
-        .then(error => console.log(error))
+        .catch(() => console.log("fail"))
     }
 
     const handleInput = event => {

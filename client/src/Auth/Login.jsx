@@ -47,7 +47,7 @@ const Login = () => {
             //     window.location.href = '/'
             console.log(response)
         })
-        .then(error => console.log(error))
+        .catch(() => console.log("fail"))
     }
 
     return (
