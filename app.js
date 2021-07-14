@@ -8,6 +8,7 @@ import session from 'express-session'
 import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
 import User from './user.js'
+import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
 
 const app = express();
@@ -30,16 +31,16 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
 }))
+
 app.use(session({
     secret: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     resave: true,
     saveUninitialized: true
 }))
-
 app.use(cookieParser('https://www.youtube.com/watch?v=dQw4w9WgXcQ'))
+
 app.use(passport.initialize())
 app.use(passport.session())
-import localPassportConfig from './local-passport-config.js'
 localPassportConfig(passport)
 
 app.use(function(req, res, next) {

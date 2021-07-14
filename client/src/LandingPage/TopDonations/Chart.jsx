@@ -13,15 +13,9 @@ export default class Example extends PureComponent {
     }
 
     setChartData = () => {
-        //For Production
         axios.get("/api/chartdata")
         .then(res => this.setState({chartData: res.data}))
         .catch(error => console.log(error))
-
-        //For Development (comment this out when building)
-        // axios.get("http://localhost:8080/api/chartdata")
-        // .then(res => this.setState({chartData: res.data}))
-        // .catch(error => console.log(error))
     }
 
     render() {

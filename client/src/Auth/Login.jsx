@@ -13,29 +13,11 @@ const Login = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
-
-        if (username === '') {
-            return
-        }
-        else if (password === '') {
-            return 
-        }
         
         const formData = {
             username: username,
             password: password
         }
-
-        // axios.post('http://localhost:8080/login-local', formData)
-        // .then(response => {
-        //     if (response.data === 'nouser') {
-        //         alert("Please check your email and password again")
-        //         return 
-        //     }
-        //     else 
-        //         window.location.href = '/'
-        // })
-        // .catch(error => console.log(error))
 
         axios.post('/login', formData)
         .then(response => {
@@ -54,8 +36,8 @@ const Login = () => {
         <div className="login-container">
             <form onSubmit={handleSubmit}>
                 <label>로그인</label>
-                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" placeholder="아이디"/>
-                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" placeholder="비밀번호"/>
+                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" minlength="8" placeholder="아이디"/>
+                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" minlength="8" placeholder="비밀번호"/>
                 <button type="submit">고고~!</button>
             </form>
         </div>

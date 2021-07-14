@@ -10,34 +10,12 @@ const Register = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
-
-        if (email === '') {
-            console.log("Email is empty")
-            return
-        }
-        else if (username === '') {
-            return
-        }
-        else if (password === '') {
-            return 
-        }
         
         const formData = {
             username: username,
             password: password,
             email: email
         }
-
-        // axios.post('http://localhost:8080/register-local', formData)
-        // .then(response => {
-        //     if(response.data === 'userexists') {
-        //         alert("User Already Exists")
-        //         return
-        //     } 
-        //     else 
-        //         window.location.href = '/login'
-        // })
-        // .then(error => console.log(error))
 
         axios.post('/register', formData)
         .then(response => {
