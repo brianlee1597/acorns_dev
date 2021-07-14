@@ -2,7 +2,7 @@ import User from './user.js'
 import bcrypt from 'bcryptjs'
 import localStrategy from 'passport-local'
 
-export default function (passport) {
+export default function (passport) { //authentication strategy for username and password
     passport.use(
         new localStrategy((username, password, done) => {
             User.findOne({username: username}, (err, user) => {
