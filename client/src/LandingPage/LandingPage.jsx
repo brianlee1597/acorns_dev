@@ -6,7 +6,8 @@ import WindowDimensions from '../Hooks/WindowDimension'
 
 const LandingPage = () => {
 
-    const {height, width} = WindowDimensions()
+    // eslint-disable-next-line no-unused-vars
+    const { height, width } = WindowDimensions()
     const value = width <= 910? 30: 50
 
     return (

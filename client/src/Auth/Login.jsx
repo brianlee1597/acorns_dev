@@ -36,8 +36,8 @@ const Login = () => {
         <div className="login-container">
             <form onSubmit={handleSubmit}>
                 <label>로그인</label>
-                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" minlength="8" placeholder="아이디"/>
-                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" minlength="8" placeholder="비밀번호"/>
+                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" minLength="8" placeholder="아이디"/>
+                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" minLength="8" placeholder="비밀번호"/>
                 <button type="submit">고고~!</button>
             </form>
         </div>

@@ -1,5 +1,5 @@
 import { PureComponent } from 'react'
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import axios from 'axios';
 
 export default class Example extends PureComponent {

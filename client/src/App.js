@@ -1,4 +1,3 @@
-import { React, ReactDOM, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Footer from 'rc-footer';
 import 'rc-footer/assets/index.css';

@@ -27,7 +27,7 @@ const Register = () => {
             //     window.location.href = '/login'
             console.log(response)
         })
-        .catch(() => console.log("fail"))
+        .catch(error => console.log(error))
     }
 
     const handleInput = event => {
@@ -41,8 +41,8 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
                 <label>계정 만들기</label>
                 <input onChange={handleInput} type="email" style={{width: "40vw", height: "50px"}} id="email" name="email" placeholder="이메일"/>
-                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" placeholder="아이디"/>
-                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" minlength="5" placeholder="비밀번호"/>
+                <input onChange={handleInput} type="username" style={{width: "40vw", height: "50px"}} id="username" name="username" minLength="8" placeholder="아이디"/>
+                <input onChange={handleInput} type="password" style={{width: "40vw", height: "50px"}} id="password" name="password" minLength="8" placeholder="비밀번호"/>
                 <button type="submit">고고~!</button>
             </form>
         </div>

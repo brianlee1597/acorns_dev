@@ -22,7 +22,7 @@ const DonationGroup = () => {
             </div>
             <div className="donation-gridbox">
                 <div className="graphics">
-                    <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/127046787_2907720446115008_6361009810562103148_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=M-tSIaZmQvsAX_jGJ7G&_nc_ht=scontent-ssn1-1.xx&oh=85792a85ef6f72a0c0e6d21f2852584c&oe=60EDAA9C" alt="aespadonation" />
+                    <img src="https://pbs.twimg.com/media/EvoVw8UVEAMr6Sw?format=jpg&name=orig" alt="aespadonation" />
                     <div>
                         <h1>Aespa</h1>
                     </div>
