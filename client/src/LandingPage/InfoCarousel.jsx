@@ -4,9 +4,9 @@ import SwiperCore, { Navigation, Pagination, A11y, EffectFade, Autoplay } from '
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
-import 'swiper/components/pagination/pagination.scss';
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/pagination/pagination.scss'
 import "swiper/components/effect-fade/effect-fade.scss"
 import './InfoCarousel.scss'
 

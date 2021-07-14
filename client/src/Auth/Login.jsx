@@ -21,13 +21,13 @@ const Login = () => {
 
         axios.post('/login', formData)
         .then(response => {
-            // if (response.data === 'nouser') {
-            //     console.log("Please check your email and password again")
-            //     return 
-            // }
-            // else 
-            //     window.location.href = '/'
-            console.log(response)
+            if (response.data === 'nouser') {
+                console.log("Please check your email and password again")
+                return 
+            }
+            else 
+                window.location.href = '/'
+            // console.log(response)
         })
         .catch(error => console.log(error))
     }

@@ -34,9 +34,7 @@ export default class Example extends PureComponent {
                   className="linechart"
                 >
                   <XAxis dataKey="month"/>
-                  {/* <YAxis /> */}
                   <Tooltip />
-                  {/* <Legend onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}/> */}
                   <Line type="monotone" r={0} legendType="diamond" dataKey="BTS" stroke="#8884d8"/>
                   <Line type="monotone" r={0} legendType="diamond" dataKey="Aespa" stroke="#ADD8E6" />
                   <Line type="monotone" r={0} legendType="diamond" dataKey="Blackpink" stroke="pink" />
