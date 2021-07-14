@@ -11,21 +11,15 @@ import DonationPage from './Donations/DonationPage';
 import './App.scss';
 
 const App = () => {
-    // const [backgroundColor, setBackgroundColor] = useState('black')
-    // const url = useReactPath()
 
-    // useEffect(() => {
-    //     if(url === '/'){
-    //         setBackgroundColor('linear-gradient(to top, #fffcdc, #d9a7c7)');
-    //     }else{
-    //         setBackgroundColor('green');
-    //     }
-    // },[url]);
+    const backgroundcolor = 'rgb(51, 51, 51)'
+    // const appBackgroundColor = 'linear-gradient(to top, #fffcdc, #d9a7c7)'
+    const appBackgroundColor = 'rgb(248, 248, 248)'
 
     return (
         <Router>
-            <div className="App">
-                <Navigation />
+            <div className="App" style={{background: appBackgroundColor}}>
+                <Navigation bColor={backgroundcolor}/>
                 <div className="Content">
                     <Switch>
                         <Route exact path="/">
