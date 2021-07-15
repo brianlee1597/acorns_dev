@@ -6,16 +6,16 @@ import './Nav.scss'
 
 const Navigation = props => { 
 
-    const logout = () => {
-        axios.post('/logout')
+    const logout = () => { //logout function
+        axios.post('/logout') //post to logout, which then logs out user in the backend
         .then(response => {
-            console.log(response)
-            window.location.href = '/'
+            console.log(response) //resolve promise
+            window.location.href = '/' //then return to main page
         })
         .catch(error => console.log(error))
     }
 
-    const background = props.loggedIn? 'transparent': 'black'
+    const background = props.loggedIn? 'transparent': 'black' //navigation bar background
 
     return (
         <section id="nav-container" style={{background: background}}>
