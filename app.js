@@ -11,8 +11,6 @@ import User, { userBiasSettings } from './user.js'
 import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
 
-console.log(userBiasSettings)
-
 const app = express();
 const __dirname = path.resolve()
 
@@ -53,7 +51,7 @@ app.use(function(req, res, next) {
     next()
 })
 
-// /* ----- GET, POST methods ----- */
+// /* ----- AUTHENTICATION (LOGIN/LOGOUT) methods ----- */
 app.post('/register', (req, res) => { //register submit function, checks if user already exists, if not make new user
     req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
@@ -95,18 +93,18 @@ app.post('/login', (req, res, next) => { //login function
     }
 })
 
-app.post('/logout', (req, res) => {
+app.post('/logout', (req, res) => { //logs user out when called from react
     req.logOut()
     res.json("loggedout")
-})
-
-app.get('/userstatus', (req, res) => {
-    req.user === undefined? res.json("nologin"): res.send(req.user)
 })
 
 /* ----- API call from React methods ----- */
 app.get('/api/chartdata', (req, res) => {
     res.send(chartData)
+})
+
+app.get('/api/userstatus', (req, res) => { //sends userstatus to react on api call
+    req.user === undefined? res.json("nologin"): res.send(req.user)
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */

@@ -14,18 +14,18 @@ import './App.scss';
 
 const App = () => {
 
-    const [user, setUser] = useState({})
-    const [appIsFetchingAPI, setIsFetching] = useState(true)
-    const [loggedIn, setLoggedIn] = useState(false)
+    const [user, setUser] = useState({}) //initialize user state and settings
+    const [appIsFetchingAPI, setIsFetching] = useState(true) //state boolean to make sure app returns after fetch is done
+    const [loggedIn, setLoggedIn] = useState(false) //login state
 
-    useEffect(() => {
-        axios.get('/userstatus')
+    useEffect(() => { //run when component mounts
+        axios.get('/api/userstatus') //get login status from backend
         .then(response => {
             if(response.data !== 'nologin') {
                 setUser(response.data)
                 setLoggedIn(true)
             }
-            setIsFetching(false)
+            setIsFetching(false) //set appIsFetchingAPI to false after user state is set
         })
         .catch(error => console.log(error))
     }, [])
