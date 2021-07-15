@@ -7,41 +7,45 @@ import passport from 'passport'
 import session from 'express-session'
 import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
-import User from './user.js'
+import User, { userBiasSettings } from './user.js'
 import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
+
+console.log(userBiasSettings)
 
 const app = express();
 const __dirname = path.resolve()
 
+//Connect to database
 mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
     console.log("MongoDB is connected.")
 })
-/* ---------- App Use ---------- */
-app.use(morgan('tiny'))
 
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'client/build')))
-app.use(express.urlencoded({ extended: false }))
+/* ---------- All App Use functions ---------- */
 
-app.use(cors({
+app.use(morgan('tiny')) //outputs request/response times on terminal
+app.use(express.json()) //for communicating with Frontend with JSON
+app.use(express.static(path.join(__dirname, 'client/build'))) //routing to client folder (for elastic beanstalk)
+app.use(express.urlencoded({ extended: false })) //for login authentication functions setting
+
+app.use(cors({ //for local development, to make sure that localhost:3000 is not rejected
     origin: "http://localhost:3000",
     credentials: true
 }))
 
-app.use(session({
+app.use(session({ //user session cookie/cache settings
     secret: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     resave: true,
     saveUninitialized: true
 }))
-app.use(cookieParser('https://www.youtube.com/watch?v=dQw4w9WgXcQ'))
+app.use(cookieParser('https://www.youtube.com/watch?v=dQw4w9WgXcQ')) //parsing cookie for session
 
 app.use(passport.initialize())
 app.use(passport.session())
-localPassportConfig(passport)
+localPassportConfig(passport) //login auth package
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
@@ -49,21 +53,22 @@ app.use(function(req, res, next) {
     next()
 })
 
-// /* ----- GET, POST ----- */
-app.post('/register', (req, res) => {
-    req.socket.setTimeout(10000, () => { res.status(500).end() })
+// /* ----- GET, POST methods ----- */
+app.post('/register', (req, res) => { //register submit function, checks if user already exists, if not make new user
+    req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
-        User.findOne({username: req.body.username}, async (err, doc) => {
+        User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists
             if (err) throw err
-            if (doc) res.json("userexists")
+            if (doc) res.json("userexists") // doc = user already exists
             if (!doc) {
                 const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
-                    username: req.body.username,
+                    email: req.body.email,
                     password: encryptedPassword,
-                    email: req.body.email
+                    bias: req.body.bias,
+                    backgroundcolor: userBiasSettings.get(req.body.bias)
                 })
-                await newUser.save()
+                await newUser.save() //upload new user to database
                 res.json("usercreated")
             }
         })
@@ -72,16 +77,16 @@ app.post('/register', (req, res) => {
     }
 })
 
-app.post('/login', (req, res, next) => {
-    req.socket.setTimeout(10000, () => { res.status(500).end() })
+app.post('/login', (req, res, next) => { //login function 
+    req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
-        passport.authenticate('local', (error, user, info) => {
+        passport.authenticate('local', (error, user, info) => { //authenticate user using passport
             if (error) throw error
             if (!user) res.json('nouser')
             else {
                 req.logIn(user, error => {
                     if (error) throw error
-                    res.json('authenticated')
+                    res.send(req.user)
                 })
             }
         })(req, res, next)
@@ -90,7 +95,16 @@ app.post('/login', (req, res, next) => {
     }
 })
 
-/* ----- API's ----- */
+app.post('/logout', (req, res) => {
+    req.logOut()
+    res.json("loggedout")
+})
+
+app.get('/userstatus', (req, res) => {
+    req.user === undefined? res.json("nologin"): res.send(req.user)
+})
+
+/* ----- API call from React methods ----- */
 app.get('/api/chartdata', (req, res) => {
     res.send(chartData)
 })
