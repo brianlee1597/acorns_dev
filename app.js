@@ -7,9 +7,11 @@ import passport from 'passport'
 import session from 'express-session'
 import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
-import User from './user.js'
+import User, { userBiasSettings } from './user.js'
 import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
+
+console.log(userBiasSettings)
 
 const app = express();
 const __dirname = path.resolve()
@@ -34,7 +36,7 @@ app.use(cors({ //for local development, to make sure that localhost:3000 is not 
     credentials: true
 }))
 
-app.use(session({ //session cookie/cache settings
+app.use(session({ //user session cookie/cache settings
     secret: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     resave: true,
     saveUninitialized: true
@@ -55,15 +57,16 @@ app.use(function(req, res, next) {
 app.post('/register', (req, res) => { //register submit function, checks if user already exists, if not make new user
     req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
-        User.findOne({username: req.body.username}, async (err, doc) => { //find duplicate user in the database if exists
+        User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists
             if (err) throw err
             if (doc) res.json("userexists") // doc = user already exists
             if (!doc) {
                 const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
-                    username: req.body.username,
+                    email: req.body.email,
                     password: encryptedPassword,
-                    email: req.body.email
+                    bias: req.body.bias,
+                    backgroundcolor: userBiasSettings.get(req.body.bias)
                 })
                 await newUser.save() //upload new user to database
                 res.json("usercreated")
@@ -83,13 +86,22 @@ app.post('/login', (req, res, next) => { //login function
             else {
                 req.logIn(user, error => {
                     if (error) throw error
-                    res.json('authenticated')
+                    res.send(req.user)
                 })
             }
         })(req, res, next)
     } catch {
         res.json("failedpost")
     }
+})
+
+app.post('/logout', (req, res) => {
+    req.logOut()
+    res.json("loggedout")
+})
+
+app.get('/userstatus', (req, res) => {
+    req.user === undefined? res.json("nologin"): res.send(req.user)
 })
 
 /* ----- API call from React methods ----- */

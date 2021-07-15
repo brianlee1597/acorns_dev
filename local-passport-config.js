@@ -4,8 +4,11 @@ import localStrategy from 'passport-local'
 
 export default function (passport) { //authentication strategy for username and password
     passport.use(
-        new localStrategy((username, password, done) => {
-            User.findOne({username: username}, (err, user) => {
+        new localStrategy({
+            usernameField: 'email',
+            passwordField: 'password'
+        },(email, password, done) => {
+            User.findOne({email: email}, (err, user) => {
                 if (err) throw err
                 if (!user) return done(null, false)
                 bcrypt.compare(password, user.password, (err, result) => {
