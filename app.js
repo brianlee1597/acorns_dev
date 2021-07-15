@@ -58,14 +58,17 @@ app.post('/register', (req, res) => { //register user function, checks if user a
         User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists
             if (err) throw err
             if (doc) res.json("userexists") // doc = user already exists
-            if (!doc) {
+            else {
                 const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
                     email: req.body.email,
                     password: encryptedPassword,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
                     bias: req.body.bias,
                     backgroundcolor: userBiasSettings.get(req.body.bias)
                 })
+
                 await newUser.save() //upload new user to database
                 res.json("usercreated")
             }
@@ -103,8 +106,8 @@ app.get('/api/chartdata', (req, res) => {
     res.send(chartData)
 })
 
-app.get('/api/userstatus', (req, res) => { //sends userstatus to react on api call
-    req.user === undefined? res.json("nologin"): res.send(req.user)
+app.get('/api/getuser', (req, res) => { //sends userstatus to react on api call
+    req.user === undefined? res.json("nouser"): res.send(req.user)
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */

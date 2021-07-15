@@ -19,9 +19,9 @@ const App = () => {
     const [loggedIn, setLoggedIn] = useState(false) //login state
 
     useEffect(() => { //run when component mounts
-        axios.get('/api/userstatus') //get login status from backend
+        axios.get('/api/getuser') //get login status from backend
         .then(response => {
-            if(response.data !== 'nologin') {
+            if(response.data !== 'nouser') {
                 setUser(response.data)
                 setLoggedIn(true)
             }

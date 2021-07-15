@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
 import './Nav.scss'
@@ -15,20 +14,18 @@ const Navigation = props => {
         .catch(error => console.log(error))
     }
 
-    const background = props.loggedIn? 'transparent': 'black' //navigation bar background
+    const background   = props.loggedIn? 'transparent': 'black', //navigation bar background
+          borderBottom = props.loggedIn? '1px dashed rgba(255, 255, 255, .5)': 'none' //navigation border bottom line
+
 
     return (
-        <section id="nav-container" style={{background: background, borderBottom: props.loggedIn? '1px dashed rgba(255, 255, 255, .5)': 'none'}}>
+        <section id="nav-container" style={{background: background, borderBottom: borderBottom}}>
             <div id="logo-left">
                 <NavLink to="/">Acorns</NavLink>
             </div>
             <div className="navlink-container">
-                <NavLink activeClassName="is-active" to="/donations">
-                    기부하기
-                </NavLink>
-                <NavLink activeClassName="is-active" to="/gifts">
-                    선물하기
-                </NavLink>
+                <NavLink activeClassName="is-active" to="/donations">기부하기</NavLink>
+                <NavLink activeClassName="is-active" to="/gifts">선물하기</NavLink>
                 <NavLink activeClassName="is-active" to="/campaigns">캄페인</NavLink>
                 <NavLink activeClassName="is-active" to="/community">커뮤니티</NavLink>
             </div>
