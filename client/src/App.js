@@ -15,7 +15,7 @@ import './App.scss';
 const App = () => {
 
     const [user, setUser] = useState({}) //initialize user state and settings
-    const [appIsFetchingAPI, setIsFetching] = useState(true) //state boolean to make sure app returns after fetch is done
+    const [appIsFetchingAPI, setIsFetchingAPI] = useState(true) //state boolean to make sure app returns after fetch is done
     const [loggedIn, setLoggedIn] = useState(false) //login state
 
     useEffect(() => { //run when component mounts
@@ -25,7 +25,7 @@ const App = () => {
                 setUser(response.data)
                 setLoggedIn(true)
             }
-            setIsFetching(false) //set appIsFetchingAPI to false after user state is set
+            setIsFetchingAPI(false) //set appIsFetchingAPI to false after user state is set
         })
         .catch(error => console.log(error))
     }, [])
