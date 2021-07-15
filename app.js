@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 })
 
 // /* ----- AUTHENTICATION (LOGIN/LOGOUT) methods ----- */
-app.post('/register', (req, res) => { //register submit function, checks if user already exists, if not make new user
+app.post('/register', (req, res) => { //register user function, checks if user already exists, if not make new user
     req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
         User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists

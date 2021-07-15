@@ -47,5 +47,9 @@ $page-white: rgb(248, 248, 248);
             color: $page-black;
             background-color: $page-white;
         }
+
+        p {
+            margin-top: 25px;
+        }
     }
 }
