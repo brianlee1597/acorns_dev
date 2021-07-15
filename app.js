@@ -106,8 +106,8 @@ app.get('/api/chartdata', (req, res) => {
     res.send(chartData)
 })
 
-app.get('/api/userstatus', (req, res) => { //sends userstatus to react on api call
-    req.user === undefined? res.json("nologin"): res.send(req.user)
+app.get('/api/getuser', (req, res) => { //sends userstatus to react on api call
+    req.user === undefined? res.json("nouser"): res.send(req.user)
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */
