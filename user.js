@@ -3,6 +3,8 @@ import mongoose from "mongoose"
 const User = new mongoose.Schema({ //mongoDB schema for user
     email: String,
     password: String,
+    firstname: String,
+    lastname: String,
     bias: String,
     backgroundcolor: String
 })

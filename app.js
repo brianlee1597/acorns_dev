@@ -58,14 +58,17 @@ app.post('/register', (req, res) => { //register user function, checks if user a
         User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists
             if (err) throw err
             if (doc) res.json("userexists") // doc = user already exists
-            if (!doc) {
+            else {
                 const encryptedPassword = await bcrypt.hash(req.body.password, 10)
                 const newUser = new User({
                     email: req.body.email,
                     password: encryptedPassword,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
                     bias: req.body.bias,
                     backgroundcolor: userBiasSettings.get(req.body.bias)
                 })
+
                 await newUser.save() //upload new user to database
                 res.json("usercreated")
             }
