@@ -6,7 +6,8 @@ import Navigation from './Navigation/Navigation'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import LandingPage from './LandingPage/LandingPage'
-import DonationPage from './Donations/DonationPage';
+import DonationPage from './Donations/DonationPage'
+import GiftsPage from './Gifts/GiftsPage.jsx'
 import axios from "axios";
 
 import 'rc-footer/assets/index.css';
@@ -54,8 +55,11 @@ const App = () => {
                         <Route exact path="/register">
                             <Register/>
                         </Route>
-                        <Route path="/donations">
+                        <Route exact path="/donations">
                             <DonationPage donations={donations}/>
+                        </Route>
+                        <Route exact path="/gifts">
+                            <GiftsPage userBias={loggedIn? user.bias: "nouser"}/>
                         </Route>
                     </Switch>
                 </div>
