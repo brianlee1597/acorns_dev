@@ -7,7 +7,8 @@ import passport from 'passport'
 import session from 'express-session'
 import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
-import User, { userBiasSettings } from './user.js'
+import User, { userBiasSettings } from './components/user.js'
+import donation from './components/donations.js'
 import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
 
@@ -21,6 +22,9 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
 }, () => {
     console.log("MongoDB is connected.")
 })
+
+// const connection = mongoose.connection
+
 
 /* ---------- All App Use functions ---------- */
 
@@ -108,6 +112,12 @@ app.get('/api/chartdata', (req, res) => {
 
 app.get('/api/getuser', (req, res) => { //sends userstatus to react on api call
     req.user === undefined? res.json("nouser"): res.send(req.user)
+})
+
+app.get('/api/getalldonations', (req, res) => { //sends all donations on api call
+    donation.find({})
+    .then(donation => res.json(donation))
+    .catch(error => console.log(error))
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */

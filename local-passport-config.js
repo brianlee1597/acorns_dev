@@ -1,4 +1,4 @@
-import User from './user.js'
+import User from './components/user.js'
 import bcrypt from 'bcryptjs'
 import localStrategy from 'passport-local'
 

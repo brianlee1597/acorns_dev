@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Footer from 'rc-footer';
-import 'rc-footer/assets/index.css';
 
 import Navigation from './Navigation/Navigation'
 import Login from './Auth/Login'
@@ -10,11 +9,13 @@ import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage';
 import axios from "axios";
 
+import 'rc-footer/assets/index.css';
 import './App.scss';
 
 const App = () => {
 
     const [user, setUser] = useState({}) //initialize user state and settings
+    const [donations, setDonations] = useState([]) //initialize donations array
     const [appIsFetchingAPI, setIsFetchingAPI] = useState(true) //state boolean to make sure app returns after fetch is done
     const [loggedIn, setLoggedIn] = useState(false) //login state
 
@@ -25,7 +26,14 @@ const App = () => {
                 setUser(response.data)
                 setLoggedIn(true)
             }
-            setIsFetchingAPI(false) //set appIsFetchingAPI to false after user state is set
+        })
+        .catch(error => console.log(error))
+
+        axios.get('/api/getalldonations') //get all donations list from db
+        .then(response => {
+            console.log(response.data)
+            setDonations(response.data) //set it to client state
+            setIsFetchingAPI(false) //set api call to done
         })
         .catch(error => console.log(error))
     }, [])
@@ -47,7 +55,7 @@ const App = () => {
                             <Register/>
                         </Route>
                         <Route path="/donations">
-                            <DonationPage/>
+                            <DonationPage donations={donations}/>
                         </Route>
                     </Switch>
                 </div>
