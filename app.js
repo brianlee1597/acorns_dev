@@ -123,7 +123,7 @@ app.get('/api/getalldonations', (req, res) => { //sends all donations on api cal
 app.post("/api/getgiftsby/bias", (req, res) => { //Gifts Section get by bias
     allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
     .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
-    .limit(5) //limit of components = 5
+    .lean().limit(5) //limit of components = 5
     .exec((error, data) => { //then execute sending data
         if (error) 
             res.json("error")
