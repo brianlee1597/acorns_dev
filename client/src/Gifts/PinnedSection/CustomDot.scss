@@ -1,0 +1,20 @@
+.dot-active, .dot-inactive {
+    width: 40px;
+    height: 5px;
+    border-radius: 30px;
+    background-color: #cecece;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot-active {
+    background-color:black;
+}
+
+.carousel-without-dot {
+    width: 100%;
+}
+.carousel-with-dot {
+    width: 100%;
+    padding-bottom: 45px;
+}

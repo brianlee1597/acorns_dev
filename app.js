@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser"
 import { chartData } from './tempdb.js'
 import User, { userBiasSettings } from './components/user.js'
 import donation from './components/donations.js'
+import allGifts from './components/gifts.js'
 import localPassportConfig from './local-passport-config.js'
 import mongoose from "mongoose"
 
@@ -24,7 +25,6 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
 })
 
 // const connection = mongoose.connection
-
 
 /* ---------- All App Use functions ---------- */
 
@@ -118,6 +118,20 @@ app.get('/api/getalldonations', (req, res) => { //sends all donations on api cal
     donation.find({})
     .then(donation => res.json(donation))
     .catch(error => console.log(error))
+})
+
+app.post("/api/getgiftsby/bias", (req, res) => { //Gifts Section get by bias
+    allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
+    .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
+    .limit(5) //limit of components = 5
+    .exec((error, data) => { //then execute sending data
+        if (error) 
+            res.json("error")
+        else if (data.length === 0) 
+            res.json("nogiftstothatartist") 
+        else 
+            res.json(data)
+    })
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */

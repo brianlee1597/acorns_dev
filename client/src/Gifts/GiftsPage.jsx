@@ -1,10 +1,10 @@
-import PinnedComponent from './PinnedComponent.jsx'
+import PinnedSection from './PinnedSection/PinnedSection.jsx'
 import './GiftsPage.scss'
 
 const GiftsPage = props => {
 
     return (
-        <PinnedComponent userBias={props.userBias}/>
+        <PinnedSection userBias={props.userBias}/>
     )
 }
 
