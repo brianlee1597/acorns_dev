@@ -4,7 +4,7 @@ import './GiftsPage.scss'
 const GiftsPage = props => {
 
     return (
-        <PinnedSection userBias={props.userBias}/>
+        <PinnedSection userBias={props.userBias} gifts={props.gifts}/>
     )
 }
 

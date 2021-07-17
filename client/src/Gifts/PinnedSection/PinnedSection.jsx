@@ -2,11 +2,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react'
 import Carousel from 'react-multi-carousel'
-import axios from 'axios';
 import PinnedComponent from './PinnedComponent';
 import GiftComponent from './GiftComponent';
 import CustomDot from './CustomDot';
-import loading from '../../images/loading.gif'
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -15,48 +13,32 @@ const PinnedSection = props => { //The whole gift bias pinned section
     if (props.userBias === "nouser") //if user is not logged in, return nothing
         return null
 
-    //fetching api state, initialized to make sure components load after fetch is done
-    const [appIsFetchingAPI, setIsFetchingAPI] = useState(true)
-    //array to keep all the retrived gift components for rendering
+    const [isPopulatingGiftsArray, setIsPopulatingGiftsArray] = useState(true)
     const [allGiftsByBias] = useState([])
 
-    //POST method to backend to get gift components by artist (bias)
     const getByArtist = () => { 
-        axios.post("/api/getgiftsby/bias", {artist: props.userBias}) //the POST method
-        .then(response => {
-            //this constant should be a nogift text or an array of gift objects
-            const allGifts = response.data
-
-            //if no gift, let fetch be done and do nothing to allGiftsByBias array
-            if(allGifts === "nogiftstothatartist") {
-                setIsFetchingAPI(false)
-                return 
-            }
-
-            //if gift, then prop each gift settings to GiftComponent, then push that into AllGiftsByBias
-            for(let i = 0; i < allGifts.length; i++) {
-                const eachGift = allGifts[i]
+        if(props.gifts.length === 0) 
+            return
+        //if gift, then prop each gift settings to GiftComponent, then push that into AllGiftsByBias
+        if(allGiftsByBias.length === 0) 
+            for(let i = 0; i < props.gifts.length; i++)
                 allGiftsByBias.push(
-                    <GiftComponent 
-                        key={i} 
-                        imageurl={eachGift.imageurl}
-                        title={eachGift.title}
-                        type={eachGift.type}
-                        user={eachGift.user}
-                        amountpaid={eachGift.amountpaidsofar}
-                        amountneeded={eachGift.amountneeded}
-                        dateremaining={eachGift.dateending}
-                    />
+                    <GiftComponent
+                        key={i}
+                        imageurl={props.gifts[i].imageurl}
+                        title={props.gifts[i].title}
+                        type={props.gifts[i].type}
+                        user={props.gifts[i].user}
+                        amountpaid={props.gifts[i].amountpaidsofar}
+                        amountneeded={props.gifts[i].amountneeded}
+                        dateremaining={props.gifts[i].dateending} />
                 )
-            }
-
-            //set the fetch to done
-            setIsFetchingAPI(false)
-        })
-        .catch(error => console.log(error))
     }
 
-    useEffect(() => getByArtist(), []) //call getByArtist function (POST method) on mount
+    useEffect(() => {
+        getByArtist()
+        setIsPopulatingGiftsArray(false)
+    }, [])
 
     const responsive = { //Carousel settings
         desktop: {
@@ -76,26 +58,25 @@ const PinnedSection = props => { //The whole gift bias pinned section
         }
     }
 
-    return <PinnedComponent //Return PinnedComponent with conditional props for container and gifts
-                userBias={props.userBias} 
-                container={
-                    appIsFetchingAPI? "carousel-loading-container":
-                    allGiftsByBias.length === 0? "carousel-nogift-container":
-                    "carousel-background-container"
-                }
-                gifts={
-                    appIsFetchingAPI? <img src={loading} alt="loading" style={{height: "150px"}}/>:
-                    allGiftsByBias.length === 0? "No Gifts to Post Yet!":
-                    <Carousel 
-                    responsive={responsive} 
-                    showDots={true}
-                    customDot={<CustomDot/>}
-                    containerClass={allGiftsByBias.length < 3? "carousel-without-dot" : "carousel-with-dot"}
-                    >
-                        {allGiftsByBias}
-                    </Carousel>
-                }
-            />
+    if (isPopulatingGiftsArray) return null
+    else return <PinnedComponent //Return PinnedComponent with conditional props for container and gifts
+                    userBias={props.userBias} 
+                    container={
+                        allGiftsByBias.length === 0? "carousel-nogift-container":
+                        "carousel-background-container"
+                    }
+                    gifts={
+                        allGiftsByBias.length === 0? "No Gifts to Post Yet!":
+                        <Carousel 
+                        responsive={responsive} 
+                        showDots={true}
+                        customDot={<CustomDot/>}
+                        containerClass={allGiftsByBias.length < 3? "carousel-without-dot" : "carousel-with-dot"}
+                        >
+                            {allGiftsByBias}
+                        </Carousel>
+                    }
+                />
 }
 
 export default PinnedSection

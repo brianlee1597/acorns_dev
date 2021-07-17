@@ -19,6 +19,7 @@ const App = () => {
     const [donations, setDonations] = useState([]) //initialize donations array
     const [appIsFetchingAPI, setIsFetchingAPI] = useState(true) //state boolean to make sure app returns after fetch is done
     const [loggedIn, setLoggedIn] = useState(false) //login state
+    const [giftsByBias, setGiftsByBias] = useState([])
 
     useEffect(() => { //run when component mounts
         axios.get('/api/getuser') //get login status from backend
@@ -26,11 +27,15 @@ const App = () => {
             if(response.data !== 'nouser') {
                 setUser(response.data)
                 setLoggedIn(true)
+                return axios.post("/api/getgiftsby/bias", {artist: response.data.bias})
             }
+            else return "nogiftstothatartist"
         })
-        .catch(error => console.log(error))
-
-        axios.get('/api/getalldonations') //get all donations list from db
+        .then(response => {
+            if(response.data !== "nogiftstothatartist")
+                setGiftsByBias(response.data)
+            return axios.get('/api/getalldonations')
+        })
         .then(response => {
             console.log(response.data)
             setDonations(response.data) //set it to client state
@@ -59,7 +64,7 @@ const App = () => {
                             <DonationPage donations={donations}/>
                         </Route>
                         <Route exact path="/gifts">
-                            <GiftsPage userBias={loggedIn? user.bias: "nouser"}/>
+                            <GiftsPage userBias={loggedIn? user.bias: "nouser"} gifts={giftsByBias}/>
                         </Route>
                     </Switch>
                 </div>
