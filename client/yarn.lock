@@ -4443,6 +4443,13 @@ dom-serializer@^1.0.1:
     domhandler "^4.2.0"
     entities "^2.0.0"
 
+dom7@^2.0.3:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-2.1.5.tgz#a79411017800b31d8400070cdaebbfc92c1f6377"
+  integrity sha512-xnhwVgyOh3eD++/XGtH+5qBwYTgCm0aW91GFgPJ3XG+jlsRLyJivnbP0QmUBFhI+Oaz9FV0s7cxgXHezwOEBYA==
+  dependencies:
+    ssr-window "^2.0.0"
+
 dom7@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/dom7/-/dom7-3.0.0.tgz"
@@ -7452,6 +7459,11 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
+lodash.omit@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
+  integrity sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA=
+
 lodash.template@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.template/-/lodash.template-4.5.0.tgz"
@@ -9462,7 +9474,7 @@ prompts@2.4.0, prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9710,6 +9722,17 @@ react-dom@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-dynamic-swiper@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-dynamic-swiper/-/react-dynamic-swiper-2.0.2.tgz#3d8257e6211438d83bcdfbcf770039b8741fb83f"
+  integrity sha512-a+xUw48+rxFollakB5S7KE3id0qRB+9Uwu8TIU2OLXsa4XhUZTt1WDdu0ocNCSsC2jvnkgBAHElQinaYRNabEQ==
+  dependencies:
+    classnames "^2.2.5"
+    deep-equal "^1.0.1"
+    lodash.omit "^4.5.0"
+    prop-types "^15.5.10"
+    swiper "4.2.0"
 
 react-error-overlay@^6.0.9:
   version "6.0.9"
@@ -10944,6 +10967,16 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
+ssr-window@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-1.0.1.tgz#30752a6a4666e7767f0b7e6aa6fc2fdbd0d9b369"
+  integrity sha512-dgFqB+f00LJTEgb6UXhx0h+SrG50LJvti2yMKMqAgzfUmUXZrLSv2fjULF7AWGwK25EXu8+smLR3jYsJQChPsg==
+
+ssr-window@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-2.0.0.tgz#98c301aef99523317f8d69618f0010791096efc4"
+  integrity sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A==
+
 ssr-window@^3.0.0, ssr-window@^3.0.0-alpha.1:
   version "3.0.0"
   resolved "https://registry.npmjs.org/ssr-window/-/ssr-window-3.0.0.tgz"
@@ -11287,6 +11320,14 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+swiper@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-4.2.0.tgz#1490de68e7ba4eeecb54565de06005a7398455ee"
+  integrity sha512-D2qvHi0kCTLPcQUuwYi6ht0Fz/gP2YwLBzpjcoBvDKBeY8opW0yTImLCtR36U1G3ILYPKVFifWuMqUOoT1SiaA==
+  dependencies:
+    dom7 "^2.0.3"
+    ssr-window "^1.0.0"
 
 swiper@^6.7.5:
   version "6.7.5"
