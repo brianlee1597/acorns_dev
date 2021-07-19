@@ -8,9 +8,9 @@ const GiftComponent = props => {
 
     const [imageurl, title, type, user] = [props.imageurl, props.title, props.type, props.user]
     const [amountpaid, amountneeded, dateremaining] = [props.amountpaid, props.amountneeded, props.dateremaining]
+    const percentage = props.percentagepaid
     // eslint-disable-next-line no-unused-vars
     const {height, width} = WindowDimensions()
-    const percentage = ((props.amountpaid / props.amountneeded) * 100).toString()
 
     return (
         <div className="each-pinned-gift-campaign">
@@ -24,7 +24,7 @@ const GiftComponent = props => {
                 height="7px"
                 rect
                 fontColor="gray"
-                percentage={percentage}
+                percentage={percentage.toString()}
                 trackPathColor="#f4f4f4"
                 defColor={{
                     fair: '#F7E967',

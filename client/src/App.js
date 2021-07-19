@@ -33,6 +33,14 @@ const App = () => {
     const closeMenu = () => {
         setHamburgerNavState(false)
     }
+    const logout = () => { //logout function
+        axios.post('/logout') //post to logout, which then logs out user in the backend
+        .then(response => {
+            console.log(response) //resolve promise
+            window.location.href = '/' //then return to main page
+        })
+        .catch(error => console.log(error))
+    }
     
     useEffect(() => { //run when component mounts
         axios.get('/api/getuser') //get login status from backend
@@ -66,7 +74,8 @@ const App = () => {
                 <NavLink onClick={() => closeMenu()} className="menu-item" to="/gifts">선물하기</NavLink>
                 <NavLink onClick={() => closeMenu()} className="menu-item" to="/campaigns">캄페인</NavLink>
                 <NavLink onClick={() => closeMenu()} className="menu-item" to="/community">커뮤니티</NavLink>
-                <NavLink onClick={() => closeMenu()} to="/login" className="login-button">로그인/계정생성</NavLink>
+                <NavLink onClick={() => closeMenu()} to="/login" className="login-button" style={{display: loggedIn? 'none': 'block'}}>로그인</NavLink>
+                <button onClick={() => logout()} className="logout-button" style={{display: loggedIn? 'block': 'none'}}>로그아웃</button>
             </Menu>
             <div className="App">
                 <Navigation user={user} loggedIn={loggedIn}/>

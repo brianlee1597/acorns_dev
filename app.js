@@ -24,7 +24,25 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
     console.log("MongoDB is connected.")
 })
 
-// const connection = mongoose.connection
+// mongoose.connection.once('open', async () => {
+
+//     for(let i = 0; i < 20; i++) {
+//         const gift = new allGifts({
+//             artist: 'Blackpink',
+//             imageurl: 'https://steamuserimages-a.akamaihd.net/ugc/861730723813373909/8079F8521CEF1BD21F8E5D5E9D536EAD9306AEAE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
+//             title: `BP GIFT TEST ${i}`,
+//             type: '선물',
+//             user: 'they_is_so_hot_101',
+//             amountpaidsofar: '9000',
+//             amountneeded: '10000',
+//             paidtoneededratio: '90',
+//             dateending: '1'
+//         })
+
+//         await gift.save()
+//         console.log(i)
+//     }
+// })
 
 /* ---------- All App Use functions ---------- */
 
@@ -117,6 +135,15 @@ app.get('/api/getuser', (req, res) => { //sends userstatus to react on api call
 app.get('/api/getalldonations', (req, res) => { //sends all donations on api call
     donation.find({})
     .then(donation => res.json(donation))
+    .catch(error => console.log(error))
+})
+
+app.get('/api/allgifts', (req, res) => {
+    allGifts.find({}).lean()
+    .sort({paidtoneededratio: -1})
+    .limit(20).then(gifts => {
+        res.json(gifts)
+    })
     .catch(error => console.log(error))
 })
 

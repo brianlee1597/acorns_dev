@@ -1,10 +1,14 @@
-import { FaMapPin } from 'react-icons/fa'
+import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import WindowDimensions from '../../Hooks/WindowDimension'
-import GiftComponent from './GiftComponent';
+import GiftComponent from './GiftComponent'
+import Line from './Line'
+import Title from './Title'
 
 import "react-multi-carousel/lib/styles.css";
 import './PinnedSection.scss'
+
+SwiperCore.use([Navigation]);
 
 const PinnedSection = props => { //The whole gift bias pinned section
 
@@ -22,12 +26,14 @@ const PinnedSection = props => { //The whole gift bias pinned section
     return ( //PinnedComponent renders its inner stuff based on the conditional props from PinnedSection
         <>
             <div className="giftpinned-container">
-                <h1><span><FaMapPin /></span>&nbsp;{title}</h1>
-                <hr/>
+                <Title pinned={true} content={"  " + title}/>
+                <Line/>
                 {props.gifts.length === 0? <div className="nogift-exists">No Gifts to Post Yet!</div>: 
                 <Swiper 
                 className="gift-exists"
                 slidesPerView={width < 415? 'auto':width < 900? 2: 3}
+                navigation
+                speed={750}
                 >
                     {props.gifts.map(eachGift => {
                         return <SwiperSlide style={{width: width < 415? "75%": "0%"}} key={eachGift.title}>
@@ -38,6 +44,7 @@ const PinnedSection = props => { //The whole gift bias pinned section
                         user={eachGift.user}
                         amountpaid={eachGift.amountpaidsofar}
                         amountneeded={eachGift.amountneeded}
+                        percentagepaid={eachGift.paidtoneededratio}
                         dateremaining={eachGift.dateending} />
                         </SwiperSlide>
                     })}

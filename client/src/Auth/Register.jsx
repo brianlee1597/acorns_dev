@@ -67,11 +67,12 @@ const Register = () => {
     }
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit}>
+        <div className="register-container">
+            <form onSubmit={handleSubmit} autoComplete="off">
                 <label>계정 만들기</label>
                 <input onChange={handleInput} type="email" id="email" name="email" placeholder="이메일"/>
                 <input onChange={handleInput} type="password" id="password" name="password" minLength={5} placeholder="비밀번호"/>
+                <input onChange={handleInput} type="password" id="password" name="password" minLength={5} placeholder="비밀번호 재입력"/>
                 <div class="name-container">
                 <input onChange={handleInput} type="text" id="lastname" name="lastname" placeholder="성"/>
                 <input onChange={handleInput} type="text" id="firstname" name="firstname" placeholder="이름"/>

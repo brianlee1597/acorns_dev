@@ -23,9 +23,9 @@ $page-white: rgb(248, 248, 248);
         a {
             margin: 0;
             padding: 0 10px 0 10px;
-            border-left: 2px solid $page-white;
-            border-right: 2px solid $page-white;
-            color: $page-white;
+            border-left: 2px solid $page-black;
+            border-right: 2px solid $page-black;
+            color: $page-black;
             font-size: 1.5rem;
             cursor: pointer;
             transition-duration: 0.25s;
@@ -50,7 +50,7 @@ $page-white: rgb(248, 248, 248);
             font-size: 1.1rem;
             font-family: 'Sunflower', sans-serif;
             font-weight: 500;
-            color: $page-white;
+            color: $page-black;
             text-decoration: none;
             cursor: pointer;
             z-index: 0;
@@ -103,8 +103,8 @@ $page-white: rgb(248, 248, 248);
             padding: 8px 30px 5px 30px;
             border: 1px solid transparent;
             border-radius: 10px;
-            background: $page-white;  
-            color: $page-black;
+            background: $page-black;  
+            color: $page-white;
             font-size: 1.15rem;
             cursor: pointer;
             transition-duration: 0.25s;
@@ -112,7 +112,26 @@ $page-white: rgb(248, 248, 248);
         }
         .login-button:hover, .login-button:focus {
             background: transparent;
+            color: $page-black;
+            border: 1px solid $page-black;
+        }
+
+        .logout-button {
+            margin: 0;
+            padding: 0;
+            padding: 8px 30px 5px 30px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background: $page-white;  
+            color: $page-black;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition-duration: 0.25s;
+            text-decoration: none;
+        }
+        .logout-button:hover, .logout-button:focus {
             color: $page-white;
+            background: transparent;
             border: 1px solid $page-white;
         }
 

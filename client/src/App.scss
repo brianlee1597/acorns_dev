@@ -32,18 +32,51 @@ $page-white: rgb(248, 248, 248);
   }
   .bm-burger-bars {
     z-index: 11;
-    background: white;
+    background: $page-black;
     cursor: pointer;
   }
   .bm-menu {
     background: black;
+    margin: 0;
     padding: 6em 3em 0;
   }
   
   .bm-item {
+    width: 110px;
+    padding: 0;
     text-decoration: none;
     font-size: 25px;
     margin-bottom: 25px;
     color: white;
+  }
+
+  .login-button {
+    margin: 0;
+    padding: 8px 20px 5px 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    text-decoration: none;
+  }
+  .login-button:hover, .login-button:focus {
+      background: transparent;
+      color: $page-white;
+      border: 1px solid $page-white;
+  }
+  .logout-button {
+    margin: 0;
+    padding: 8px 20px 5px 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    text-decoration: none;
   }
 }
