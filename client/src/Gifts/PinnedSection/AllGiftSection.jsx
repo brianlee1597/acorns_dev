@@ -8,8 +8,7 @@ import GiftComponent from "./GiftComponent"
 
 import './AllGiftSection.scss'
 
-
-export default function AllGiftSection () {
+export default function AllGiftSection() {
 
     const [gifts] = useState([])
     const [isFetchingAPI, setIsFetchingAPI] = useState(true)
