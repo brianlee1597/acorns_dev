@@ -47,8 +47,9 @@ const App = () => {
     if (appIsFetchingAPI) return null
     else return (
         <Router>
-            <div className="App" style={{background: loggedIn? user.backgroundcolor: 'white'}}>
-                <Navigation loggedIn={loggedIn}/>
+            <div className="App">
+                <Navigation user={user} loggedIn={loggedIn}/>
+                <div className="navigation-margin"></div>
                 <div className="Content">
                     <Switch>
                         <Route exact path="/">

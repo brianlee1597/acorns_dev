@@ -11,7 +11,7 @@ const PinnedComponent = props => {
     return ( //PinnedComponent renders its inner stuff based on the conditional props from PinnedSection
         <>
             <div className="giftpinned-container">
-                <h1><span><FaMapPin /></span>&nbsp;&nbsp;{title}</h1>
+                <h1><span><FaMapPin /></span>&nbsp;{title}</h1>
                 <div className={props.container}>
                     {props.gifts}
                 </div>

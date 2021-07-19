@@ -1,5 +1,7 @@
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import WindowDimensions from '../Hooks/WindowDimension'
+import { slide as Menu } from 'react-burger-menu'
 
 import './Nav.scss'
 
@@ -14,14 +16,15 @@ const Navigation = props => {
         .catch(error => console.log(error))
     }
 
-    const background   = props.loggedIn? 'transparent': 'black', //navigation bar background
-          borderBottom = props.loggedIn? '1px dashed rgba(255, 255, 255, .5)': 'none' //navigation border bottom line
+    // eslint-disable-next-line no-unused-vars
+    const { height, width } = WindowDimensions()
 
+    const background = props.loggedIn? props.user.backgroundcolor: 'black' //navigation bar background
 
     return (
-        <section id="nav-container" style={{background: background, borderBottom: borderBottom}}>
+        <section id="nav-container" style={{background: background}}>
             <div id="logo-left">
-                <NavLink to="/">Acorns</NavLink>
+                <NavLink to="/" className="logo">Acorns</NavLink>
             </div>
             <div className="navlink-container">
                 <NavLink activeClassName="is-active" to="/donations">기부하기</NavLink>
@@ -29,12 +32,21 @@ const Navigation = props => {
                 <NavLink activeClassName="is-active" to="/campaigns">캄페인</NavLink>
                 <NavLink activeClassName="is-active" to="/community">커뮤니티</NavLink>
             </div>
-            <div className="profile-container" style={{display: props.loggedIn? 'none': 'grid'}}>
+            <div className="profile-container" style={{display: props.loggedIn? 'none': width <= 910? 'none': 'grid'}}>
                     <NavLink activeClassName="is-active" to="/login" className="login-button">로그인/계정생성</NavLink>
             </div>
-            <div className="profile-container" style={{display: props.loggedIn? 'grid': 'none'}}>
+            <div className="profile-container" style={{display: props.loggedIn && width > 910? 'grid': 'none'}}>
                     <button className="login-button" onClick={logout}>로그아웃</button>
             </div>
+            <Menu right width={250}>
+                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/donations">기부하기</NavLink>
+                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/gifts">선물하기</NavLink>
+                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/campaigns">캄페인</NavLink>
+                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/community">커뮤니티</NavLink>
+                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/login"
+                style={{display: props.loggedIn? 'none': 'grid'}}>로그인/계정생성</NavLink>
+                <button className="logout-button" onClick={logout} style={{display: props.loggedIn? 'grid': 'none'}}>로그아웃</button>
+            </Menu>
         </section>
     )
 }

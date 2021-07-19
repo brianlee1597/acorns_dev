@@ -4,10 +4,14 @@ $page-black: rgb(51, 51, 51);
 $page-white: rgb(248, 248, 248);
 
 #nav-container {
+    position: fixed;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
     height: 75px;
+    z-index: 1000;
 
     #logo-left {
         height: 100%;
@@ -118,41 +122,67 @@ $page-white: rgb(248, 248, 248);
             border: 1px solid $page-white;
         }
     }
+
+    .bm-burger-button {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 910px) {
     #nav-container {
-        display: grid;
-
+        height: 60px;
         #logo-left {
-            margin: 0;
-            padding: 0;
-            height: 75px;
-            width: 100vw;
-            display: grid;
-            place-items: center;
-            background-color: black;
-
-            a {
-        
-                img {
-                    margin: 0;
-                    padding: 0;
-                    width: 25px;
-                    height: auto;
-                    padding: 10px;
-                    border: 2px solid black;
-                    border-radius: 50%;
-                }
+            width: 50vw;
+            justify-content: flex-start;
+            .logo {
+                margin-left: 5vw;
+                font-size: 1.15rem;
             }
         }
 
-        #rightside-container {
+        .navlink-container {
             display: none;
         }
-    }
 
-    #nav-container {
-        height: 100px;
+        .bm-burger-button {
+            display: block;
+            position: fixed;
+            width: 36px;
+            height: 25px;
+            right: 5vw;
+            top: 17.5px;
+        }
+        .bm-burger-bars {
+          background: white;
+          transition-duration: 0.25s;
+        }
+        .bm-burger-bars-hover {
+          background: pink;
+        }
+        .bm-cross {
+            background: white;
+        }
+        .bm-menu-wrap {
+          position: fixed;
+          height: 100%;
+        }
+        
+        /* General sidebar styles */
+        .bm-menu {
+          background: black;
+          padding: 2.5em 1.5em 0;
+          font-size: 1.5em;
+        }
+        .bm-item-list {
+          padding: 1em;
+        } 
+        .hamburger-menu-link {
+          margin-bottom: 25px;
+          font-size: 1.25rem;
+          font-family: "Sunflower", "sans-serif";
+          letter-spacing: 1px;
+          color: white;
+          text-decoration: none;
+        }
     }
 }

@@ -122,15 +122,13 @@ app.get('/api/getalldonations', (req, res) => { //sends all donations on api cal
 
 app.post("/api/getgiftsby/bias", (req, res) => { //Gifts Section get by bias
     allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
+    .lean() //get only the data not the mongoDB settings
     .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
-    .lean().limit(5) //limit of components = 5
+    .limit(5) //limit of components = 5
     .exec((error, data) => { //then execute sending data
-        if (error) 
-            res.json("error")
-        else if (data.length === 0) 
-            res.json("nogiftstothatartist") 
-        else 
-            res.json(data)
+        error? res.json("error"):
+        data.length === 0? res.json("nogiftstothatartist"):
+        res.json(data)
     })
 })
 

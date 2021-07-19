@@ -1,5 +1,6 @@
 import ProgressBar from 'react-animated-progress-bar'
 import { NavLink } from 'react-router-dom'
+import WindowDimensions from '../../Hooks/WindowDimension'
 
 import './GiftComponent.scss'
 
@@ -7,7 +8,9 @@ const GiftComponent = props => {
 
     const [imageurl, title, type, user] = [props.imageurl, props.title, props.type, props.user]
     const [amountpaid, amountneeded, dateremaining] = [props.amountpaid, props.amountneeded, props.dateremaining]
-    const percentage = (props.amountpaid/props.amountneeded*100).toString()
+    // eslint-disable-next-line no-unused-vars
+    const {height, width} = WindowDimensions()
+    const percentage = ((props.amountpaid / props.amountneeded) * 100).toString()
 
     return (
         <div className="each-pinned-gift-campaign">
@@ -17,7 +20,7 @@ const GiftComponent = props => {
                 <p>{type} | <NavLink className="posted-user" to="/">@{user}</NavLink></p>
             </div>
             <ProgressBar 
-                width="85%"
+                width={width <= 415? "90%": "92.5%"}
                 height="6px"
                 rect
                 fontColor="gray"
