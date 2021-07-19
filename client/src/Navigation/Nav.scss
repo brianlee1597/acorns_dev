@@ -11,7 +11,7 @@ $page-white: rgb(248, 248, 248);
     justify-content: space-between;
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
     height: 65px;
-    z-index: 1000;
+    z-index: 10;
 
     #logo-left {
         height: 100%;
@@ -122,10 +122,6 @@ $page-white: rgb(248, 248, 248);
             border: 1px solid $page-white;
         }
     }
-
-    .bm-burger-button {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 910px) {
@@ -142,47 +138,6 @@ $page-white: rgb(248, 248, 248);
 
         .navlink-container {
             display: none;
-        }
-
-        .bm-burger-button {
-            display: block;
-            position: fixed;
-            width: 36px;
-            height: 25px;
-            right: 5vw;
-            top: 17.5px;
-        }
-        .bm-burger-bars {
-          background: white;
-          transition-duration: 0.25s;
-        }
-        .bm-burger-bars-hover {
-          background: pink;
-        }
-        .bm-cross {
-            background: white;
-        }
-        .bm-menu-wrap {
-          position: fixed;
-          height: 100%;
-        }
-        
-        /* General sidebar styles */
-        .bm-menu {
-          background: black;
-          padding: 2.5em 1.5em 0;
-          font-size: 1.5em;
-        }
-        .bm-item-list {
-          padding: 1em;
-        } 
-        .hamburger-menu-link {
-          margin-bottom: 25px;
-          font-size: 1.25rem;
-          font-family: "Sunflower", "sans-serif";
-          letter-spacing: 1px;
-          color: white;
-          text-decoration: none;
         }
     }
 }

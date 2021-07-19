@@ -1,7 +1,6 @@
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import WindowDimensions from '../Hooks/WindowDimension'
-import { slide as Menu } from 'react-burger-menu'
 
 import './Nav.scss'
 
@@ -38,15 +37,6 @@ const Navigation = props => {
             <div className="profile-container" style={{display: props.loggedIn && width > 910? 'grid': 'none'}}>
                     <button className="login-button" onClick={logout}>로그아웃</button>
             </div>
-            <Menu right width={250}>
-                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/donations">기부하기</NavLink>
-                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/gifts">선물하기</NavLink>
-                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/campaigns">캄페인</NavLink>
-                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/community">커뮤니티</NavLink>
-                <NavLink className="hamburger-menu-link" activeClassName="is-active" to="/login"
-                style={{display: props.loggedIn? 'none': 'grid'}}>로그인/계정생성</NavLink>
-                <button className="logout-button" onClick={logout} style={{display: props.loggedIn? 'grid': 'none'}}>로그아웃</button>
-            </Menu>
         </section>
     )
 }

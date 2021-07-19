@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Footer from 'rc-footer';
+import Footer from 'rc-footer'
+import { NavLink } from "react-router-dom"
+import { stack as Menu } from 'react-burger-menu'
+import axios from "axios"
 
 import Navigation from './Navigation/Navigation'
 import Login from './Auth/Login'
@@ -8,19 +11,29 @@ import Register from './Auth/Register'
 import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage'
 import GiftsPage from './Gifts/GiftsPage.jsx'
-import axios from "axios";
+import WindowDimensions from './Hooks/WindowDimension'
 
 import 'rc-footer/assets/index.css';
 import './App.scss';
 
 const App = () => {
+    // eslint-disable-next-line no-unused-vars
+    const { height, width } = WindowDimensions()
 
     const [user, setUser] = useState({}) //initialize user state and settings
     const [donations, setDonations] = useState([]) //initialize donations array
     const [appIsFetchingAPI, setIsFetchingAPI] = useState(true) //state boolean to make sure app returns after fetch is done
     const [loggedIn, setLoggedIn] = useState(false) //login state
     const [giftsByBias, setGiftsByBias] = useState([])
+    const [hamburgerNavState, setHamburgerNavState] = useState(false)
 
+    const handleNavStateChange = bool => {
+        setHamburgerNavState(bool.isOpen)  
+    }
+    const closeMenu = () => {
+        setHamburgerNavState(false)
+    }
+    
     useEffect(() => { //run when component mounts
         axios.get('/api/getuser') //get login status from backend
         .then(response => {
@@ -47,6 +60,14 @@ const App = () => {
     if (appIsFetchingAPI) return null
     else return (
         <Router>
+            <Menu right width={200} isOpen={hamburgerNavState} 
+            onStateChange={(state) => handleNavStateChange(state)}>
+                <NavLink onClick={() => closeMenu()} className="menu-item" to="/donations">기부하기</NavLink>
+                <NavLink onClick={() => closeMenu()} className="menu-item" to="/gifts">선물하기</NavLink>
+                <NavLink onClick={() => closeMenu()} className="menu-item" to="/campaigns">캄페인</NavLink>
+                <NavLink onClick={() => closeMenu()} className="menu-item" to="/community">커뮤니티</NavLink>
+                <NavLink onClick={() => closeMenu()} to="/login" className="login-button">로그인/계정생성</NavLink>
+            </Menu>
             <div className="App">
                 <Navigation user={user} loggedIn={loggedIn}/>
                 <div className="navigation-margin"></div>
@@ -94,7 +115,7 @@ const App = () => {
                   backgroundColor="#333333"
                 />
             </div>
-        </Router>   
+        </Router>
     )
 }
 
