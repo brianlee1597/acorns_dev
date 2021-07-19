@@ -1,10 +1,13 @@
-import './LandingPage.scss'
-import InfoCarousel from './InfoCarousel'
-import Dashboard from './Dashboard'
 import Particles from 'react-particles-js'
 import WindowDimensions from '../Hooks/WindowDimension'
 
-const LandingPage = () => {
+import InfoCarousel from './InfoCarousel'
+import Dashboard from './Dashboard'
+import MobileTopBtns from './MobileTopBtns'
+
+import './LandingPage.scss'
+
+const LandingPage = props => {
 
     // eslint-disable-next-line no-unused-vars
     const { height, width } = WindowDimensions()
@@ -12,6 +15,7 @@ const LandingPage = () => {
 
     return (
         <div id="landing-page">
+			<MobileTopBtns loggedIn={props.loggedIn} logout={props.logout}/>
             <Particles 
                 className="particle-background"
                 params={{

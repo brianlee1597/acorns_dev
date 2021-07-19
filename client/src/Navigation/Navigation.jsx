@@ -1,19 +1,9 @@
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import WindowDimensions from '../Hooks/WindowDimension'
 
 import './Nav.scss'
 
 const Navigation = props => { 
-
-    const logout = () => { //logout function
-        axios.post('/logout') //post to logout, which then logs out user in the backend
-        .then(response => {
-            console.log(response) //resolve promise
-            window.location.href = '/' //then return to main page
-        })
-        .catch(error => console.log(error))
-    }
 
     // eslint-disable-next-line no-unused-vars
     const { height, width } = WindowDimensions()
@@ -37,11 +27,11 @@ const Navigation = props => {
                 <NavLink style={{color: props.loggedIn? 'white': 'black'}} 
                 activeClassName="is-active" to="/community">커뮤니티</NavLink>
             </div>
-            <div className="profile-container" style={{display: props.loggedIn? 'none': width <= 910? 'none': 'grid'}}>
+            <div className="profile-container" style={{display: props.loggedIn? 'none': width <= 415? 'none': 'grid'}}>
                     <NavLink activeClassName="is-active" to="/login" className="login-button">로그인/계정생성</NavLink>
             </div>
-            <div className="profile-container" style={{display: props.loggedIn && width > 910? 'grid': 'none'}}>
-                    <button className="logout-button" onClick={logout}>로그아웃</button>
+            <div className="profile-container" style={{display: props.loggedIn && width > 415? 'grid': 'none'}}>
+                    <button className="logout-button" onClick={props.logout}>로그아웃</button>
             </div>
         </section>
     )

@@ -1,0 +1,21 @@
+nav {
+    display: none;
+}
+
+@media screen and (max-width: 415px) {
+    nav {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        grid-template-columns: auto auto auto auto auto;
+        bottom: 0;
+        position: fixed;
+        width: 100vw;
+        height: 9vh;
+        background-color: white;
+        
+        .link-container {
+            grid-row: auto;
+        }
+    }
+}

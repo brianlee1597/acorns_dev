@@ -1,15 +1,6 @@
 $page-black: rgb(51, 51, 51);
 $page-white: rgb(248, 248, 248);
 
-.bm-burger-button {
-  position: fixed;
-  width: 30px;
-  height: 20px;
-  right: 20px;
-  top: 20px;
-  display: none;
-}
-
 .App {
   height: auto;
   overflow: hidden;
@@ -27,29 +18,6 @@ $page-white: rgb(248, 248, 248);
 }
 
 @media screen and (max-width: 900px) {
-  .bm-burger-button {
-    display: block;
-  }
-  .bm-burger-bars {
-    z-index: 11;
-    background: $page-black;
-    cursor: pointer;
-  }
-  .bm-menu {
-    background: black;
-    margin: 0;
-    padding: 6em 3em 0;
-  }
-  
-  .bm-item {
-    width: 110px;
-    padding: 0;
-    text-decoration: none;
-    font-size: 25px;
-    margin-bottom: 25px;
-    color: white;
-  }
-
   .login-button {
     margin: 0;
     padding: 8px 20px 5px 20px;

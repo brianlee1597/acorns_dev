@@ -1,10 +1,11 @@
 #landing-page {
     width: 100vw;
     .particle-background {
-        display: none;
+        // display: none;
         position: absolute;
         width: 100vw;
-        height: 125vh;
+        height: 100vh;
+        z-index: -10;
     }
 }
 

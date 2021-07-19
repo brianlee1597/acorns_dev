@@ -143,20 +143,8 @@ $page-white: rgb(248, 248, 248);
     }
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 415px) {
     #nav-container {
-        height: 60px;
-        #logo-left {
-            width: 50vw;
-            justify-content: flex-start;
-            .logo {
-                margin-left: 5vw;
-                font-size: 1.15rem;
-            }
-        }
-
-        .navlink-container {
-            display: none;
-        }
+        display: none;
     }
 }

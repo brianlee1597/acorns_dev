@@ -7,7 +7,7 @@ const GiftsPage = props => {
     return (
         <>
         <PinnedSection userBias={props.userBias} gifts={props.gifts}/>
-        <AllGiftSection/>
+        <AllGiftSection userBias={props.userBias}/>
         </>
     )
 }

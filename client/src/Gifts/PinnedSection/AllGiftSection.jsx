@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import axios from "axios"
@@ -5,10 +6,13 @@ import axios from "axios"
 import Line from "./Line"
 import Title from "./Title"
 import GiftComponent from "./GiftComponent"
+import WindowDimensions from '../../Hooks/WindowDimension'
 
 import './AllGiftSection.scss'
 
-export default function AllGiftSection() {
+export default function AllGiftSection(props) {
+
+    const {height, width} = WindowDimensions()
 
     const [gifts] = useState([])
     const [isFetchingAPI, setIsFetchingAPI] = useState(true)
@@ -38,21 +42,6 @@ export default function AllGiftSection() {
 
     useEffect(() =>getAllGifts(), [])
 
-
-    // for(let i = 0; i <20; i++) {
-    //     bleh.push(                        
-    //     <GiftComponent
-    //     imageurl={'https://media2.giphy.com/media/5kq0GCjHA8Rwc/giphy.gif?cid=790b7611086411988cf1b18c0a113fafe714db9a405e0f8e&rid=giphy.gif&ct=g'}
-    //     title={'Never Gonna Give You Up'}
-    //     type={'Never Gonna'}
-    //     user={'Let You Down'}
-    //     amountpaid={'Never Gonna'}
-    //     amountneeded={'Turn Around And'}
-    //     percentagepaid={'40'}
-    //     dateremaining={'Desert You'} />
-    //     )
-    // }
-
     if (isFetchingAPI) return (
         <div className="allgifts-container">
         <Title pinned={false} content="전체보기"/>
@@ -63,7 +52,9 @@ export default function AllGiftSection() {
         </div>
     )
     else return (
-        <div className="allgifts-container">
+        <div className="allgifts-container" style={
+        {marginTop: props.userBias !== 'nouser' && 
+        width <= 415? '25px': width <= 900? '50px': '75px' }}>
             <Title pinned={false} content="전체보기"/>
             <Line/>
             <div className="giftcomponent-grid">

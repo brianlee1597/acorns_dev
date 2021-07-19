@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Footer from 'rc-footer'
-import { NavLink } from "react-router-dom"
-import { stack as Menu } from 'react-burger-menu'
 import axios from "axios"
 
 import Navigation from './Navigation/Navigation'
+import BottomNavigation from './Navigation/BottomNavigation'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import LandingPage from './LandingPage/LandingPage'
@@ -25,14 +24,7 @@ const App = () => {
     const [appIsFetchingAPI, setIsFetchingAPI] = useState(true) //state boolean to make sure app returns after fetch is done
     const [loggedIn, setLoggedIn] = useState(false) //login state
     const [giftsByBias, setGiftsByBias] = useState([])
-    const [hamburgerNavState, setHamburgerNavState] = useState(false)
 
-    const handleNavStateChange = bool => {
-        setHamburgerNavState(bool.isOpen)  
-    }
-    const closeMenu = () => {
-        setHamburgerNavState(false)
-    }
     const logout = () => { //logout function
         axios.post('/logout') //post to logout, which then logs out user in the backend
         .then(response => {
@@ -68,22 +60,13 @@ const App = () => {
     if (appIsFetchingAPI) return null
     else return (
         <Router>
-            <Menu right width={200} isOpen={hamburgerNavState} 
-            onStateChange={(state) => handleNavStateChange(state)}>
-                <NavLink onClick={() => closeMenu()} className="menu-item" to="/donations">기부하기</NavLink>
-                <NavLink onClick={() => closeMenu()} className="menu-item" to="/gifts">선물하기</NavLink>
-                <NavLink onClick={() => closeMenu()} className="menu-item" to="/campaigns">캄페인</NavLink>
-                <NavLink onClick={() => closeMenu()} className="menu-item" to="/community">커뮤니티</NavLink>
-                <NavLink onClick={() => closeMenu()} to="/login" className="login-button" style={{display: loggedIn? 'none': 'block'}}>로그인</NavLink>
-                <button onClick={() => logout()} className="logout-button" style={{display: loggedIn? 'block': 'none'}}>로그아웃</button>
-            </Menu>
             <div className="App">
                 <Navigation user={user} loggedIn={loggedIn}/>
-                <div className="navigation-margin"></div>
+                <div className="navigation-margin" style={{display: width < 415? 'none': 'block'}}></div>
                 <div className="Content">
                     <Switch>
                         <Route exact path="/">
-                            <LandingPage/>
+                            <LandingPage loggedIn={loggedIn} logout={logout}/>
                         </Route>
                         <Route exact path="/login">
                             <Login/>
@@ -123,6 +106,7 @@ const App = () => {
                   bottom="Copyright 2021 Acorns"
                   backgroundColor="#333333"
                 />
+                <BottomNavigation logout={logout}/>
             </div>
         </Router>
     )
