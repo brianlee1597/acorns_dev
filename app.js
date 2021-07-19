@@ -141,9 +141,7 @@ app.get('/api/getalldonations', (req, res) => { //sends all donations on api cal
 app.get('/api/allgifts', (req, res) => {
     allGifts.find({}).lean()
     .sort({paidtoneededratio: -1})
-    .limit(20).then(gifts => {
-        res.json(gifts)
-    })
+    .limit(10).then(gifts => res.json(gifts))
     .catch(error => console.log(error))
 })
 

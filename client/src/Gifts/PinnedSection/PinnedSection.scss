@@ -35,11 +35,17 @@
     }
 }
 
+@media screen and (max-width: 900px) {
+    .giftpinned-container {
+        width: 90vw;
+    }
+}
+
 @media screen and (max-width: 415px) {
     .giftpinned-container {
         width: 100vw;
         border-radius: 0;
-        padding: 0 0 0 5px;
+        padding: 0;
         box-shadow: none;
 
         h1 {
