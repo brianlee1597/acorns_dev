@@ -6,15 +6,15 @@
     width: 100%;
 
     .img-container {
-        width: 92.5%;
-        height: 175px;
+        width: 90%;
+        height: 0;
+        padding-bottom: 50%;
         background-size: cover;
-        border: 0.5px solid rgba(221, 221, 221, 0.486);
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
     }
     .text-container {
-        width: 92.5%;
+        width: 90%;
         cursor: pointer;
 
         h4 {
@@ -40,7 +40,7 @@
     }
 
     .description-container {
-        width: 92.5%;
+        width: 90%;
         height: auto;
         margin: 0;
         padding: 0 10px 0 0px;
@@ -60,11 +60,14 @@
 
 @media screen and (max-width: 415px) {
     .each-pinned-gift-campaign {
-        .text-container {
+        .img-container {
             width: 90%;
         }
+        .text-container {
+            width: 85%;
+        }
         .description-container {
-            width: 90%;
+            width: 85%;
         }
     }
 }

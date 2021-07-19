@@ -44,18 +44,19 @@ const PinnedSection = props => { //The whole gift bias pinned section
     const responsive = { //Carousel settings
         desktop: {
           breakpoint: { max: 3000, min: 1000 },
-          items: 4,
-          slidesToSlide: 4 
-        },
-        tablet: {
-          breakpoint: { max: 1000, min: 700 },
           items: 3,
           slidesToSlide: 3 
         },
+        tablet: {
+          breakpoint: { max: 1000, min: 415 },
+          items: 2,
+          slidesToSlide: 2 
+        },
         mobile: {
-          breakpoint: { max: 700, min: 0 },
+          breakpoint: { max: 415, min: 0 },
           items: 1,
-          slidesToSlide: 1 
+          slidesToSlide: 1,
+          partialVisibilityGutter: 70
         }
     }
 
@@ -70,9 +71,9 @@ const PinnedSection = props => { //The whole gift bias pinned section
                         allGiftsByBias.length === 0? "No Gifts to Post Yet!":
                         <Carousel 
                         responsive={responsive} 
-                        showDots={true}
-                        customDot={<CustomDot/>}
-                        containerClass={allGiftsByBias.length < 3? "carousel-without-dot" : "carousel-with-dot"}
+                        partialVisible={true}
+                        removeArrowOnDeviceType="mobile"
+                        containerClass={"carousel"}
                         >
                             {allGiftsByBias}
                         </Carousel>

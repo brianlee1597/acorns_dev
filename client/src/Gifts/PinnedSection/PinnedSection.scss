@@ -1,4 +1,12 @@
-.carousel-with-dot,
-.carousel-without-dot {
-    border-radius: 15px
+.carousel {
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 415px) {
+    .carousel {
+        border-radius: 0;
+    }
 }

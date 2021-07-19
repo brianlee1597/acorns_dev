@@ -1,14 +1,28 @@
 .giftpinned-container {
-    margin: 50px 0 0 0;
-    width: 90vw;
+    margin: 60px 0 0 0;
+    width: 80vw;
     height: auto;
 
     h1 {
+        margin: 0 0 0 1%;
+        padding: 0;
+        font-size: 1.75rem;
+        font-weight: 600;
         span {
-            font-size: 37.5px;
+            font-size: 2rem;
             color: rgb(255, 0, 0);
             border-radius: 50px;
         }
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background-color:rgb(200, 200, 200);
+        left: 0;
+        right: 0;
+        margin: 10px auto 25px auto;
+        width: 97%;
     }
 
     .carousel-nogift-container {
@@ -29,12 +43,20 @@
 
 @media screen and (max-width: 415px) {
     .giftpinned-container {
-        margin: 25px 0 0 0;
+        width: 100vw;
+
         h1 {
+            margin: 0 0 0 4%;
+            font-size: 1.5rem;
             span {
-                font-size: 30px;
+                font-size: 1.75rem;
+                color: rgb(255, 0, 0);
+                border-radius: 50px;
             }
-            font-size: 27.5px;
+        }
+
+        hr {
+            width: 90%;
         }
     }
 }

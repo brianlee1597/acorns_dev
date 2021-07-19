@@ -12,6 +12,7 @@ const PinnedComponent = props => {
         <>
             <div className="giftpinned-container">
                 <h1><span><FaMapPin /></span>&nbsp;{title}</h1>
+                <hr/>
                 <div className={props.container}>
                     {props.gifts}
                 </div>

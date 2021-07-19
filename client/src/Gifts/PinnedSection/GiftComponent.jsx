@@ -17,20 +17,19 @@ const GiftComponent = props => {
             <div className="img-container" style={{backgroundImage: `url(${imageurl})`}}/>
             <div className="text-container">
                 <h4>{title}</h4>
-                <p>{type} | <NavLink className="posted-user" to="/">@{user}</NavLink></p>
+                <p>{type}&nbsp; | &nbsp;<NavLink className="posted-user" to="/">@{user}</NavLink></p>
             </div>
             <ProgressBar 
-                width={width <= 415? "90%": "92.5%"}
-                height="6px"
+                width={width <= 415? "85%": "90%"}
+                height="7px"
                 rect
                 fontColor="gray"
                 percentage={percentage}
-                rectBorderRadius="20px"
                 trackPathColor="#f4f4f4"
                 defColor={{
                     fair: '#F7E967',
-                    good: '#A9CF54',
-                    excellent: '#70B7BA',
+                    good: '#70B7BA' ,
+                    excellent: '#A9CF54',
                     poor: '#F1433F',
                 }}
             />
