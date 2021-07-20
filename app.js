@@ -2,13 +2,14 @@ import express from "express"
 import path from "path"
 import morgan from "morgan"
 import cors from 'cors'
-import passport from 'passport'
 import session from 'express-session'
 import cookieParser from "cookie-parser"
-import localPassportConfig from './local-passport-config.js'
 import GETAPIs from './getapis.js'
-import POSTAPIs from './postapis.js'
 import mongoose from "mongoose"
+import passport from 'passport'
+import localPassportConfig from './local-passport-config.js'
+import User, { userBiasSettings } from './components/user.js'
+import bcrypt from 'bcryptjs'
 
 const app = express();
 const __dirname = path.resolve()
@@ -69,12 +70,61 @@ app.use(passport.session())
 localPassportConfig(passport) //login auth package
 
 GETAPIs(app) //connecting all GET API functions from getapi.js
-POSTAPIs(app) //connecting all POST API functions from postapi.js
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     next()
+})
+
+// /* ----- AUTHENTICATION (LOGIN/LOGOUT) methods ----- */
+app.post('/register', (req, res) => { //register user function, checks if user already exists, if not make new user
+    req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
+    try {
+        User.findOne({email: req.body.email}, async (err, doc) => { //find duplicate user in the database if exists
+            if (err) throw err
+            if (doc) res.json("userexists") // doc = user already exists
+            else {
+                const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+                const newUser = new User({
+                    email: req.body.email,
+                    password: encryptedPassword,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    bias: req.body.bias,
+                    backgroundcolor: userBiasSettings.get(req.body.bias)
+                })
+
+                await newUser.save() //upload new user to database
+                res.json("usercreated")
+            }
+        })
+    } catch {
+        res.json("failedpost")
+    }
+})
+
+app.post('/login', (req, res, next) => { //login function 
+    req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
+    try {
+        passport.authenticate('local', (error, user, info) => { //authenticate user using passport
+            if (error) throw error
+            if (!user) res.json('nouser')
+            else {
+                req.logIn(user, error => {
+                    if (error) throw error
+                    res.send(req.user)
+                })
+            }
+        })(req, res, next)
+    } catch {
+        res.json("failedpost")
+    }
+})
+
+app.post('/logout', (req, res) => { //logs user out when called from react
+    req.logOut()
+    res.json("loggedout")
 })
 
 /* ----- REACT SERVE (Make sure this is below all other api routes) ----- */
