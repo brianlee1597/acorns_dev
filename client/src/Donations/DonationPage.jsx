@@ -3,9 +3,11 @@ import React from 'react';
 
 const DonationPage = (data) => {
 
-    const donation_list = data
+    const donation_list = data.donations
+    const listItems = donation_list.map((d) => <li>{d.artist} {d.imageurl}</li>)
+    console.log("hello")
     console.log(donation_list)
-    console.log(donation_list.donations[0])
+    console.log(donation_list[0])
 
     function handleClick() {
         console.log('in cardClick');
@@ -29,12 +31,7 @@ const DonationPage = (data) => {
                 </div>
             </div>
             <div id="donation-entire-list">
-                <div id="artist-list">
-                    <div className="donation-list">
-
-                    </div>
-                </div>
-
+                {listItems}
             </div>
         </div>
 
