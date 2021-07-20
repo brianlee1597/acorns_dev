@@ -8,7 +8,7 @@ import Title from "../Title"
 import IndividualBubble from "../IndividualBubble"
 import GridThree from './GridThree'
 import GridFour from './GridFour'
-import EachArtist from './EachArtist'
+import SquareGridComponent from './SquareGridComponent'
 import CategoryBar from './CategoryBar'
 import WindowDimensions from '../../../Hooks/WindowDimension'
 
@@ -77,7 +77,7 @@ export default function AllSection(props) {
         axios.get(`/api/getallartistsin/${pageUrl}`)
         .then(response => response.data)
         .then(artists => setAllFourGridData(artists.map(
-            artist => <EachArtist key={artist} name={artist} getComponents={getComponentsByArtist}/>
+            artist => <SquareGridComponent key={artist} name={artist} getComponents={getComponentsByArtist}/>
             )
         ))
         setIsFetchingAPI(false)
@@ -90,7 +90,7 @@ export default function AllSection(props) {
         axios.get(`/api/getalltypesin/${pageUrl}`)
         .then(response => response.data)
         .then(types => setAllFourGridData(types.map(
-            type => <EachArtist key={type} name={type} getComponents={getComponentsByType}/>
+            type => <SquareGridComponent key={type} name={type} getComponents={getComponentsByType}/>
             )
         ))
         setIsFetchingAPI(false)
