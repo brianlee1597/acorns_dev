@@ -22,9 +22,8 @@ export default function AllSection(props) {
     const [typeOfData, setTypeOfData] = useState('artists')
     const [isFetchingAPI, setIsFetchingAPI] = useState(true)
 
-    /* A note for the future devs.
-    I am really sorry about this. I don't know redux yet.
-    */
+    
+    //do more cleanup later
    
     const getComponentsByArtist = artist => {
         const components = props.pageUrl
@@ -70,79 +69,26 @@ export default function AllSection(props) {
         setIsFetchingAPI(false)
     }
 
-    const getAllArtists = pageUrl => {
-        setTypeOfData('artists')
+    const getAllBlocksOf = (category, pageUrl) => {
+        setTypeOfData(category)
         setAllThreeGridData([])
         setIsFetchingAPI(true)
-        axios.get(`/api/getallartistsin/${pageUrl}`)
+        axios.get(`/api/getall${category}in/${pageUrl}`)
         .then(response => response.data)
         .then(artists => setAllFourGridData(artists.map(
-            artist => <SquareGridComponent key={artist} name={artist} getComponents={getComponentsByArtist}/>
+            artist => <SquareGridComponent key={artist} name={artist} getComponents={
+                category === 'artists'? getComponentsByArtist: getComponentsByType
+            }/>
             )
         ))
         setIsFetchingAPI(false)
     }
 
-    const getAllTypes = pageUrl => {
-        setTypeOfData('types')
-        setAllThreeGridData([])
-        setIsFetchingAPI(true)
-        axios.get(`/api/getalltypesin/${pageUrl}`)
-        .then(response => response.data)
-        .then(types => setAllFourGridData(types.map(
-            type => <SquareGridComponent key={type} name={type} getComponents={getComponentsByType}/>
-            )
-        ))
-        setIsFetchingAPI(false)
-    }
-
-    const getAllByGoal = pageUrl => {
-        setTypeOfData('goal')
+    const getAll = (category, pageUrl) => {
+        setTypeOfData(category)
         setAllFourGridData([])
         setIsFetchingAPI(true)
-        axios.get(`/api/all${pageUrl}bygoal`)
-        .then(response => response.data)
-        .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
-            key={gift.id}
-            imageurl={gift.imageurl}
-            title={gift.title}
-            type={gift.type}
-            user={gift.user}
-            amountpaid={gift.amountpaidsofar}
-            amountneeded={gift.amountneeded}
-            percentagepaid={gift.paidtoneededratio.toString()}
-            dateremaining={gift.dateending}
-            artist={gift.artist} />)
-        ))
-        setIsFetchingAPI(false)
-    }
-
-    const getAllByDeadline = pageUrl => {
-        setTypeOfData('deadline')
-        setAllFourGridData([])
-        setIsFetchingAPI(true)
-        axios.get(`/api/all${pageUrl}bydeadline`)
-        .then(response => response.data)
-        .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
-            key={gift.id}
-            imageurl={gift.imageurl}
-            title={gift.title}
-            type={gift.type}
-            user={gift.user}
-            amountpaid={gift.amountpaidsofar}
-            amountneeded={gift.amountneeded}
-            percentagepaid={gift.paidtoneededratio.toString()}
-            dateremaining={gift.dateending}
-            artist={gift.artist} />)
-        ))
-        setIsFetchingAPI(false)
-    }
-
-    const getAllByFunding = pageUrl => {
-        setTypeOfData('funding')
-        setAllFourGridData([])
-        setIsFetchingAPI(true)
-        axios.get(`/api/all${pageUrl}byfunding`)
+        axios.get(`/api/all${pageUrl}by${category}`)
         .then(response => response.data)
         .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
             key={gift.id}
@@ -160,7 +106,7 @@ export default function AllSection(props) {
     }
 
     useEffect(() =>{
-        getAllArtists(props.pageUrl)
+        getAllBlocksOf('artists', props.pageUrl)
     }, [])
 
     if (isFetchingAPI) return null
@@ -171,11 +117,8 @@ export default function AllSection(props) {
             <div className="categories-container">
                 <Title pinned={false} content="전체보기"/>
                 <CategoryBar 
-                getAllArtists={getAllArtists} 
-                getAllByGoal={getAllByGoal} 
-                getAllByDeadline={getAllByDeadline}
-                getAllByFunding={getAllByFunding}
-                getAllTypes={getAllTypes}
+                getAll={getAll}
+                getAllBlocksOf={getAllBlocksOf} 
                 pageUrl={props.pageUrl}/>
             </div>
             <GridFour render={allFourGridData}/>
@@ -188,11 +131,8 @@ export default function AllSection(props) {
             <div className="categories-container">
                 <Title pinned={false} content="전체보기"/>
                 <CategoryBar 
-                getAllArtists={getAllArtists} 
-                getAllByGoal={getAllByGoal} 
-                getAllByDeadline={getAllByDeadline}
-                getAllByFunding={getAllByFunding}
-                getAllTypes={getAllTypes}
+                getAll={getAll}
+                getAllBlocksOf={getAllBlocksOf} 
                 pageUrl={props.pageUrl}/>
             </div>
             <GridThree render={allThreeGridData}/>
