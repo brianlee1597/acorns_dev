@@ -12,20 +12,20 @@
 }
 
 @media screen and (max-width: 900px) {
-    .allgifts-container {
+    .all-container {
         width: 85vw;
 
-        .giftcomponent-grid {
+        .component-grid {
             grid-template-columns: auto auto;
         }
     }
 }
 
 @media screen and (max-width: 415px) {
-    .allgifts-container {
+    .all-container {
         width: 100vw;
 
-        .giftcomponent-grid {
+        .component-grid {
             grid-template-columns: auto;
         }
     }
