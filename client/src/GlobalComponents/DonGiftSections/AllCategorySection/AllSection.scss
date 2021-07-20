@@ -1,5 +1,17 @@
 .all-container { //linked to grid.scss
     width: 81.75vw;
+    min-height: 400px;
+
+    .categories-container {
+        width: 97.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
 }
 
 @media screen and (max-width: 900px) {

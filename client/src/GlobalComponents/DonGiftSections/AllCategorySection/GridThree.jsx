@@ -11,7 +11,7 @@ export default function Grid (props) {
         <div className="component-grid" style={{ display: 'grid',
         gridTemplateColumns: width <= 550? 'repeat(1, minmax(0, 1fr))':
         width <= 900? 'repeat(2, minmax(0, 1fr))':
-        'repeat(3, minmax(0, 1fr))'
+        'repeat(3, minmax(0, 1fr))', margin: '0', padding: '0', width: '100%'
 }}
         >
         {props.render}

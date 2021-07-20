@@ -1,0 +1,29 @@
+.button-container {
+    width: auto;
+    height: auto;
+    display: inline-block;
+
+    .category-nav-active,
+    .category-nav-not-active {
+        margin: 0 0 9px 25px;
+        background: black;
+        color: white;
+        padding: 7px 15px 5px 15px;
+        border: 1px solid transparent;
+        border-radius: 25px;
+        text-transform: none;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        transition-duration: 0.25s;
+        cursor: pointer;
+    }
+
+    .category-nav-active,
+    .category-nav-not-active:hover  {
+        background: transparent;
+        color: black;
+        border: 1px solid black;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+}

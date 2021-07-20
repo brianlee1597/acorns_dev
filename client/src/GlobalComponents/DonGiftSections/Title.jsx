@@ -8,7 +8,7 @@ export default function Title (props) {
 
     return (
         <h1 style={{
-            margin: width <= 415 && props.pinned === true?  '0 0 0 3%': width <= 415? '0 0 0 3%': '0 0 10px 1.5%',
+            margin: width <= 415 && props.pinned === true?  '0 0 0 3%': width <= 415? '0 0 0 3%': '0 0 10px 0%',
             padding: '0',
             fontSize: width <= 415? '1.25rem': '1.5rem',
             fontWeight: '600'

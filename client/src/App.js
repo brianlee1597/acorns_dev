@@ -78,7 +78,7 @@ const App = () => {
                             <DonationPage donations={donations} />
                         </Route>
                         <Route exact path="/gifts">
-                            <GiftsPage userBias={loggedIn? user.bias: "nouser"} componentsByBias={giftsByBias} pageUrl="gifts"/>
+                            <GiftsPage styles={user.backgroundcolor} userBias={loggedIn? user.bias: "nouser"} componentsByBias={giftsByBias} pageUrl="gifts"/>
                         </Route>
                     </Switch>
                 </div>
