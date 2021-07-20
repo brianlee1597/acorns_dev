@@ -61,7 +61,7 @@ const App = () => {
     else return (
         <Router>
             <div className="App">
-                <Navigation user={user} loggedIn={loggedIn}/>
+                <Navigation user={user} loggedIn={loggedIn} logout={logout}/>
                 <div className="navigation-margin" style={{display: width < 415? 'none': 'block'}}></div>
                 <div className="Content">
                     <Switch>
@@ -75,10 +75,10 @@ const App = () => {
                             <Register/>
                         </Route>
                         <Route exact path="/donations">
-                            <DonationPage donations={donations}/>
+                            <DonationPage donations={donations} />
                         </Route>
                         <Route exact path="/gifts">
-                            <GiftsPage userBias={loggedIn? user.bias: "nouser"} gifts={giftsByBias}/>
+                            <GiftsPage userBias={loggedIn? user.bias: "nouser"} componentsByBias={giftsByBias} pageUrl="gifts"/>
                         </Route>
                     </Switch>
                 </div>

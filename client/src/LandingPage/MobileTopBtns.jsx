@@ -8,7 +8,7 @@ export default function MobileTopBtns(props) {
 
     return (
         <div style={{
-			width: '100vw', height: '40px', display: 'grid', placeItems: 'center',
+			width: '100vw', height: '40px', display: width > 415? 'none': 'grid', placeItems: 'center',
 			marginTop: '25px'
 			}}>
 				<div style={{
@@ -17,7 +17,7 @@ export default function MobileTopBtns(props) {
 					display: 'flex', flexDirection: 'row', 
 					justifyContent: 'space-between', alignItems: 'center'
 				}}>
-				<h3 style={{margin: '0', padding: '0',}}>Acorns</h3>
+				<h3 style={{margin: '0', padding: '0'}}>Acorns</h3>
 				<NavLink to="/login" 
 				style={{
 				margin: '0', padding: '10px 20px',

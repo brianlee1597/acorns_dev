@@ -1,0 +1,62 @@
+.pinned-container {
+    margin: 50px 0 0 0;
+    padding: 50px 25px 25px 25px;
+    border-radius: 5px;
+    width: 85vw;
+    height: auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    .swiper-button-prev {
+        margin-left: 25px;
+        padding: 30px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+    .swiper-button-next {
+        margin-right: 25px;
+        padding: 30px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .nobias-exists {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 200px;
+        color: rgb(121, 121, 121);
+        border-radius: 5px;
+    }
+
+    .bias-exists {
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .giftpinned-container {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .giftpinned-container {
+        width: 100vw;
+        border-radius: 0;
+        margin: 50px 0 0 0;
+        padding: 0;
+        box-shadow: none;
+
+        h1 {
+            margin: 0 0 0 3%;
+            font-size: 1.5rem;
+            span {
+                font-size: 1.75rem;
+                color: rgb(255, 0, 0);
+                border-radius: 50px;
+            }
+        }
+    }
+}

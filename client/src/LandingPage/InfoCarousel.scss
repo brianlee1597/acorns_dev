@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 #infocarousel-container {
-    margin-top: 50px;
+    margin-top: 75px;
 
     #ic-description-container {
         width: 80vw;
@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 900px) {
     #infocarousel-container {
-        margin-top: 25px;
+        margin-top: 50px;
         #ic-description-container {
             width: 90vw;
             
@@ -100,8 +100,8 @@
     }
 }
 
-// @media screen and (max-width: 415px) {
-//     #infocarousel-container {
-//         margin-top: 25px;
-//     }
-// }
+@media screen and (max-width: 415px) {
+    #infocarousel-container {
+        margin-top: 25px;
+    }
+}

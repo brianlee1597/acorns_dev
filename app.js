@@ -27,7 +27,7 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
 // mongoose.connection.once('open', async () => {
 
 //     for(let i = 0; i < 20; i++) {
-//         const gift = new allGifts({
+//         const don = new donation({
 //             artist: 'Blackpink',
 //             imageurl: 'https://steamuserimages-a.akamaihd.net/ugc/861730723813373909/8079F8521CEF1BD21F8E5D5E9D536EAD9306AEAE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
 //             title: `BP GIFT TEST ${i}`,
