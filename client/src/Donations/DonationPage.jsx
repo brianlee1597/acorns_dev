@@ -1,6 +1,11 @@
 import './DonationPage.scss'
+import React from 'react';
 
-const DonationPage = () => {
+const DonationPage = (data) => {
+
+    const donation_list = data
+    console.log(donation_list)
+    console.log(donation_list.donations[0])
 
     function handleClick() {
         console.log('in cardClick');
