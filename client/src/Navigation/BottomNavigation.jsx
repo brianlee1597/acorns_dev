@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { FiHome } from 'react-icons/fi'
-import { FiFlag } from 'react-icons/fi'
-import { RiHandHeartLine } from 'react-icons/ri'
+import { IoHomeOutline } from 'react-icons/io5'
+import { IoFlagOutline } from 'react-icons/io5'
+import { IoHeartOutline } from 'react-icons/io5'
 import { IoGiftOutline } from 'react-icons/io5'
 import { IoChatboxOutline } from 'react-icons/io5'
 import './BottomNavigation.scss'
@@ -15,7 +15,7 @@ export default function BottomNavigation() {
                 <span style={{
                     margin: '0', padding: '0', 
                     fontSize: "7vw", color: 'black'
-                    }}><FiHome/></span>
+                    }}><IoHomeOutline/></span>
                 <h5 style={{
                 margin: '0', padding: '0', color: 'black', fontSize: '12px'
                 }}>Home</h5>
@@ -25,7 +25,7 @@ export default function BottomNavigation() {
                 <div className="link-container">
                 <span style={{margin: '0', padding: '0', 
                 fontSize: "7vw", color: 'black'
-                }}><RiHandHeartLine/></span>
+                }}><IoHeartOutline/></span>
                 <h5 style={{
                 margin: '0', padding: '0', color: 'black', fontSize: '12px'
                 }}>Charity</h5>
@@ -45,7 +45,7 @@ export default function BottomNavigation() {
                 <div className="link-container">
                 <span style={{margin: '0', padding: '0', 
                 fontSize: "7vw", color: 'black'
-                }}><FiFlag/></span>
+                }}><IoFlagOutline/></span>
                                 <h5 style={{
                 margin: '0', padding: '0', color: 'black', fontSize: '12px'
                 }}>Promote</h5>

@@ -20,7 +20,7 @@ const IndividualBubble = props => {
                 <p>{type}&nbsp; | &nbsp;<NavLink className="posted-user" to="/">@{user}</NavLink></p>
             </div>
             <ProgressBar 
-                width={width <= 415? "85%": "90%"}
+                width={"90%"}
                 height="7px"
                 rect
                 fontColor="gray"

@@ -27,16 +27,20 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
 // mongoose.connection.once('open', async () => {
 
 //     for(let i = 0; i < 20; i++) {
-//         const don = new donation({
-//             artist: 'Blackpink',
-//             imageurl: 'https://steamuserimages-a.akamaihd.net/ugc/861730723813373909/8079F8521CEF1BD21F8E5D5E9D536EAD9306AEAE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
-//             title: `BP GIFT TEST ${i}`,
-//             type: '선물',
-//             user: 'they_is_so_hot_101',
-//             amountpaidsofar: '9000',
-//             amountneeded: '10000',
-//             paidtoneededratio: '90',
-//             dateending: '1'
+
+//         const amountpaid = Math.floor(Math.random() * 100000)
+//         const amountneed = Math.floor(Math.random() * 150000)
+
+//         const gift = new allGifts({
+//             artist: 'G-Dragon',
+//             imageurl: 'https://image.kpopmap.com/2019/02/5726ce5c749f45cc8e4e0e42f8f2f9d2.jpeg',
+//             title: `Can't forget the legend ${i}`,
+//             type: "삐탁하게",
+//             user: 'fiery_gangster_dragon',
+//             amountpaidsofar: amountpaid,
+//             amountneeded: amountneed,
+//             paidtoneededratio: amountpaid / amountneed * 100,
+//             dateending: '77'
 //         })
 
 //         await gift.save()
@@ -138,6 +142,26 @@ app.get('/api/getalldonations', (req, res) => { //sends all donations on api cal
     .catch(error => console.log(error))
 })
 
+app.get("/api/getallartistsin/gifts", (req, res) => {
+    allGifts.distinct("artist").lean()
+    .sort().exec((error, data) => {
+        console.log(data)
+        error? res.json('error'):
+        data.length === 0? res.json("nogifts"):
+        res.json(data)
+    })
+})
+
+app.get("/api/getallartistsin/donations", (req, res) => {
+    allGifts.distinct("artist").lean()
+    .sort().exec((error, data) => {
+        error? res.json('error'):
+        data.length === 0? res.json("nodonations"):
+        res.json(data)
+    })
+})
+
+
 app.get('/api/allgifts', (req, res) => {
     allGifts.find({}).lean()
     .sort({paidtoneededratio: -1})
@@ -150,6 +174,18 @@ app.post("/api/getgiftsby/bias", (req, res) => { //Gifts Section get by bias
     .lean() //get only the data not the mongoDB settings
     .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
     .limit(5) //limit of components = 5
+    .exec((error, data) => { //then execute sending data
+        error? res.json("error"):
+        data.length === 0? res.json("nogiftstothatartist"):
+        res.json(data)
+    })
+})
+
+app.post("/api/getgiftsby/artist", (req, res) => { //Gifts Section get by bias
+    allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
+    .lean() //get only the data not the mongoDB settings
+    .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
+    .limit(12) //limit of components = 5
     .exec((error, data) => { //then execute sending data
         error? res.json("error"):
         data.length === 0? res.json("nogiftstothatartist"):

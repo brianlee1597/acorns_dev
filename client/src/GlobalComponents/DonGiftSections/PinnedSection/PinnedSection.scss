@@ -1,10 +1,10 @@
 .pinned-container {
-    margin: 50px 0 0 0;
-    padding: 50px 25px 25px 25px;
+    margin: 75px 0 0 0;
+    // padding: 50px 25px 25px 25px;
     border-radius: 5px;
-    width: 85vw;
+    width: 82.5vw;
     height: auto;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
     .swiper-button-prev {
         margin-left: 25px;
@@ -36,8 +36,15 @@
 }
 
 @media screen and (max-width: 900px) {
-    .giftpinned-container {
+    .pinned-container {
+        margin: 50px 0 0 0;
         width: 90vw;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .pinned-container {
+        width: 97vw;
     }
 }
 

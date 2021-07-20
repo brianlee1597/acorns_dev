@@ -11,6 +11,7 @@ $page-white: rgb(248, 248, 248);
     place-items: center;
 
     form {
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -60,11 +61,10 @@ $page-white: rgb(248, 248, 248);
 
         .bias-container {
             width: 40vw;
-            height: 50px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
+            height: auto;
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
 
             input[type="radio"] {
                 opacity: 0;
@@ -73,9 +73,12 @@ $page-white: rgb(248, 248, 248);
             }
 
             label {
-                font-size: 2.5vw;
+                text-align: center;
+                width: 90%;
+                font-size: 1.75vw;
                 font-family: 'Orbitron', 'sans-serif';
-                padding: 5px 15px;
+                margin-bottom: 25px;
+                padding: 10px 10px;
                 border: 2px solid black;
                 border-radius: 10px;
                 cursor: pointer;

@@ -82,11 +82,20 @@ const Register = () => {
                     <input type="radio" onChange={handleInput} name="bias" id="radioAespa" value="Aespa"/>
                     <label htmlFor="radioAespa">Aespa</label>
 
+                    <input type="radio" onChange={handleInput} name="bias" id="radioBlackpink" value="Blackpink"/>
+                    <label htmlFor="radioBlackpink">Blackpink</label>
+
                     <input type="radio" onChange={handleInput} name="bias" id="radioBTS" value="BTS"/>
                     <label htmlFor="radioBTS">BTS</label>
 
-                    <input type="radio" onChange={handleInput} name="bias" id="radioBlackpink" value="Blackpink"/>
-                    <label htmlFor="radioBlackpink">Blackpink</label>
+                    <input type="radio" onChange={handleInput} name="bias" id="radioGD" value="G-Dragon"/>
+                    <label htmlFor="radioGD">G-Dragon</label>
+
+                    <input type="radio" onChange={handleInput} name="bias" id="radioJessi" value="Jessi"/>
+                    <label htmlFor="radioJessi">Jessi</label>
+
+                    <input type="radio" onChange={handleInput} name="bias" id="radioSSK" value="SungSiKyung"/>
+                    <label htmlFor="radioSSK">SungSiKyung</label>
                 </div>
                 <button type="submit">고고~!</button>
             </form>

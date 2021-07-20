@@ -1,32 +1,15 @@
-.all-container {
-    margin-top: 75px;
-    width: 80vw;
-
-    .component-grid {
-        width: 100%;
-        display: grid;
-        place-items: center;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        align-items: start;
-    }
+.all-container { //linked to grid.scss
+    width: 81.75vw;
 }
 
 @media screen and (max-width: 900px) {
     .all-container {
-        width: 85vw;
-
-        .component-grid {
-            grid-template-columns: auto auto;
-        }
+        width: 90vw;
     }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 550px) {
     .all-container {
-        width: 100vw;
-
-        .component-grid {
-            grid-template-columns: auto;
-        }
+        width: 97vw;
     }
 }
