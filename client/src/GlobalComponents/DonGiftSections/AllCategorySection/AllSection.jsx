@@ -65,17 +65,17 @@ export default function AllSection(props) {
         setIsFetchingAPI(true)
         axios.post(`/api/get${components}by/type`, {type: type})
         .then(response => response.data)
-        .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
-            key={gift.id}
-            imageurl={gift.imageurl}
-            title={gift.title}
-            type={gift.type}
-            user={gift.user}
-            amountpaid={gift.amountpaidsofar}
-            amountneeded={gift.amountneeded}
-            percentagepaid={gift.paidtoneededratio.toString()}
-            dateremaining={gift.dateending}
-            artist={gift.artist} />)
+        .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
+            key={data.id}
+            imageurl={data.imageurl}
+            title={data.title}
+            type={data.type}
+            user={data.user}
+            amountpaid={data.amountpaidsofar}
+            amountneeded={data.amountneeded}
+            percentagepaid={data.paidtoneededratio.toString()}
+            dateremaining={data.dateending}
+            artist={data.artist} />)
         ))
         setIsFetchingAPI(false)
     }
@@ -100,19 +100,18 @@ export default function AllSection(props) {
         setIsFetchingAPI(true)
         axios.get(`/api/getallby?collection=${pageUrl}&sortparam=${category}`)
         .then(response => response.data)
-        .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
-            key={gift.id}
-            imageurl={gift.imageurl}
-            title={gift.title}
-            type={gift.type}
-            user={gift.user}
-            amountpaid={gift.amountpaidsofar}
-            amountneeded={gift.amountneeded}
-            percentagepaid={gift.paidtoneededratio.toString()}
-            dateremaining={gift.dateending}
-            artist={gift.artist} />)
+        .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
+            key={data.id}
+            imageurl={data.imageurl}
+            title={data.title}
+            type={data.type}
+            user={data.user}
+            amountpaid={data.amountpaidsofar}
+            amountneeded={data.amountneeded}
+            percentagepaid={data.paidtoneededratio.toString()}
+            dateremaining={data.dateending}
+            artist={data.artist} />)
         ))
-        setIsFetchingAPI(false)
     }
 
     useEffect(() =>{
