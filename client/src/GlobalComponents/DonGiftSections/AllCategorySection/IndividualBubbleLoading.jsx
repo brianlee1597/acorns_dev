@@ -1,11 +1,7 @@
 import ProgressBar from 'react-animated-progress-bar'
-
 import './IndividualBubble.scss'
 
-const IndividualBubbleLoading = () => {
-
-    // eslint-disable-next-line no-unused-vars
-
+export default function IndividualBubbleLoading() {
     return (
         <div className="each-pinned-campaign">
             <div className="img-container" style={{background: '#f0f0f0'}}/>
@@ -28,4 +24,3 @@ const IndividualBubbleLoading = () => {
         </div>
     )    
 }
-export default IndividualBubbleLoading
