@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 import GETAPIs from './getapis.js'
 import mongoose from "mongoose"
 import passport from 'passport'
+import donations from "./components/donations.js"
 import localPassportConfig from './local-passport-config.js'
 import User, { userBiasSettings } from './components/user.js'
 import bcrypt from 'bcryptjs'
@@ -28,20 +29,21 @@ mongoose.connect("mongodb+srv://BrianLee:adgj1597@cluster0.bpsak.mongodb.net/myF
 
 //         const amountpaid = Math.floor(Math.random() * 100000)
 //         const amountneed = Math.floor(Math.random() * 150000)
+//         const dateend = Math.floor(Math.random() * 10)
 
-//         const gift = new allGifts({
-//             artist: 'G-Dragon',
-//             imageurl: 'https://image.kpopmap.com/2019/02/5726ce5c749f45cc8e4e0e42f8f2f9d2.jpeg',
-//             title: `Can't forget the legend ${i}`,
-//             type: "삐탁하게",
-//             user: 'fiery_gangster_dragon',
+//         const donation = new donations({
+//             artist: 'SungSiKyung',
+//             imageurl: 'https://post-phinf.pstatic.net/MjAyMTA1MTFfMzAg/MDAxNjIwNjg4NTk5NzE5.SxJ-Ukc5CHjA19LPy2xCTZJbLjqTQWHzvRLVNxJiFSAg.8EAGJ2MXDwL3ZG26pK2-ZOTfIWzRFxOvWJjWv8Gpv7Eg.JPEG/2.jpg?type=w1200',
+//             title: `SSK Donation ${i}`,
+//             type: "Sskdonation",
+//             user: 'donationtest5',
 //             amountpaidsofar: amountpaid,
 //             amountneeded: amountneed,
 //             paidtoneededratio: amountpaid / amountneed * 100,
-//             dateending: '77'
+//             dateending: dateend
 //         })
 
-//         await gift.save()
+//         await donation.save()
 //         console.log(i)
 //     }
 // })

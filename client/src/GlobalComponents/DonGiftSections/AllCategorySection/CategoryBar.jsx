@@ -33,19 +33,20 @@ export default function CategoryBar(props) {
     return (
         <div className="button-container">
             <button className={focus.artist? 'category-nav-active': 'category-nav-not-active'} 
-            onClick={(e) => {props.getAllBlocksOf('artists', props.pageUrl); focusOnArtist()}}>아티스트별</button>
+            onClick={() => {props.getAllBlocksOf('artists', props.pageUrl); focusOnArtist()}}>아티스트별</button>
 
             <button className={focus.deadline? 'category-nav-active': 'category-nav-not-active'} 
-            onClick={(e) => {props.getAll('deadline', props.pageUrl); focusOnDeadline()}}>마감일순</button>
+            onClick={() => {props.getAll('deadline', props.pageUrl); focusOnDeadline()}}>마감일순</button>
 
             <button className={focus.funding? 'category-nav-active': 'category-nav-not-active'} 
-            onClick={(e) => {props.getAll('funding', props.pageUrl); focusOnFunding()}}>펀딩액순</button>
+            onClick={() => {props.getAll('funding', props.pageUrl); focusOnFunding()}}>펀딩액순</button>
 
             <button className={focus.goal? 'category-nav-active': 'category-nav-not-active'} 
-            onClick={(e) => {props.getAll('goal', props.pageUrl); focusOnGoal()}}>목표금액순</button>
+            onClick={() => {props.getAll('goal', props.pageUrl); focusOnGoal()}}>목표금액순</button>
 
             <button className={focus.category? 'category-nav-active': 'category-nav-not-active'} 
-            onClick={(e) => {props.getAllBlocksOf('types', props.pageUrl); focusOnCategory()}}>분야별</button>
+            onClick={() => {props.getAllBlocksOf('types', props.pageUrl); focusOnCategory()}} 
+            style={{background: 'grey', border: '1px solid transparent'}} disabled>분야별</button>
         </div>
     )
 }

@@ -1,66 +1,46 @@
-import { NavLink } from "react-router-dom";
-import { IoHomeOutline } from 'react-icons/io5'
-import { IoFlagOutline } from 'react-icons/io5'
-import { IoHeartOutline } from 'react-icons/io5'
-import { IoGiftOutline } from 'react-icons/io5'
-import { IoChatboxOutline } from 'react-icons/io5'
+import { NavLink } from "react-router-dom"
+import { LangMap } from "../GlobalComponents/LanguageMap"
+import { IoHomeOutline, IoFlagOutline, IoHeartOutline,
+         IoGiftOutline, IoChatboxOutline } from 'react-icons/io5'
+         
 import './BottomNavigation.scss'
 
 export default function BottomNavigation() {
 
-    return (
-        <nav>
-            <NavLink to="/" style={{textDecoration: 'none'}}>
-                <div className="link-container">
+    const navSections = [
+        { icon: <IoHomeOutline/>,  link: "/", 
+        title: "Home" },
+        { icon: <IoHeartOutline/>, link: "/charity", 
+        title: LangMap.navigation.get("charity").korean },
+        { icon: <IoGiftOutline/>,  link: "/gifts", 
+        title: LangMap.navigation.get("gifts").korean   },
+        { icon: <IoFlagOutline/>,  link: "/promote", 
+        title: LangMap.navigation.get("promote").korean },
+        { icon: <IoChatboxOutline/>, link: "/forum", 
+        title: LangMap.navigation.get("forum").korean   }  
+    ]
+
+    const links = navSections.map(eachSection =>
+        <NavLink key={eachSection.title} 
+        to={eachSection.link} style={{ textDecoration: 'none' }}>
+            <div className="link-container">
                 <span style={{
-                    margin: '0', padding: '0', 
-                    fontSize: "7vw", color: 'black'
-                    }}><IoHomeOutline/></span>
-                <h5 style={{
-                margin: '0', padding: '0', color: 'black', fontSize: '12px'
-                }}>Home</h5>
-                </div>
-            </NavLink>
-            <NavLink to="/donations" style={{textDecoration: 'none'}}>
-                <div className="link-container">
-                <span style={{margin: '0', padding: '0', 
+                margin: '0', padding: '0', 
                 fontSize: "7vw", color: 'black'
-                }}><IoHeartOutline/></span>
+                }}>
+                    {eachSection.icon}
+                </span>
                 <h5 style={{
-                margin: '0', padding: '0', color: 'black', fontSize: '12px'
-                }}>Charity</h5>
-                </div>
-            </NavLink>
-            <NavLink to="/gifts" style={{textDecoration: 'none'}}>
-                <div className="link-container">
-                <span style={{margin: '0', padding: '0', 
-                fontSize: "7vw", color: 'black'
-                }}><IoGiftOutline/></span>
-                <h5 style={{
-                margin: '0', padding: '0', color: 'black', fontSize: '12px'
-                }}>Gifts</h5>
-                </div>
-            </NavLink>
-            <NavLink to="/campaigns" style={{textDecoration: 'none'}}>
-                <div className="link-container">
-                <span style={{margin: '0', padding: '0', 
-                fontSize: "7vw", color: 'black'
-                }}><IoFlagOutline/></span>
-                                <h5 style={{
-                margin: '0', padding: '0', color: 'black', fontSize: '12px'
-                }}>Promote</h5>
-                </div>
-            </NavLink>
-            <NavLink to="/community" style={{textDecoration: 'none'}}>
-                <div className="link-container">
-                <span style={{margin: '0', padding: '0', 
-                fontSize: "7vw", color: 'black'
-                }}><IoChatboxOutline/></span>
-                <h5 style={{
-                margin: '0', padding: '0', color: 'black', fontSize: '12px'
-                }}>Forum</h5>
-                </div>
-            </NavLink>
-        </nav>
+                margin: '0', padding: '0', 
+                color: 'black', fontSize: '12px'
+                }}>
+                    {eachSection.title}
+                </h5>
+            </div>
+        </NavLink>
+    )
+
+    return (
+        <nav>{links}</nav>
     )
 }

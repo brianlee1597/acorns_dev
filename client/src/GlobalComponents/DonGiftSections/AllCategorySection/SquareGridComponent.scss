@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 .each-component-container {
     width: 90%;
@@ -16,9 +17,10 @@
     h3 {
         margin: 10px auto;
         align-self: flex-end;
-        font-family: "Orbitron", 'sans-serif';
-        font-size: 25px;
+        font-family: "Do Hyeon", 'sans-serif';
+        font-size: 30px;
         color: white;
+        letter-spacing: 2px;
         z-index: 1;
     }
 
@@ -41,7 +43,7 @@
     .each-component-container {
         height: 150px;
         h3 {
-            font-size: 20px;
+            font-size: 25px;
         }
     }
 }

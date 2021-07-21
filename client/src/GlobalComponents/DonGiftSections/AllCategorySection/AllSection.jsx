@@ -5,10 +5,12 @@ import axios from "axios"
 
 import Line from "../Line"
 import Title from "../Title"
-import IndividualBubble from "../IndividualBubble"
+import IndividualBubble from "./IndividualBubble"
+import IndividualBubbleLoading from './IndividualBubbleLoading'
+import SquareGridComponent from './SquareGridComponent'
+import SquareGridLoading from './SquareGridLoading'
 import GridThree from './GridThree'
 import GridFour from './GridFour'
-import SquareGridComponent from './SquareGridComponent'
 import CategoryBar from './CategoryBar'
 import WindowDimensions from '../../../Hooks/WindowDimension'
 
@@ -22,15 +24,24 @@ export default function AllSection(props) {
     const [typeOfData, setTypeOfData] = useState('artists')
     const [isFetchingAPI, setIsFetchingAPI] = useState(true)
 
+    const resetAllComponentsAndSetStateToFetch = () => {
+        setIsFetchingAPI(true)
+
+        const threeGridData = [...Array(5)].map((index) => <IndividualBubbleLoading key={index}/>)
+        setAllThreeGridData(threeGridData)
+
+        const fourGridData = [...Array(6)].map((index) => <SquareGridLoading key={index}/>)
+        setAllFourGridData(fourGridData)
+    }
+
     
     //do more cleanup later
-   
     const getComponentsByArtist = artist => {
         const components = props.pageUrl
         setTypeOfData('componentsbyartist')
-        setAllFourGridData([]) //resets the other grid so that animations don't look weird
+        resetAllComponentsAndSetStateToFetch()
         setIsFetchingAPI(true)
-        axios.post(`/api/get${components}by/artist`, {artist: artist})
+        axios.get(`/api/get${components}by/artist?artist=${artist}`)
         .then(response => response.data)
         .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
             key={data.id}
@@ -50,7 +61,7 @@ export default function AllSection(props) {
     const getComponentsByType = type => {
         const components = props.pageUrl
         setTypeOfData('giftsbytype')
-        setAllFourGridData([])
+        resetAllComponentsAndSetStateToFetch()
         setIsFetchingAPI(true)
         axios.post(`/api/get${components}by/type`, {type: type})
         .then(response => response.data)
@@ -69,26 +80,25 @@ export default function AllSection(props) {
         setIsFetchingAPI(false)
     }
 
-    const getAllBlocksOf = (category, pageUrl) => {
+    const getAllBlocksOf = (category, pageUrl) => { //for artists / types 4 grid format
         setTypeOfData(category)
-        setAllThreeGridData([])
+        resetAllComponentsAndSetStateToFetch()
         setIsFetchingAPI(true)
         axios.get(`/api/getall${category}in/${pageUrl}`)
         .then(response => response.data)
         .then(artists => setAllFourGridData(artists.map(
-            artist => <SquareGridComponent key={artist} name={artist} getComponents={
-                category === 'artists'? getComponentsByArtist: getComponentsByType
-            }/>
-            )
+            artist => <SquareGridComponent key={artist} title={artist} category={category} 
+            getComponents={category === 'artists'? getComponentsByArtist: getComponentsByType}
+            />)
         ))
         setIsFetchingAPI(false)
     }
 
     const getAll = (category, pageUrl) => {
         setTypeOfData(category)
-        setAllFourGridData([])
+        resetAllComponentsAndSetStateToFetch()
         setIsFetchingAPI(true)
-        axios.get(`/api/all${pageUrl}by${category}`)
+        axios.get(`/api/getallby?collection=${pageUrl}&sortparam=${category}`)
         .then(response => response.data)
         .then(gifts => setAllThreeGridData(gifts.map(gift => <IndividualBubble
             key={gift.id}
@@ -109,8 +119,7 @@ export default function AllSection(props) {
         getAllBlocksOf('artists', props.pageUrl)
     }, [])
 
-    if (isFetchingAPI) return null
-    else if (typeOfData === 'artists' || typeOfData === 'types') return (
+    return (
         <div className="all-container" style={
         {marginTop: props.userBias !== 'nouser' && 
         width <= 415? '25px': width <= 900? '25px': '50px'}}>
@@ -121,21 +130,11 @@ export default function AllSection(props) {
                 getAllBlocksOf={getAllBlocksOf} 
                 pageUrl={props.pageUrl}/>
             </div>
-            <GridFour render={allFourGridData}/>
-        </div>
-    )
-    else return (
-        <div className="all-container" style={
-            {marginTop: props.userBias !== 'nouser' && 
-            width <= 415? '25px': width <= 900? '25px': '50px' }}>
-            <div className="categories-container">
-                <Title pinned={false} content="전체보기"/>
-                <CategoryBar 
-                getAll={getAll}
-                getAllBlocksOf={getAllBlocksOf} 
-                pageUrl={props.pageUrl}/>
-            </div>
-            <GridThree render={allThreeGridData}/>
+            {/* { isFetchingAPI? 
+            <GridThree render={<IndividualBubbleLoading/>}/>: */}
+              {typeOfData === 'artists' || typeOfData === 'types'? 
+              <GridFour render={allFourGridData}/>:
+              <GridThree render={allThreeGridData}/> }
         </div>
     )
 }

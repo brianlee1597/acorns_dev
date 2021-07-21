@@ -1,4 +1,4 @@
-import donation from './components/donations.js'
+import donations from './components/donations.js'
 import allGifts from './components/gifts.js'
 import { chartData } from './tempdb.js'
 
@@ -20,6 +20,15 @@ export default function (app) {
             res.json(data)
         })
     })
+
+    app.get("/api/getallartistsin/donations", (req, res) => {
+        donations.distinct("artist").lean()
+        .sort().exec((error, data) => {
+            error? res.json('error'):
+            data.length === 0? res.json("nodonations"):
+            res.json(data)
+        })
+    })
     
     app.get("/api/getalltypesin/gifts", (req, res) => {
         allGifts.distinct("type").lean()
@@ -29,32 +38,26 @@ export default function (app) {
             res.json(data)
         })
     })
-    
-    app.get('/api/allgiftsbygoal', (req, res) => {
-        allGifts.find({}).lean()
-        .sort({paidtoneededratio: -1})
-        .limit(10).then(gifts => res.json(gifts))
+
+    //getalltypesin/donations
+
+    app.get('/api/getallby', (req, res) => {
+        const collection = req.query.collection === "gifts"? allGifts: donations
+        collection.find({}).lean()
+        .sort(
+            req.query.sortparam === 'goal'? {paidtoneededratio: -1}: 
+            req.query.sortparam === 'deadline'? {dateending: 1}:
+            {amountpaidsofar: -1}
+        )
+        .limit(12).then(gifts => res.json(gifts))
         .catch(error => console.log(error))
     })
     
-    app.get('/api/allgiftsbydeadline', (req, res) => {
-        allGifts.find({}).lean()
-        .sort({dateending: 1})
-        .limit(10).then(gifts => res.json(gifts))
-        .catch(error => console.log(error))
-    })
-    
-    app.get('/api/allgiftsbyfunding', (req, res) => {
-        allGifts.find({}).lean()
-        .sort({amountpaid: 1})
-        .limit(10).then(gifts => res.json(gifts))
-        .catch(error => console.log(error))
-    })
-    
-    app.post("/api/getgiftsby/bias", (req, res) => { //Gifts Section get by bias
-        allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
+    app.post("/api/getbiased", (req, res) => { //get pinnable data from gifts or donations 
+        const collection = req.query.collection === 'gifts'? allGifts: donations
+        collection.find({artist: req.body.artist}) //search and find only the ones by user bias
         .lean() //get only the data not the mongoDB settings
-        .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
+        .sort({dateending: 1}) //sort by percentage of goal (money) raised
         .limit(5) //limit of components = 5
         .exec((error, data) => { //then execute sending data
             error? res.json("error"):
@@ -63,8 +66,8 @@ export default function (app) {
         })
     })
     
-    app.post("/api/getgiftsby/artist", (req, res) => { //Gifts Section get by bias
-        allGifts.find({artist: req.body.artist}) //search and find only the ones by user bias
+    app.get("/api/getgiftsby/artist", (req, res) => { //Gifts Section get by bias
+        allGifts.find({artist: req.query.artist}) //search and find only the ones by user bias
         .lean() //get only the data not the mongoDB settings
         .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
         .limit(12) //limit of components = 5
@@ -86,18 +89,27 @@ export default function (app) {
             res.json(data)
         })
     })
-        
-    app.get('/api/getalldonations', (req, res) => { //sends all donations on api call
-        donation.find({})
-        .then(donation => res.json(donation))
-        .catch(error => console.log(error))
-    })
 
-    app.get("/api/getallartistsin/donations", (req, res) => {
-        allGifts.distinct("artist").lean()
-        .sort().exec((error, data) => {
-            error? res.json('error'):
-            data.length === 0? res.json("nodonations"):
+    app.get("/api/getdonationsby/artist", (req, res) => { //Gifts Section get by bias
+        donations.find({artist: req.query.artist}) //search and find only the ones by user bias
+        .lean() //get only the data not the mongoDB settings
+        .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
+        .limit(12) //limit of components = 5
+        .exec((error, data) => { //then execute sending data
+            error? res.json("error"):
+            data.length === 0? res.json("nodonationstothatartist"):
+            res.json(data)
+        })
+    })
+    
+    app.post("/api/getdonationsby/type", (req, res) => { //Gifts Section get by bias
+        donations.find({type: req.body.type}) //search and find only the ones by user bias
+        .lean() //get only the data not the mongoDB settings
+        .sort({paidtoneededratio: -1}) //sort by percentage of goal (money) raised
+        .limit(12) //limit of components = 5
+        .exec((error, data) => { //then execute sending data
+            error? res.json("error"):
+            data.length === 0? res.json("nodonationstothattype"):
             res.json(data)
         })
     })

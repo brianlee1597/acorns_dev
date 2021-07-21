@@ -1,12 +1,15 @@
 import mongoose from "mongoose"
 
 const donation = new mongoose.Schema({
-    imageurl: String,
     artist: String,
-    category: String,
-    totalrequired: Number,
-    totaldonated: Number,
-    title: String
+    imageurl: String,
+    title: String,
+    type: String,
+    user: String,
+    amountpaidsofar: Number,
+    amountneeded: Number,
+    paidtoneededratio: Number,
+    dateending: Number
 })
 
 export default mongoose.model("donation", donation)

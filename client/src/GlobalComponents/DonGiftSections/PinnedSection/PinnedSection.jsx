@@ -1,7 +1,7 @@
 import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import WindowDimensions from '../../../Hooks/WindowDimension'
-import IndividualBubble from '../IndividualBubble'
+import IndividualBubble from '../AllCategorySection/IndividualBubble'
 import Line from '../Line'
 import Title from '../Title'
 
