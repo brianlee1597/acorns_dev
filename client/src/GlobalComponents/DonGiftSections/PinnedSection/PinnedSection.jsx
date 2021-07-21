@@ -16,9 +16,15 @@ const PinnedSection = props => { //The whole gift bias pinned section
         return null
 
     //the title above PinnedComponent changes based on bias
-    const title = props.userBias === "Aespa"? "가장 소중한 친구, MY":
-    props.userBias === "BTS"? "Army, One and Only":
-    "Blink, For You"
+    const titleMap = new Map([
+        ["Aespa", "가장 소중한 친구, MY"],
+        ["Blackpink", "Blink, For You"],
+        ["BTS", "Army, One and Only"],
+        ["G-Dragon", "불타는 용 핫핫 Gucci Gang"],
+        ["Jessi", "아 이 ****** 나 누군지 알아? 나 제스ㅜ-"],
+        ["SungSiKyung", "Hi Claire"]
+    ])
+
 
     // eslint-disable-next-line no-unused-vars
     const {height, width} = WindowDimensions()
@@ -26,7 +32,7 @@ const PinnedSection = props => { //The whole gift bias pinned section
     return ( //PinnedComponent renders its inner stuff based on the conditional props from PinnedSection
         <>
             <div className="pinned-container">
-                <Title pinned={true} content={"  " + title}/>
+                <Title pinned={true} content={"  " + titleMap.get(props.userBias)}/>
                 <Line/>
                 {props.componentsByBias.length === 0? <div className="nobias-exists">No {props.pageUrl} posted yet!</div>: 
                 <Swiper 

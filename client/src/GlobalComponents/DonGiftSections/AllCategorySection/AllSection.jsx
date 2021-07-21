@@ -21,30 +21,26 @@ export default function AllSection(props) {
     const {height, width} = WindowDimensions()
     const [allFourGridData, setAllFourGridData] = useState([]) //the fourgrid/three grid is separated for react loading
     const [allThreeGridData, setAllThreeGridData] = useState([]) //animation reasons
-    const [typeOfData, setTypeOfData] = useState('artists')
-    const [isFetchingAPI, setIsFetchingAPI] = useState(true)
+    const [typeOfData, setTypeOfData] = useState('') //this state will determine 3 element grid or 4 ele grid
 
-    const resetAllComponentsAndSetStateToFetch = () => {
-        setIsFetchingAPI(true)
-
-        const threeGridData = [...Array(5)].map((index) => <IndividualBubbleLoading key={index}/>)
+    const setGridstoLoading = () => {
+        //grey silhouette while loading
+        const threeGridData = [...Array(5)].map((e, index) => <IndividualBubbleLoading key={index}/>)
         setAllThreeGridData(threeGridData)
-
-        const fourGridData = [...Array(6)].map((index) => <SquareGridLoading key={index}/>)
+        const fourGridData = [...Array(6)].map((e, index) => <SquareGridLoading key={index}/>)
         setAllFourGridData(fourGridData)
     }
 
     
     //do more cleanup later
-    const getComponentsByArtist = artist => {
+    const getComponentsByArtist = artist => { //when user presses on 아티스트별
         const components = props.pageUrl
         setTypeOfData('componentsbyartist')
-        resetAllComponentsAndSetStateToFetch()
-        setIsFetchingAPI(true)
+        setGridstoLoading()
         axios.get(`/api/get${components}by/artist?artist=${artist}`)
         .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
-            key={data.id}
+        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
+            key={index}
             imageurl={data.imageurl}
             title={data.title}
             type={data.type}
@@ -55,18 +51,16 @@ export default function AllSection(props) {
             dateremaining={data.dateending}
             artist={data.artist} />)
         ))
-        setIsFetchingAPI(false)
     }
 
-    const getComponentsByType = type => {
+    const getComponentsByType = type => {  //when user presses on 분야별
         const components = props.pageUrl
         setTypeOfData('giftsbytype')
-        resetAllComponentsAndSetStateToFetch()
-        setIsFetchingAPI(true)
+        setGridstoLoading()
         axios.post(`/api/get${components}by/type`, {type: type})
         .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
-            key={data.id}
+        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
+            key={index}
             imageurl={data.imageurl}
             title={data.title}
             type={data.type}
@@ -77,31 +71,27 @@ export default function AllSection(props) {
             dateremaining={data.dateending}
             artist={data.artist} />)
         ))
-        setIsFetchingAPI(false)
     }
 
     const getAllBlocksOf = (category, pageUrl) => { //for artists / types 4 grid format
         setTypeOfData(category)
-        resetAllComponentsAndSetStateToFetch()
-        setIsFetchingAPI(true)
+        setGridstoLoading()
         axios.get(`/api/getall${category}in/${pageUrl}`)
         .then(response => response.data)
         .then(artists => setAllFourGridData(artists.map(
-            artist => <SquareGridComponent key={artist} title={artist} category={category} 
+            (artist, index) => <SquareGridComponent key={index} title={artist} category={category} 
             getComponents={category === 'artists'? getComponentsByArtist: getComponentsByType}
             />)
         ))
-        setIsFetchingAPI(false)
     }
 
-    const getAll = (category, pageUrl) => {
+    const getAll = (category, pageUrl) => { //for 3 grid components
         setTypeOfData(category)
-        resetAllComponentsAndSetStateToFetch()
-        setIsFetchingAPI(true)
+        setGridstoLoading()              //gifts or donations by enddate/funding/goal           
         axios.get(`/api/getallby?collection=${pageUrl}&sortparam=${category}`)
         .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map(data => <IndividualBubble
-            key={data.id}
+        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
+            key={index}
             imageurl={data.imageurl}
             title={data.title}
             type={data.type}
@@ -114,7 +104,8 @@ export default function AllSection(props) {
         ))
     }
 
-    useEffect(() =>{
+    useEffect(() =>{ //on mount, load all artists first as default with props.pageUrl indicating
+                     //either gifts or donations
         getAllBlocksOf('artists', props.pageUrl)
     }, [])
 
