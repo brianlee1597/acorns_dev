@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const donation = new mongoose.Schema({
+const Donations = new mongoose.Schema({
     artist: String,
     imageurl: String,
     title: String,
@@ -12,4 +12,4 @@ const donation = new mongoose.Schema({
     dateending: Number
 })
 
-export default mongoose.model("donation", donation)
+export default mongoose.model("Donation", Donations)

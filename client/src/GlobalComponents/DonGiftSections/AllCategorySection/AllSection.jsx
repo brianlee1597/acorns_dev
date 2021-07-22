@@ -104,27 +104,25 @@ export default function AllSection(props) {
         ))
     }
 
-    useEffect(() =>{ //on mount, load all artists first as default with props.pageUrl indicating
-                     //either gifts or donations
-        getAllBlocksOf('artists', props.pageUrl)
-    }, [])
+    useEffect(() => getAllBlocksOf('artists', props.pageUrl), ['onceOnLoad'])
 
     return (
-        <div className="all-container" style={
-        {marginTop: props.userBias !== 'nouser' && 
-        width <= 415? '25px': width <= 900? '25px': '50px'}}>
-            <div className="categories-container">
+        <main name="all-section" className="all-container" style={{ 
+        marginTop: props.userBias !== 'nouser' && width <= 415? 
+        '25px': width <= 900? '25px': '50px' 
+        }}>
+            <nav name="section-nav" className="categories-container">
                 <Title pinned={false} content="전체보기"/>
                 <CategoryBar 
                 getAll={getAll}
                 getAllBlocksOf={getAllBlocksOf} 
                 pageUrl={props.pageUrl}/>
-            </div>
-            {/* { isFetchingAPI? 
-            <GridThree render={<IndividualBubbleLoading/>}/>: */}
-              {typeOfData === 'artists' || typeOfData === 'types'? 
-              <GridFour render={allFourGridData}/>:
-              <GridThree render={allThreeGridData}/> }
-        </div>
+            </nav>
+            <section name="components-grid">
+            { typeOfData === 'artists' || typeOfData === 'types'? 
+                <GridFour render={allFourGridData}/>:
+                <GridThree render={allThreeGridData}/> }
+            </section>
+        </main>
     )
 }

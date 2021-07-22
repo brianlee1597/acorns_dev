@@ -1,5 +1,6 @@
 import ProgressBar from 'react-animated-progress-bar'
 import { NavLink } from 'react-router-dom'
+import { LangMap } from '../../LanguageMap'
 
 import './IndividualBubble.scss'
 
@@ -10,22 +11,18 @@ const IndividualBubble = props => {
     const [amountpaid, amountneeded, dateremaining] = [props.amountpaid, 
         props.amountneeded, props.dateremaining]
     const percentage = props.percentagepaid
-    // eslint-disable-next-line no-unused-vars
 
     return (
         <div className="each-pinned-campaign">
             <div className="img-container" style={{backgroundImage: `url(${imageurl})`}}/>
-            <div className="text-container">
+            <div className="post-info-container">
                 <h4>[{artist}] {title}</h4>
-                <p>{type}&nbsp; | &nbsp;<NavLink className="posted-user" to="/">@{user}</NavLink></p>
+                <p>{type}&nbsp; | &nbsp;<NavLink className="user-who-posted" to="/">@{user}</NavLink></p>
             </div>
             <ProgressBar 
-                width={"90%"}
-                height="7px"
-                rect
-                fontColor="gray"
+                rect width="90%" height="7px"
                 percentage={percentage.toString()}
-                trackPathColor="#f4f4f4"
+                fontColor="gray" trackPathColor="#f4f4f4"
                 defColor={{
                     fair: '#F7E967',
                     good: '#70B7BA' ,
@@ -33,9 +30,9 @@ const IndividualBubble = props => {
                     poor: '#F1433F',
                 }}
             />
-            <div className="description-container">
-                <p>{amountpaid} / {amountneeded} 원</p>
-                <p>{dateremaining}일 남음</p>
+            <div className="post-stats-container">
+                <p>{amountpaid} / {amountneeded} {LangMap['individualPostStats'].get('acorns').korean}</p>
+                <p>{dateremaining + " " + LangMap['individualPostStats'].get('remaining').korean}</p>
             </div>
         </div>
     )    

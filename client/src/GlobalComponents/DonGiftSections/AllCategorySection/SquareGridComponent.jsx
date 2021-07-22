@@ -3,17 +3,19 @@ import { LangMap } from '../../LanguageMap'
 import './SquareGridComponent.scss'
 
 export default function SquareGridComponent (props) {
-
-    let title = props.title
-    let category = props.category
+    /* title of each square block, and the category it belongs to. 
+       (ex: artist, or donation/gift type) */
+    const [ title, category ] = [ props.title, props.category ]
 
     return (
-        <div className="each-component-container" onClick={() => props.getComponents(title)} style={{
-            background: `url(${PictureMap[category].get(title)}) no-repeat center center`,
-            backgroundPosition: 'center', backgroundSize: 'cover'
+        <div name="squareGrid" className="each-component-container" 
+        onClick={() => props.getComponents(title)} 
+        style={{
+        background: `url(${PictureMap[category].get(title)}) no-repeat center center`,
+        backgroundPosition: 'center', backgroundSize: 'cover'
         }}>
-            <h3>{LangMap[category].get(title).korean}</h3>
-            <div className="background-gradient"/>
+            <h3 name="title">{LangMap[category].get(title).english}</h3>
+            <div name="backgroundCoverForTitle" className="background-gradient"/>
         </div>
     )
 }

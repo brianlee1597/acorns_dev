@@ -1,47 +1,65 @@
 import { NavLink } from "react-router-dom";
-import WindowDimensions from '../Hooks/WindowDimension'
 import { LangMap } from "../GlobalComponents/LanguageMap";
+import biasStyle from "../GlobalComponents/BiasStyleMap";
+import WindowDimensions from '../Hooks/WindowDimension'
 
 import './Nav.scss'
 
 const Navigation = props => { 
 
+    /* ----- Component State ----- */
     // eslint-disable-next-line no-unused-vars
-    const { height, width } = WindowDimensions()
-    const linkArray = [
-        {route: "/intro", text: LangMap.navigation.get("aboutus").korean},
-        {route: "/charity", text: LangMap.navigation.get("charity").korean},
-        {route: "/gifts", text: LangMap.navigation.get("gifts").korean},
-        {route: "/promote", text: LangMap.navigation.get("promote").korean},
-        {route: "/forum", text: LangMap.navigation.get("forum").korean}
-    ]
-    const links = linkArray.map(eachLink => 
-        <NavLink key={eachLink.text}
-        style={{ color: props.loggedIn? 'white': 'black' }} 
-        activeClassName="is-active" to={eachLink.route}
-        >
-            {eachLink.text}
-        </NavLink>
-    )
+    const {height, width} = WindowDimensions()
+    const [loggedIn, logOut] = [props.loggedIn, props.logout]
+    /* ----- Component State ----- */
 
-    const background = props.loggedIn? props.user.backgroundcolor: 'white' //navigation bar background
+    /* ----- Objects/Settings for Render ----- */
+    const linkArray = [
+        { route: "/intro",   text: LangMap.navigation.get("aboutus").english },
+        { route: "/charity", text: LangMap.navigation.get("charity").english },
+        { route: "/gifts",   text: LangMap.navigation.get("gifts"  ).english },
+        { route: "/promote", text: LangMap.navigation.get("promote").english },
+        { route: "/forum",   text: LangMap.navigation.get("forum"  ).english }
+    ]
+
+    const color = loggedIn? biasStyle("nav", "Blackpink").linkcolor: 'black',
+    links = linkArray.map((eachLink, index) => {
+        return <NavLink key={index} activeClassName="is-active"
+                to={eachLink.route} style={{ color: color }}>
+                { eachLink.text }
+              </NavLink>
+    })
+
+    const background = !loggedIn? 'white':
+    biasStyle("nav", "Blackpink").backgroundcolor
+    /* ----- Objects/Settings for Render ----- */
 
     return (
         <section id="nav-container" style={{background: background}}>
             <div id="logo-left">
-                <NavLink to="/" style={{color: props.loggedIn? 'white': 'black', 
-                borderColor: props.loggedIn? 'white': 'black'}} 
-                className="logo">Acorns</NavLink>
-            </div>
-            <div className="navlink-container">{links}</div>
-            <div className="profile-container" style={{display: props.loggedIn? 'none': width <= 415? 'none': 'grid'}}>
-                <NavLink activeClassName="is-active" to="/login" className="login-button">
-                    {LangMap.navigation.get("login").korean}
+                <NavLink className="logo" to="/"
+                style={{
+                    color:       !loggedIn? 'black': biasStyle("nav", "Blackpink").linkcolor, 
+                    borderColor: !loggedIn? 'black': biasStyle("nav", "Blackpink").linkcolor
+                }}>
+                    Acorns
                 </NavLink>
             </div>
-            <div className="profile-container" style={{display: props.loggedIn && width > 415? 'grid': 'none'}}>
-                <button className="logout-button" onClick={props.logout}>
-                    {LangMap.navigation.get("logout").korean}
+
+            <div className="navlink-container">{links}</div>
+
+            <div className="profile-container" 
+            style={{ display: loggedIn? 'none': width <= 415? 'none': 'grid' }}>
+                <NavLink className="login-button" to="/login" 
+                activeClassName="is-active">
+                    {LangMap.navigation.get("login").english}
+                </NavLink>
+            </div>
+
+            <div className="profile-container" 
+            style={{ display: loggedIn && width > 415? 'grid': 'none' }}>
+                <button className="logout-button" onClick={logOut}>
+                    {LangMap.navigation.get("logout").english}
                 </button>
             </div>
         </section>

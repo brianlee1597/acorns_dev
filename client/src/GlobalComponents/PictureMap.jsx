@@ -1,5 +1,4 @@
-export const PictureMap = 
-{
+export const PictureMap = {
     artists: new Map([
         ['Aespa', 'https://pbs.twimg.com/media/EvoVw8UVEAMr6Sw?format=jpg&name=orig'],
         ['BTS', 'https://pbs.twimg.com/media/EfMRg4tU4AElo6v?format=jpg&name=medium'],

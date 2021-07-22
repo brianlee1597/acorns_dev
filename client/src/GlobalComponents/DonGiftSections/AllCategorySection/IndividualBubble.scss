@@ -16,7 +16,7 @@
         cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
-    .text-container {
+    .post-info-container {
         width: 90%;
         cursor: pointer;
 
@@ -34,7 +34,7 @@
             margin: 5px 0 0 0;
             padding: 0;
 
-            .posted-user {
+            .user-who-posted {
                 background: none;
                 color: rgb(100, 100, 100);
 
@@ -42,7 +42,7 @@
         }
     }
 
-    .description-container {
+    .post-stats-container {
         width: 90%;
         height: auto;
         margin: 0;
@@ -68,14 +68,14 @@
         .img-container {
             width: 90%;
         }
-        .text-container {
+        .post-info-container {
             width: 85%;
 
             h4 {
                 font-size: 16px;
             }
         }
-        .description-container {
+        .post-stats-container {
             width: 85%;
         }
     }

@@ -110,7 +110,7 @@ $page-white: rgb(248, 248, 248);
             transition-duration: 0.25s;
             text-decoration: none;
         }
-        .login-button:hover, .login-button:focus {
+        .login-button:hover {
             background: transparent;
             color: $page-black;
             border: 1px solid $page-black;
@@ -136,9 +136,9 @@ $page-white: rgb(248, 248, 248);
         }
 
         .is-active {
-            color: $page-white;
+            color: $page-black;
             background: transparent;
-            border: 1px solid $page-white;
+            border: 1px solid $page-black;
         }
     }
 }

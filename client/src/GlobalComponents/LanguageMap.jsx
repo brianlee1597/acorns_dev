@@ -31,24 +31,60 @@ export const LangMap = {
     ]),
     artists: new Map([
         ["Aespa", {
-            korean: "에스파",
-            japanese: "エスパ"
+            english: "Aespa",
+            korean: "에스파"
         }],
         ["BTS", {
-            korean: "BTS",
-            japanese: "バンタン"
+            english: "BTS",
+            korean: "BTS"
         }],
         ["Blackpink", {
+            english: "Blackpink",
             korean: "블랙핑크"
         }],
         ["G-Dragon", {
+            english: "G-Dragon",
             korean: "권지용"
         }],
         ["Jessi", {
+            english: "Jessi",
             korean: "제시"
         }],
         ["SungSiKyung", {
+            english: "SungSiKyung",
             korean: "성시경"
         }]
+    ]),
+
+    individualPostStats: new Map([
+        ["acorns", {
+            korean: "도토리"
+        }],
+        ["remaining", {
+            korean: "일 남음"
+        }]
+    ]),
+
+    categorynav: new Map([
+        ["artist", {
+            english: "Artist",
+            korean: "아티스트별"
+        }],
+        ["deadline", {
+            english: "Deadline",
+            korean: "마감일순"
+        }],
+        ["funding", {
+            english: "Funding",
+            korean: "펀딩액순"
+        }],
+        ["goal", {
+            english: "Goal",
+            korean: "목표금액순"
+        }],
+        ["type", {
+            english: "Type",
+            korean: "분야별"
+        }],
     ])
 }
