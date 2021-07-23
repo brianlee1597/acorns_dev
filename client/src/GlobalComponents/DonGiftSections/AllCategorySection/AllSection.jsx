@@ -111,18 +111,18 @@ export default function AllSection(props) {
         marginTop: props.userBias !== 'nouser' && width <= 415? 
         '25px': width <= 900? '25px': '50px' 
         }}>
-            <nav name="section-nav" className="categories-container">
+            <div name="section-nav" className="categories-container">
                 <Title pinned={false} content="전체보기"/>
                 <CategoryBar 
                 getAll={getAll}
                 getAllBlocksOf={getAllBlocksOf} 
                 pageUrl={props.pageUrl}/>
-            </nav>
-            <section name="components-grid">
+            </div>
+            <div name="components-grid">
             { typeOfData === 'artists' || typeOfData === 'types'? 
                 <GridFour render={allFourGridData}/>:
                 <GridThree render={allThreeGridData}/> }
-            </section>
+            </div>
         </main>
     )
 }
