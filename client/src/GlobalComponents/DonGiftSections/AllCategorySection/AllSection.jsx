@@ -21,8 +21,9 @@ export default function AllSection(props) {
     const {height, width} = WindowDimensions()
     const [allFourGridData, setAllFourGridData] = useState([]) //the fourgrid/three grid is separated for react loading
     const [allThreeGridData, setAllThreeGridData] = useState([]) //animation reasons
-    const [fourGrid, setFourGrid]   = useState(true)
+    const [isFourGrid, setIsFourGrid]   = useState(true)
     const [sortparam, setSortparam] = useState('deadline')
+    const [category, setCategory] = useState('artist')
     const [specificCategory, setSpecificCategory] = useState("")
 
     const setGridstoLoading = () => {
@@ -33,41 +34,45 @@ export default function AllSection(props) {
         setAllFourGridData(fourGridData)
     }
 
+    const setFourGrid = (datas, category) => {
+        setAllFourGridData(datas.map(
+            (specificcategory, index) => <SquareGridComponent 
+            key={index} category={category} specificcategory={specificcategory}
+            pageUrl={props.pageUrl} sortby={sortparam}
+            getComponents={getComponents} setSpecificCategory={setSpecificCategory}
+            /> )
+        )
+    }
+
+    const setThreeGrid = datas => {
+        setAllThreeGridData(datas.map(
+            (data, index) => <IndividualBubble
+            key={index} title={data.title} type={data.type}
+            user={data.user} imageurl={data.imageurl}
+            amountpaid={data.amountpaidsofar}
+            amountneeded={data.amountneeded}
+            percentagepaid={data.paidtoneededratio.toString()}
+            dateremaining={data.dateending}
+            artist={data.artist}
+            /> )
+        )
+    }
+
     const getComponents = (pageUrl, filter, category, specificcategory, sortby, gridview) => {
-        setFourGrid(gridview === "three"? false: true)
+        setIsFourGrid(gridview === "three"? false: true)
         setGridstoLoading()
         axios.get(`/api/getcomponents?collection=${pageUrl}&filter=${filter}&category=${category}&sortby=${sortby}&specificcategory=${specificcategory}&gridview=${gridview}`)
         .then(response => response.data)
-        .then(datas => {
-            if(gridview === "four") {
-                setAllFourGridData(datas.map(
-                    (specificcategory, index) => <SquareGridComponent 
-                    key={index} category={category} specificcategory={specificcategory}
-                    pageUrl={props.pageUrl} sortby={sortparam}
-                    getComponents={getComponents} setSpecificCategory={setSpecificCategory}
-                    /> )
-                )
-            }
-            else {
-                setAllThreeGridData(datas.map(
-                    (data, index) => <IndividualBubble
-                    key={index} title={data.title} type={data.type}
-                    user={data.user} imageurl={data.imageurl}
-                    amountpaid={data.amountpaidsofar}
-                    amountneeded={data.amountneeded}
-                    percentagepaid={data.paidtoneededratio.toString()}
-                    dateremaining={data.dateending}
-                    artist={data.artist}
-                    /> )
-                )
-            }
-        }).catch(error => console.log(error))
+        .then(datas => gridview === "four"? setFourGrid(datas, category): 
+                                            setThreeGrid(datas) 
+        )
+        .catch(error => console.log(error))
     }
 
     useEffect(() => {
-        fourGrid === true?
-            getComponents(props.pageUrl, "all", "artist", "", sortparam, "four" ):
-            getComponents(props.pageUrl, "all", "artist", specificCategory, sortparam, "three")
+        isFourGrid === true?
+            getComponents(props.pageUrl, "all", category, "", sortparam, "four"):
+            getComponents(props.pageUrl, "all", category, specificCategory, sortparam, "three")
     }, [sortparam])
 
     return (
@@ -80,10 +85,11 @@ export default function AllSection(props) {
                 <CategoryBar 
                 getComponents={getComponents}
                 setSortparam={setSortparam}
+                setCategory={setCategory}
                 pageUrl={props.pageUrl}/>
             </div>
             <div name="components-grid">
-            { fourGrid === true? <GridFour render={allFourGridData}/>:
+            { isFourGrid === true? <GridFour render={allFourGridData}/>:
                                  <GridThree render={allThreeGridData}/> }
             </div>
         </main>

@@ -56,6 +56,10 @@ export const LangMap = {
         }]
     ]),
 
+    // type: new Map([
+
+    // ])
+
     individualPostStats: new Map([
         ["acorns", {
             korean: "도토리"

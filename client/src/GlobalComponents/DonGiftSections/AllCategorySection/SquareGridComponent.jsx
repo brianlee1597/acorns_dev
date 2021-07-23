@@ -17,11 +17,14 @@ export default function SquareGridComponent (props) {
             category, specificcategory, sortby, "three")
         }} 
         style={{
-        background: `url(${PictureMap[category].get(specificcategory)}) no-repeat center center`,
+        background: `silver no-repeat center center`,
         backgroundPosition: 'center', backgroundSize: 'cover'
         }}>
-            <h3 name="title">{LangMap[category].get(specificcategory).english}</h3>
+            <h3 name="title">{specificcategory}</h3>
             <div name="backgroundCoverForTitle" className="background-gradient"/>
         </div>
     )
 }
+
+// url(${PictureMap[category].get(specificcategory)})
+// LangMap[category].get(specificcategory).english

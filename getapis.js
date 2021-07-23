@@ -9,7 +9,7 @@ export default function (app) {
     })
     
     app.get('/api/getloginstatus', (req, res) => { //sends userstatus to react on api call
-        req.user === undefined? res.json("nologin"): res.send(loggedInUser)
+        req.user === undefined? res.json("nologin"): res.send(req.user)
     })
 
     app.get('/api/getcomponents', (req, res) => {

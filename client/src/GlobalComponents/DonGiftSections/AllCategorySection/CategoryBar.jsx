@@ -6,9 +6,12 @@ export default function CategoryBar(props) {
     return (
         <div className="button-container">
             <select className="select select-category"
-            onChange={e => props.getComponents(props.pageUrl, "all", "artist", "", "", "four")}>
+            onChange={e => {
+                props.setCategory(e.target.value)
+                props.getComponents(props.pageUrl, "all", e.target.value, "", "", "four")
+            }}>
                 <option value="artist">Artist</option>
-                <option value="artist">Type</option>
+                <option value="type">Type</option>
             </select>
 
             <select className="select select-sortby"
