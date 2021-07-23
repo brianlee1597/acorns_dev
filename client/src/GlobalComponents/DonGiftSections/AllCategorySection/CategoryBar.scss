@@ -5,13 +5,9 @@
     height: auto;
     display: inline-block;
 
-    .category-nav-active,
-    .category-nav-not-active {
+    .select {
         margin: 0 0 9px 25px;
-        background: black;
-        color: white;
-        padding: 7px 15px 5px 15px;
-        border: 1px solid transparent;
+        padding: 7.5px 15px;
         border-radius: 5px;
         text-transform: none;
         text-decoration: none;
@@ -21,13 +17,18 @@
         letter-spacing: 1px;
         transition-duration: 0.25s;
         cursor: pointer;
+        outline: none;
     }
 
-    .category-nav-active,
-    .category-nav-not-active:hover  {
+    .select-category {
+        background: black;
+        color: white;
+        border: 1px solid transparent;
+    }
+
+    .select-sortby {
         background: transparent;
         color: black;
         border: 1px solid black;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
 }

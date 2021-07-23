@@ -21,7 +21,9 @@ export default function AllSection(props) {
     const {height, width} = WindowDimensions()
     const [allFourGridData, setAllFourGridData] = useState([]) //the fourgrid/three grid is separated for react loading
     const [allThreeGridData, setAllThreeGridData] = useState([]) //animation reasons
-    const [typeOfData, setTypeOfData] = useState('') //this state will determine 3 element grid or 4 ele grid
+    const [fourGrid, setFourGrid]   = useState(true)
+    const [sortparam, setSortparam] = useState('deadline')
+    const [specificCategory, setSpecificCategory] = useState("")
 
     const setGridstoLoading = () => {
         //grey silhouette while loading
@@ -31,80 +33,42 @@ export default function AllSection(props) {
         setAllFourGridData(fourGridData)
     }
 
-    
-    //do more cleanup later
-    const getComponentsByArtist = artist => { //when user presses on 아티스트별
-        const components = props.pageUrl
-        setTypeOfData('componentsbyartist')
+    const getComponents = (pageUrl, filter, category, specificcategory, sortby, gridview) => {
+        setFourGrid(gridview === "three"? false: true)
         setGridstoLoading()
-        axios.get(`/api/get${components}by/artist?artist=${artist}`)
+        axios.get(`/api/getcomponents?collection=${pageUrl}&filter=${filter}&category=${category}&sortby=${sortby}&specificcategory=${specificcategory}&gridview=${gridview}`)
         .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
-            key={index}
-            imageurl={data.imageurl}
-            title={data.title}
-            type={data.type}
-            user={data.user}
-            amountpaid={data.amountpaidsofar}
-            amountneeded={data.amountneeded}
-            percentagepaid={data.paidtoneededratio.toString()}
-            dateremaining={data.dateending}
-            artist={data.artist} />)
-        ))
+        .then(datas => {
+            if(gridview === "four") {
+                setAllFourGridData(datas.map(
+                    (specificcategory, index) => <SquareGridComponent 
+                    key={index} category={category} specificcategory={specificcategory}
+                    pageUrl={props.pageUrl} sortby={sortparam}
+                    getComponents={getComponents} setSpecificCategory={setSpecificCategory}
+                    /> )
+                )
+            }
+            else {
+                setAllThreeGridData(datas.map(
+                    (data, index) => <IndividualBubble
+                    key={index} title={data.title} type={data.type}
+                    user={data.user} imageurl={data.imageurl}
+                    amountpaid={data.amountpaidsofar}
+                    amountneeded={data.amountneeded}
+                    percentagepaid={data.paidtoneededratio.toString()}
+                    dateremaining={data.dateending}
+                    artist={data.artist}
+                    /> )
+                )
+            }
+        }).catch(error => console.log(error))
     }
 
-    const getComponentsByType = type => {  //when user presses on 분야별
-        const components = props.pageUrl
-        setTypeOfData('giftsbytype')
-        setGridstoLoading()
-        axios.post(`/api/get${components}by/type`, {type: type})
-        .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
-            key={index}
-            imageurl={data.imageurl}
-            title={data.title}
-            type={data.type}
-            user={data.user}
-            amountpaid={data.amountpaidsofar}
-            amountneeded={data.amountneeded}
-            percentagepaid={data.paidtoneededratio.toString()}
-            dateremaining={data.dateending}
-            artist={data.artist} />)
-        ))
-    }
-
-    const getAllBlocksOf = (category, pageUrl) => { //for artists / types 4 grid format
-        setTypeOfData(category)
-        setGridstoLoading()
-        axios.get(`/api/getall${category}in/${pageUrl}`)
-        .then(response => response.data)
-        .then(artists => setAllFourGridData(artists.map(
-            (artist, index) => <SquareGridComponent key={index} title={artist} category={category} 
-            getComponents={category === 'artists'? getComponentsByArtist: getComponentsByType}
-            />)
-        ))
-    }
-
-    const getAll = (category, pageUrl) => { //for 3 grid components
-        setTypeOfData(category)
-        setGridstoLoading()              //gifts or donations by enddate/funding/goal           
-        axios.get(`/api/getallby?collection=${pageUrl}&sortparam=${category}`)
-        .then(response => response.data)
-        .then(datas => setAllThreeGridData(datas.map((data, index) => <IndividualBubble
-            key={index}
-            imageurl={data.imageurl}
-            title={data.title}
-            type={data.type}
-            user={data.user}
-            amountpaid={data.amountpaidsofar}
-            amountneeded={data.amountneeded}
-            percentagepaid={data.paidtoneededratio.toString()}
-            dateremaining={data.dateending}
-            artist={data.artist} />)
-        ))
-    }
-
-    useEffect(() => getAllBlocksOf('artists', props.pageUrl), ['onceOnLoad'])
+    useEffect(() => {
+        fourGrid === true?
+            getComponents(props.pageUrl, "all", "artist", "", sortparam, "four" ):
+            getComponents(props.pageUrl, "all", "artist", specificCategory, sortparam, "three")
+    }, [sortparam])
 
     return (
         <main name="all-section" className="all-container" style={{ 
@@ -114,14 +78,13 @@ export default function AllSection(props) {
             <div name="section-nav" className="categories-container">
                 <Title pinned={false} content="전체보기"/>
                 <CategoryBar 
-                getAll={getAll}
-                getAllBlocksOf={getAllBlocksOf} 
+                getComponents={getComponents}
+                setSortparam={setSortparam}
                 pageUrl={props.pageUrl}/>
             </div>
             <div name="components-grid">
-            { typeOfData === 'artists' || typeOfData === 'types'? 
-                <GridFour render={allFourGridData}/>:
-                <GridThree render={allThreeGridData}/> }
+            { fourGrid === true? <GridFour render={allFourGridData}/>:
+                                 <GridThree render={allThreeGridData}/> }
             </div>
         </main>
     )

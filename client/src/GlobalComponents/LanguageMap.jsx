@@ -29,7 +29,7 @@ export const LangMap = {
             korean: "로그아웃"
         }]
     ]),
-    artists: new Map([
+    artist: new Map([
         ["Aespa", {
             english: "Aespa",
             korean: "에스파"
