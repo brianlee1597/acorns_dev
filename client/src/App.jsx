@@ -9,7 +9,7 @@ import Navigation from './Navigation/Navigation'
 import BottomNavigation from './Navigation/BottomNavigation'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
-import MyProfile from './Auth/MyProfile'
+import MyProfilePage from './Auth/MyProfile'
 import LandingPage from './LandingPage/LandingPage'
 import DonationPage from './Donations/DonationPage'
 import GiftsPage from './Gifts/GiftsPage.jsx'
@@ -77,7 +77,9 @@ export default function App() {
 
                         <Route exact path="/register"> <Register/> </Route>
 
-                        <Route exact path="/myprofile"> <MyProfile/> </Route>
+                        <Route exact path="/myprofile"> 
+                            <MyProfilePage /> 
+                        </Route>
 
                         <Route exact path="/charity">
                             <DonationPage userBias={appState.loggedIn? appState.user.bias: "nouser"} 

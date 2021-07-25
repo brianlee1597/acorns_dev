@@ -19,7 +19,8 @@ const Navigation = props => {
         { route: "/charity", text: LangMap.navigation.get("charity").english },
         { route: "/gifts",   text: LangMap.navigation.get("gifts"  ).english },
         { route: "/promote", text: LangMap.navigation.get("promote").english },
-        { route: "/forum",   text: LangMap.navigation.get("forum"  ).english }
+        { route: "/forum",   text: LangMap.navigation.get("forum"  ).english },
+        { route: "/myprofile",   text: LangMap.navigation.get("myprofile"  ).english }
     ]
 
     const color = loggedIn? biasStyle("nav", "Blackpink").linkcolor: 'black',
@@ -61,14 +62,6 @@ const Navigation = props => {
                 <button className="logout-button" onClick={logOut}>
                     {LangMap.navigation.get("logout").english}
                 </button>
-            </div>
-
-            <div className="profile-container" 
-            style={{ display: loggedIn? 'none': width <= 415? 'none': 'grid' }}>
-                <NavLink className="myprofile-button" to="/myprofile" 
-                activeClassName="is-active">
-                    {LangMap.navigation.get("myprofile").english}
-                </NavLink>
             </div>
         </section>
     )
