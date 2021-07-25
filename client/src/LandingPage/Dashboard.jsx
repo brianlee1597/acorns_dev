@@ -19,7 +19,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="whatever">
-                    <h1>hewwo Wolrd</h1>
+                    <h1>Wolrd</h1>
                 </div>
             </div>
         </div>
