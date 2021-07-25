@@ -64,7 +64,7 @@ const Navigation = props => {
             </div>
 
             <div className="profile-container" 
-            style={{ display: loggedIn && width > 400? 'none': 'grid' }}>
+            style={{ display: loggedIn? 'none': width <= 415? 'none': 'grid' }}>
                 <NavLink className="myprofile-button" to="/myprofile" 
                 activeClassName="is-active">
                     {LangMap.navigation.get("myprofile").english}
