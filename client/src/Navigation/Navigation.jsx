@@ -62,6 +62,14 @@ const Navigation = props => {
                     {LangMap.navigation.get("logout").english}
                 </button>
             </div>
+
+            <div className="profile-container" 
+            style={{ display: loggedIn && width > 400? 'none': 'grid' }}>
+                <NavLink className="myprofile-button" to="/myprofile" 
+                activeClassName="is-active">
+                    {LangMap.navigation.get("myprofile").english}
+                </NavLink>
+            </div>
         </section>
     )
 }
