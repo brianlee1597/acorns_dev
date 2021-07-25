@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import './Register.scss'
+import './MyProfile.scss'
 
 const MyProfile = props => {
 /*
