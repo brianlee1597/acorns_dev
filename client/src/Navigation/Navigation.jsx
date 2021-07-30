@@ -20,7 +20,7 @@ const Navigation = props => {
         { route: "/gifts",   text: LangMap.navigation.get("gifts"  ).english },
         { route: "/promote", text: LangMap.navigation.get("promote").english },
         { route: "/forum",   text: LangMap.navigation.get("forum"  ).english },
-        { route: "/myprofile",   text: LangMap.navigation.get("myprofile"  ).english }
+        { route: "/myprofile", text: "My Profile" }
     ]
 
     const color = loggedIn? biasStyle("nav", "Blackpink").linkcolor: 'black',

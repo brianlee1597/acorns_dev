@@ -71,13 +71,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 localPassportConfig(passport) //login auth package
 
-GETAPIs(app) //connecting all GET API functions from getapi.js
-
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     next()
 })
+
+GETAPIs(app) //connecting all GET API functions from getapi.js
 
 // /* ----- AUTHENTICATION (LOGIN/LOGOUT) methods ----- */
 app.post('/register', (req, res) => { //register user function, checks if user already exists, if not make new user

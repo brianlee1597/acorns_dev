@@ -26,31 +26,31 @@ $page-white: rgb(248, 248, 248);
   }
 }
 
-header {
+.header {
   grid-area: header;
   text-indent: 12.7rem;
   font-size: 20;
 }
 
-main {
+.main {
   grid-column: main;
   height: 500px;
 }
 
-aside {
+.aside {
   grid-row: sidebar;
 }
 
-footer {
+.footer {
   grid-column: footer;
   height: 100px;
 }
 
-aside,
-main {
+.aside,
+.main {
   min-height: 400px;
 }
 
-* {
-  box-sizing: border-box;
-}
+// * {
+//   box-sizing: border-box;
+// }

@@ -5,7 +5,6 @@ import IndividualBubble from '../AllCategorySection/IndividualBubble'
 import Line from '../Line'
 import Title from '../Title'
 
-import "react-multi-carousel/lib/styles.css";
 import './PinnedSection.scss'
 
 SwiperCore.use([Navigation]);
@@ -20,8 +19,8 @@ const PinnedSection = props => { //The whole gift bias pinned section
         ["Aespa", "가장 소중한 친구, MY"],
         ["Blackpink", "Blink, For You"],
         ["BTS", "Army, One and Only"],
-        ["G-Dragon", "불타는 용 핫핫 Gucci Gang"],
-        ["Jessi", "아 이 ****** 나 누군지 알아? 나 제스ㅜ-"],
+        ["G-Dragon", "지드래곤 테스트"],
+        ["Jessi", "제시누나"],
         ["SungSiKyung", "Hi Claire"]
     ])
 
