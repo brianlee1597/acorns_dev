@@ -8,7 +8,7 @@ import './GiftsPage.scss'
 const GiftsPage = props => {
     
   useEffect(() => {
-    axios.get('/test')
+    axios.get('/test').then(data => console.log(data))
   }, [])
 
     return (

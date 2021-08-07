@@ -96,15 +96,14 @@ const json = {
     "cancel_url":"https://developers.kakao.com/cancel"
 }
 
-app.get('/test', async () => {
- const data = await axios.post('https://kapi.kakao.com/v1/payment/ready', 
+app.get('/test', async (req, res) => {
+  await axios.post('https://kapi.kakao.com/v1/payment/ready', 
     json, {
     headers: {
       Authorization: `KakaoAK 3ebed518b0136a6bd50560b0e1e87bbb`,
       "Content-type": "application/x-www-form-urlencoded;charset=utf-8"
     }
-  })
-  console.log(data)
+  }).then(data => res.send(data))
 })
 
 app.post('/register', (req, res) => { //register user function, checks if user already exists, if not make new user
