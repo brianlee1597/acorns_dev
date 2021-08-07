@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 import GETAPIs from './getapis.js'
 import mongoose from "mongoose"
 import passport from 'passport'
+import axios from "axios"
 import donations from "./components/donations.js"
 import localPassportConfig from './local-passport-config.js'
 import User, { userBiasSettings } from './components/user.js'
@@ -80,6 +81,32 @@ app.use(function(req, res, next) {
 GETAPIs(app) //connecting all GET API functions from getapi.js
 
 // /* ----- AUTHENTICATION (LOGIN/LOGOUT) methods ----- */
+
+const json = {
+    "cid":"TC0ONETIME",
+    "partner_order_id":"partner_order_id",
+    "partner_user_id":"partner_user_id",
+    "item_name":"초코파이",    		  
+    "quantity":"1",
+    "total_amount":"2200",
+    "vat_amount":"200",
+    "tax_free_amount":"0",
+    "approval_url":"https://developers.kakao.com/success",
+    "fail_url":"https://developers.kakao.com/fail",
+    "cancel_url":"https://developers.kakao.com/cancel"
+}
+
+app.get('/test', async () => {
+ const data = await axios.post('https://kapi.kakao.com/v1/payment/ready', 
+    json, {
+    headers: {
+      Authorization: `KakaoAK 3ebed518b0136a6bd50560b0e1e87bbb`,
+      "Content-type": "application/x-www-form-urlencoded;charset=utf-8"
+    }
+  })
+  console.log(data)
+})
+
 app.post('/register', (req, res) => { //register user function, checks if user already exists, if not make new user
     req.socket.setTimeout(10000, () => { res.status(500).end() }) //if request doesn't respond, terminate after 10 sec
     try {
