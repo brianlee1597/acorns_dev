@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import express from "express"
-import request from "request"
-import http_build_query from "http-build-query"
-import JSON from "JSON"
+import request from "request";
+import httpBuildQuery from "http-build-query";
 
 
 const app = express()
@@ -34,29 +33,36 @@ app.get('/', async (req, res) => {
         "Authorization": 'KakaoAK 3ebed518b0136a6bd50560b0e1e87bbb',
         "Content-type": 'application/x-www-form-urlencoded;charset=utf-8'
     }
-    let _body = JSON.stringify({
+    let _body = {
         'cid': 'TC0ONETIME',
         'partner_order_id': 'partner_order_id',
         'partner_user_id': 'partner_user_id',
         'item_name': '초코파이',
         'quantity': '1',
-        'total_amout': '2200',
+        'total_amount': '2200',
         'vat_amount': '200',
         'tax_free_amount': '0',
         'approval_url': 'https://www.google.com',
         'fail_url': 'https://www.google.com',
         'cancel_url': 'https://www.google.com'
-    });
+    }; //removed JSON stringify
     
     let _req = {
         url: _url,
         method: 'POST',
         headers: _headers,
-        params: _body
+        form: httpBuildQuery(_body) //http query formatting the body object
     };
-    request(_req, function(error, response) {
+    request(_req, (error, response) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            var res_json = JSON.stringify(JSON.parse(response.body), null, 4); //pretty print
+            console.log(res_json);
+        }
+
         console.log("done")
-        console.log(error,response.body);
         return;
     });
     
