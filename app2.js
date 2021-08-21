@@ -33,7 +33,7 @@ app.get('/', async (req, res) => {
         "Authorization": 'KakaoAK 3ebed518b0136a6bd50560b0e1e87bbb',
         "Content-type": 'application/x-www-form-urlencoded;charset=utf-8'
     }
-    let _body = {
+    let _form = httpBuildQuery({
         'cid': 'TC0ONETIME',
         'partner_order_id': 'partner_order_id',
         'partner_user_id': 'partner_user_id',
@@ -45,13 +45,13 @@ app.get('/', async (req, res) => {
         'approval_url': 'https://www.google.com',
         'fail_url': 'https://www.google.com',
         'cancel_url': 'https://www.google.com'
-    }; //removed JSON stringify
+    });
     
     let _req = {
         url: _url,
         method: 'POST',
         headers: _headers,
-        form: httpBuildQuery(_body) //http query formatting the body object
+        form: _form
     };
     request(_req, (error, response) => {
         if (error) {
@@ -62,7 +62,7 @@ app.get('/', async (req, res) => {
             console.log(res_json);
         }
 
-        console.log("done")
+        console.log("done");
         return;
     });
     

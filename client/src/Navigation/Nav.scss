@@ -45,7 +45,7 @@ $page-white: rgb(248, 248, 248);
     align-items: center;
     a {
       margin: 5px 0 0 0;
-      padding: 5px 20px;
+      padding: 5px 20px 6px 20px;
       position: relative;
       font-size: 1.1rem;
       font-family: "Sunflower", sans-serif;
@@ -101,9 +101,9 @@ $page-white: rgb(248, 248, 248);
     .login-button {
       margin: 0;
       padding: 0;
-      padding: 8px 30px 5px 30px;
+      padding: 8px 30px 8px 30px;
       border: 1px solid transparent;
-      border-radius: 10px;
+      border-radius: 30px;
       background: $page-black;
       color: $page-white;
       font-size: 1.15rem;
@@ -120,9 +120,9 @@ $page-white: rgb(248, 248, 248);
     .logout-button {
       margin: 0;
       padding: 0;
-      padding: 8px 30px 5px 30px;
+      padding: 8px 30px 8px 30px;
       border: 1px solid transparent;
-      border-radius: 10px;
+      border-radius: 30px;
       background: $page-white;
       color: $page-black;
       font-size: 1.15rem;

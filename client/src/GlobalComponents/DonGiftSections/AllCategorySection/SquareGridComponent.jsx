@@ -17,7 +17,7 @@ export default function SquareGridComponent (props) {
             category, specificcategory, sortby, "three")
         }} 
         style={{
-        background: `silver no-repeat center center`,
+        background: `url(${PictureMap[category].get(specificcategory)}) no-repeat center center`,
         backgroundPosition: 'center', backgroundSize: 'cover'
         }}>
             <h3 name="title">{specificcategory}</h3>

@@ -6,29 +6,20 @@
     display: inline-block;
 
     .select {
-        margin: 0 0 9px 25px;
-        padding: 7.5px 15px;
-        border-radius: 5px;
+        margin: 5px 0 0px 25px;
+        padding: 0 10px 0 0;
         text-transform: none;
         text-decoration: none;
         font-family: "Sunflower", "sans-serif";
         font-size: 1rem;
         font-weight: 600;
         letter-spacing: 1px;
-        transition-duration: 0.25s;
         cursor: pointer;
         outline: none;
     }
 
-    .select-category {
-        background: black;
-        color: white;
-        border: 1px solid transparent;
-    }
-
+    .select-category,
     .select-sortby {
-        background: transparent;
-        color: black;
-        border: 1px solid black;
+        border: none;
     }
 }

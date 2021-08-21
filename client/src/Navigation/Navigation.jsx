@@ -15,11 +15,11 @@ const Navigation = props => {
 
     /* ----- Objects/Settings for Render ----- */
     const linkArray = [
-        { route: "/intro",   text: LangMap.navigation.get("aboutus").english },
+        // { route: "/intro",   text: LangMap.navigation.get("aboutus").english },
         { route: "/charity", text: LangMap.navigation.get("charity").english },
         { route: "/gifts",   text: LangMap.navigation.get("gifts"  ).english },
-        { route: "/promote", text: LangMap.navigation.get("promote").english },
-        { route: "/forum",   text: LangMap.navigation.get("forum"  ).english },
+        // { route: "/promote", text: LangMap.navigation.get("promote").english },
+        // { route: "/forum",   text: LangMap.navigation.get("forum"  ).english },
         { route: "/myprofile", text: "My Profile" }
     ]
 

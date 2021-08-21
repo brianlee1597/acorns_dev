@@ -11,7 +11,7 @@ export default function CategoryBar(props) {
                 props.getComponents(props.pageUrl, "all", e.target.value, "", "", "four")
             }}>
                 <option value="artist">Artist</option>
-                <option value="type">Type</option>
+                {/* <option value="type">Type</option> */}
             </select>
 
             <select className="select select-sortby"
